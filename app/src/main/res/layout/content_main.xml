@@ -13,4 +13,11 @@
     tools:context=".Views.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/buttonTeste"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
