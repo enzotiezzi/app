@@ -12,6 +12,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import Dialogs.FormDadosEssenciaisDialog;
+import Dialogs.FormDescricaoVagaDialog;
 import Dialogs.FormSalarioBeneficiosDialog;
 import br.com.zelar.zellarempresas.R;
 
@@ -45,6 +46,7 @@ public class CriarVagaActivityFragment extends Fragment
 
         textViewVerEssenciais.setOnClickListener(textViewVerEssenciais_click);
         textViewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
+        textViewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
 
         return thisView;
     }
@@ -69,6 +71,18 @@ public class CriarVagaActivityFragment extends Fragment
             FormSalarioBeneficiosDialog formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(getActivity());
             formSalarioBeneficiosDialog.show();
             Window window = formSalarioBeneficiosDialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+    };
+
+    View.OnClickListener textViewDescricaoAtividades_click = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            FormDescricaoVagaDialog formDescricaoVagaDialog = new FormDescricaoVagaDialog(getActivity());
+            formDescricaoVagaDialog.show();
+            Window window = formDescricaoVagaDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     };
