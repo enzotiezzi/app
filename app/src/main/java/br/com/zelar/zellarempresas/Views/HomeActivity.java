@@ -9,14 +9,14 @@ import android.view.View;
 
 import br.com.zelar.zellarempresas.R;
 
-public class CriarVagaDetalhes extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_vaga_detalhes);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }

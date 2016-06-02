@@ -9,4 +9,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_criar_vaga_local_cargo">Criar nova vaga</string>
     <string name="title_activity_criar_vaga_detalhes">CriarVagaDetalhes</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_criar_vaga">CriarVagaActivity</string>
 </resources>

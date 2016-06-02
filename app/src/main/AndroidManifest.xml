@@ -23,13 +23,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.CriarVagaLocalCargo"
-            android:label="@string/title_activity_criar_vaga_local_cargo"
+            android:name=".Views.HomeActivity"
+            android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".Views.CriarVagaDetalhes"
-            android:label="@string/title_activity_criar_vaga_detalhes"
+            android:name=".Views.CriarVagaActivity"
+            android:label="@string/title_activity_criar_vaga"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

@@ -22,7 +22,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="ver"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:id="@+id/textViewSalarioBeneficios"/>
     </RelativeLayout>
 
     <TextView

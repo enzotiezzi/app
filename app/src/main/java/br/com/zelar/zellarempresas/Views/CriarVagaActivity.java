@@ -9,17 +9,16 @@ import android.view.View;
 
 import br.com.zelar.zellarempresas.R;
 
-public class CriarVagaLocalCargo extends AppCompatActivity
+public class CriarVagaActivity extends AppCompatActivity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_vaga_local_cargo);
+        setContentView(R.layout.activity_criar_vaga);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
 }

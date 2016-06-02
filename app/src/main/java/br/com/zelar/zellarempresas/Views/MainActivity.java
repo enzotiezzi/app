@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
+import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
 import br.com.zelar.zellarempresas.R;
 
 public class MainActivity extends AppCompatActivity
@@ -43,14 +46,10 @@ public class MainActivity extends AppCompatActivity
 
         Button b = (Button) findViewById(R.id.buttonTeste);
 
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, LoginActivity.class);
-
-                context.startActivity(i);
-            }
-        });
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new HomeActivityFragment())
+                .commit();
     }
 
     @Override
@@ -93,10 +92,23 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment fragment = null;
+
         switch (id)
         {
+            case R.id.home:
+                fragment = new HomeActivityFragment();
+                break;
 
+            case R.id.criar_vaga:
+                fragment = new CriarVagaActivityFragment();
+                break;
         }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
