@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by enzo on 30/05/2016.
  */
-public class Vaga
+public class Vaga extends Entidade
 {
     private String IdLocal;
     private String Titulo;

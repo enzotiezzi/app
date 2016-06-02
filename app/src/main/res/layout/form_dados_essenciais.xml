@@ -49,10 +49,14 @@
         android:text="Cargo*"
         android:id="@+id/textView14"/>
 
-    <Spinner
+    <!--<Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerConfCargo"/>
+        android:id="@+id/spinnerConfCargo"/>-->
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewAutoCompleteCargo"/>
 
     <TextView
         android:layout_width="wrap_content"
