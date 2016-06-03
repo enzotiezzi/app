@@ -1,13 +1,12 @@
 package Models.Empresas;
 
-import DataType.Guid;
 
 /**
  * Created by enzo on 02/06/2016.
  */
 public class Local extends Entidade
 {
-    public Guid IdEmpresa;
+    public String IdEmpresa;
 
     public String Nome;
     public String CEP;
@@ -44,8 +43,8 @@ public class Local extends Entidade
 
     public String NomeResponsavel;
     public String EmailResponsavel;
-    public Guid IdCliente;
-    public Guid IdGrupo;
+    public String IdCliente;
+    public String IdGrupo;
 
     public String Codigo;
     public String CargoContato;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 
+import Models.Empresas.Vaga;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -13,11 +14,18 @@ import br.com.zelar.zellarempresas.R;
 public class FormDescricaoVagaDialog extends Dialog
 {
     private Context context;
+    private Vaga vaga;
+
     public FormDescricaoVagaDialog(Context context)
     {
         super(context);
 
         this.context = context;
+    }
+
+    public void setVaga(Vaga vaga)
+    {
+        this.vaga = vaga;
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.w3c.dom.Text;
 import Dialogs.FormDadosEssenciaisDialog;
 import Dialogs.FormDescricaoVagaDialog;
 import Dialogs.FormSalarioBeneficiosDialog;
+import Models.Empresas.Vaga;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -29,6 +30,8 @@ public class CriarVagaActivityFragment extends Fragment
     private TextView textViewResumoVaga;
     private TextView textViewSalarioBeneficios;
 
+    private Vaga vaga;
+
     public CriarVagaActivityFragment()
     {
     }
@@ -38,6 +41,8 @@ public class CriarVagaActivityFragment extends Fragment
                              Bundle savedInstanceState)
     {
         thisView = inflater.inflate(R.layout.fragment_criar_vaga, container, false);
+
+        vaga = new Vaga();
 
         textViewDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewDescricaoAtividades);
         textViewVerEssenciais = (TextView) thisView.findViewById(R.id.textViewVerEssenciais);
@@ -57,6 +62,7 @@ public class CriarVagaActivityFragment extends Fragment
         public void onClick(View v)
         {
             FormDadosEssenciaisDialog formDadosEssenciaisDialog = new FormDadosEssenciaisDialog(getActivity());
+            formDadosEssenciaisDialog.setVaga(vaga);
             formDadosEssenciaisDialog.show();
             Window window = formDadosEssenciaisDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -69,6 +75,7 @@ public class CriarVagaActivityFragment extends Fragment
         public void onClick(View v)
         {
             FormSalarioBeneficiosDialog formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(getActivity());
+            formSalarioBeneficiosDialog.setVaga(vaga);
             formSalarioBeneficiosDialog.show();
             Window window = formSalarioBeneficiosDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -81,6 +88,7 @@ public class CriarVagaActivityFragment extends Fragment
         public void onClick(View v)
         {
             FormDescricaoVagaDialog formDescricaoVagaDialog = new FormDescricaoVagaDialog(getActivity());
+            formDescricaoVagaDialog.setVaga(vaga);
             formDescricaoVagaDialog.show();
             Window window = formDescricaoVagaDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

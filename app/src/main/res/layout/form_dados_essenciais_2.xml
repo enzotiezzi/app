@@ -88,7 +88,9 @@
             android:layout_height="wrap_content"
             android:text="Fechar"
             android:id="@+id/buttonFechar"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="#616161"
+            android:textColor="#ffffff"/>
 
         <Button
             android:layout_width="wrap_content"

@@ -1,13 +1,11 @@
 package Models.Empresas;
 
-import DataType.Guid;
-
 /**
  * Created by enzo on 02/06/2016.
  */
 public class Entidade
 {
-    private Guid UniqueId;
+    private String UniqueId;
     private boolean Ativo;
 
     public Entidade()
@@ -15,12 +13,12 @@ public class Entidade
 
     }
 
-    public Guid getUniqueId()
+    public String getUniqueId()
     {
         return UniqueId;
     }
 
-    public void setUniqueId(Guid uniqueId)
+    public void setUniqueId(String uniqueId)
     {
         UniqueId = uniqueId;
     }

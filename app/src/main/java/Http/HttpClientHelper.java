@@ -28,6 +28,7 @@ public class HttpClientHelper
         {
             private ProgressDialog progressDialog;
             private int status;
+            private boolean error = false;
 
             @Override
             protected void onPreExecute()
@@ -63,6 +64,7 @@ public class HttpClientHelper
                 }
                 catch (Throwable t)
                 {
+                    error = true;
                     onResponse.onRequestEnd(500, t, context.getResources().getString(R.string.generic_error));
                     return null;
                 }
@@ -71,8 +73,11 @@ public class HttpClientHelper
             @Override
             protected void onPostExecute(String response)
             {
-                if(response != null)
-                    onResponse.onRequestEnd(200, null, response);
+                if(!error)
+                {
+                    if(response != null)
+                        onResponse.onRequestEnd(200, null, response);
+                }
 
                 progressDialog.dismiss();
             }
@@ -105,6 +110,7 @@ public class HttpClientHelper
             connection.setRequestMethod("POST");
             connection.setChunkedStreamingMode(url.getBytes().length);
             connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
 
             String json = new Gson().toJson(body);
             writeOutputStream(connection.getOutputStream(), json);
@@ -187,5 +193,6 @@ public class HttpClientHelper
         bWriter.write(json);
         bWriter.flush();
         bWriter.close();
+        stream.close();
     }
 }
