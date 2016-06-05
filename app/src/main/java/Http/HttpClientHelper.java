@@ -91,6 +91,8 @@ public class HttpClientHelper
             URL _url = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) _url.openConnection();
             connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoInput(true);
 
             String json = readInputStream(connection.getInputStream());
 
@@ -108,7 +110,6 @@ public class HttpClientHelper
             URL _url = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) _url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setChunkedStreamingMode(url.getBytes().length);
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "application/json");
 
@@ -177,6 +178,7 @@ public class HttpClientHelper
             while((linha = bReader.readLine()) != null)
                 json += linha;
             bReader.close();
+            stream.close();
 
             return json;
         } catch (Throwable t)

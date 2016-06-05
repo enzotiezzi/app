@@ -39,7 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="não"
-            android:id="@+id/radioButtonConfNao"/>
+            android:id="@+id/radioButtonConfNao"
+            android:checked="true"/>
     </RadioGroup>
 
     <TextView
@@ -49,14 +50,14 @@
         android:text="Cargo*"
         android:id="@+id/textView14"/>
 
-    <!--<Spinner
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerConfCargo"/>-->
-    <AutoCompleteTextView
+        android:id="@+id/spinnerConfCargo"/>
+    <!--<AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewAutoCompleteCargo"/>
+        android:id="@+id/textViewAutoCompleteCargo"/>-->
 
     <TextView
         android:layout_width="wrap_content"

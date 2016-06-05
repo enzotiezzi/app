@@ -11,6 +11,7 @@ public class Authentication
 
     private boolean Response;
     private String IdEmpresa;
+    private String NomeEmpresa;
 
     public Authentication()
     {
@@ -55,5 +56,15 @@ public class Authentication
     public void setIdEmpresa(String idEmpresa)
     {
         IdEmpresa = idEmpresa;
+    }
+
+    public String getNomeEmpresa()
+    {
+        return NomeEmpresa;
+    }
+
+    public void setNomeEmpresa(String nomeEmpresa)
+    {
+        NomeEmpresa = nomeEmpresa;
     }
 }

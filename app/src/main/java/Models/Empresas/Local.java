@@ -51,4 +51,10 @@ public class Local extends Entidade
     public String TelefoneContato;
     public String Observacoes;
     public String NomeResponsavelRH;
+
+    @Override
+    public String toString()
+    {
+        return this.Nome;
+    }
 }

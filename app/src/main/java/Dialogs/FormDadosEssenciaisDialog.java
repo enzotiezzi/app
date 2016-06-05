@@ -2,23 +2,32 @@ package Dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
+
+import Http.HttpClientHelper;
+import Http.ICallback;
+import Infrastructure.IBasic;
+import Models.Empresas.FuncaoEmpresa;
+import Models.Empresas.Local;
 import Models.Empresas.Vaga;
+import Session.SessionManager;
 import br.com.zelar.zellarempresas.R;
 
 /**
  * Created by enzo on 02/06/2016.
  */
-public class FormDadosEssenciaisDialog extends Dialog
+public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 {
     private Context context;
     private Vaga vaga;
@@ -26,12 +35,14 @@ public class FormDadosEssenciaisDialog extends Dialog
     private Spinner spinnerNomeEmpresa;
     private RadioGroup radioGroupEmpresaConfidencial;
     private AutoCompleteTextView autoCompleteTextViewCargo;
+    private Spinner spinnerConfCargo;
     private Spinner spinnerLocalTrabalho;
     private EditText editTextTituloVaga;
     private Spinner spinnerDiasTrabalho;
     private Spinner spinnerEscalaTrabalho;
     private EditText editTextHorarioEntrada;
     private EditText editTextHorarioSaida;
+    private RadioButton radioButtonConfSim;
 
     private Button buttonFechar;
     private Button buttonGravar;
@@ -56,9 +67,16 @@ public class FormDadosEssenciaisDialog extends Dialog
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.form_main_dados_essenciais);
 
+        initialize();
+    }
+
+    public void initialize()
+    {
         spinnerNomeEmpresa = (Spinner) findViewById(R.id.spinnerFormEmpresa);
         radioGroupEmpresaConfidencial = (RadioGroup) findViewById(R.id.radioGroupConfidencial);
-        autoCompleteTextViewCargo = (AutoCompleteTextView) findViewById(R.id.textViewAutoCompleteCargo);
+        radioButtonConfSim = (RadioButton) findViewById(R.id.radioButtonConfSim);
+        //autoCompleteTextViewCargo = (AutoCompleteTextView) findViewById(R.id.textViewAutoCompleteCargo);
+        spinnerConfCargo = (Spinner) findViewById(R.id.spinnerConfCargo);
         spinnerLocalTrabalho = (Spinner) findViewById(R.id.spinnerConfLocal);
         editTextTituloVaga = (EditText) findViewById(R.id.editTextTituloVaga);
         spinnerDiasTrabalho = (Spinner) findViewById(R.id.spinnerDiasTrabalho);
@@ -71,6 +89,61 @@ public class FormDadosEssenciaisDialog extends Dialog
 
         buttonFechar.setOnClickListener(buttonFechar_click);
         buttonGravar.setOnClickListener(buttonGravar_click);
+
+        carregarLocais();
+        carregarCargos();
+
+        spinnerNomeEmpresa
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                        new String[]{new SessionManager(context).getPreferences("nomeEmpresa")}));
+        spinnerDiasTrabalho
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                        new String[]{ "Todos os dias", "Seg-Sex", "Seg-Sab", "Ter-Dom", "1 vez por semana", "1 vez por quinzena", "1 vez por mês", "Outros" }));
+        spinnerEscalaTrabalho
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                        new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
+    }
+
+    private void carregarLocais()
+    {
+        String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
+        String url = "http://10.0.2.2/Zellar/Mobile/ListarLocaisEmpresa?idEmpresa="+idEmpresa;
+
+        HttpClientHelper.sendRequest(context, "get", url, new ICallback()
+        {
+            @Override
+            public void onRequestEnd(int statusCode, Throwable t, String response)
+            {
+               if (statusCode == 200 && t == null)
+               {
+                   Local[] locais = new Gson().fromJson(response, Local[].class);
+
+                   spinnerLocalTrabalho
+                           .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_item, locais));
+               }
+            }
+        }, null);
+    }
+
+    private void carregarCargos()
+    {
+        String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
+        String url = "http://10.0.2.2/Zellar/Mobile/ListarFuncoesEmpresa?idEmpresa="+idEmpresa;
+
+        HttpClientHelper.sendRequest(context, "get", url, new ICallback()
+        {
+            @Override
+            public void onRequestEnd(int statusCode, Throwable t, String response)
+            {
+                if (statusCode == 200 && t == null)
+                {
+                    FuncaoEmpresa[] funcoes = new Gson().fromJson(response, FuncaoEmpresa[].class);
+
+                    spinnerConfCargo
+                            .setAdapter(new ArrayAdapter<FuncaoEmpresa>(context, android.R.layout.simple_spinner_item, funcoes));
+                }
+            }
+        }, null);
     }
 
     View.OnClickListener buttonFechar_click = new View.OnClickListener()
@@ -87,7 +160,14 @@ public class FormDadosEssenciaisDialog extends Dialog
         @Override
         public void onClick(View v)
         {
-            
+            vaga.setConfidencial(radioButtonConfSim.isChecked() ? "Sim":"Não");
+            vaga.setIdLocal(((Local)spinnerLocalTrabalho.getSelectedItem()).getUniqueId());
+            vaga.setTitulo(editTextTituloVaga.getText().toString());
+            vaga.setDiasSemana(spinnerDiasTrabalho.getSelectedItem().toString());
+            vaga.setEscala(spinnerEscalaTrabalho.getSelectedItem().toString());
+            vaga.setHorarioEntrada(editTextHorarioEntrada.getText().toString());
+            vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
+            vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
         }
     };
 }

@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity
                         {
                             SessionManager sessionManager = new SessionManager(context);
                             sessionManager.setPreferences("idEmpresa", authentication.getIdEmpresa());
+                            sessionManager.setPreferences("nomeEmpresa", authentication.getNomeEmpresa());
 
                             Intent i = new Intent(context, MainActivity.class);
                             context.startActivity(i);

@@ -17,7 +17,8 @@ public class SessionManager
 
     public void setPreferences(String key, String value)
     {
-        SharedPreferences.Editor editor = (SharedPreferences.Editor) this.context.getSharedPreferences("empresas", this.context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.context.getSharedPreferences("empresas", this.context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
     }

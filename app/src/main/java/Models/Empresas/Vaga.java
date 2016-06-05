@@ -7,6 +7,8 @@ import java.util.Date;
  */
 public class Vaga extends Entidade
 {
+    private String IdUsuario;
+
     private String IdLocal;
     private String Titulo;
     private String Codigo;
@@ -1246,5 +1248,15 @@ public class Vaga extends Entidade
     public void setCandidatadoParaVaga(Boolean candidatadoParaVaga)
     {
         CandidatadoParaVaga = candidatadoParaVaga;
+    }
+
+    public String getIdUsuario()
+    {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario)
+    {
+        IdUsuario = idUsuario;
     }
 }
