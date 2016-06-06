@@ -130,7 +130,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         public void onClick(View v)
         {
             ShowMessage.showDialog(getActivity(), "Aviso", "O criação de vaga foi cancelada", "OK", null);
-            vaga = null;
+            setupVaga();
         }
     };
 

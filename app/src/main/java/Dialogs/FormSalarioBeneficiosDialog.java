@@ -113,6 +113,8 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
 
         buttonFechar.setOnClickListener(buttonFechar_click);
         buttonGravar.setOnClickListener(buttonGravar_click);
+
+        carregarSpinner();
     }
 
     private void carregarSpinner()
@@ -152,6 +154,10 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
         {
             vaga.setSalarioVisivel(radioButtonConfSalarioSim.isChecked() ? "Sim" : "Não");
             vaga.setPretensao(spinnerFaixaSalarial.getSelectedItem().toString());
+            vaga.setValeTransporte(checkBoxValeTransporte.isChecked());
+            vaga.setValeRefeicao(checkBoxValeRefeicao.isChecked());
+            vaga.setValeAlimentacao(checkBoxValeAlimentacao.isChecked());
+            vaga.setValeAlimentacaoLocal(checkBoxVALocal.isChecked());
 
             dismiss();
         }
