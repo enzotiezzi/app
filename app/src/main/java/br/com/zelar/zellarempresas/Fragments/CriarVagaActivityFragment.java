@@ -139,8 +139,6 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            setupVaga();
-
             HttpClientHelper.sendRequest(getActivity(), "post", "http://10.0.2.2/Zellar/Mobile/CriarVaga", new ICallback()
             {
                 @Override
@@ -149,7 +147,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
                    if (statusCode == 200 && t == null)
                    {
                        ShowMessage.showDialog(getActivity(), "Aviso", "Vaga publicada com sucesso", "OK", null);
-                       vaga = null;
+                       setupVaga();
                    }
                 }
             }, vaga);

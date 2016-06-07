@@ -94,13 +94,13 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         carregarCargos();
 
         spinnerNomeEmpresa
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{new SessionManager(context).getPreferences("nomeEmpresa")}));
         spinnerDiasTrabalho
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "Todos os dias", "Seg-Sex", "Seg-Sab", "Ter-Dom", "1 vez por semana", "1 vez por quinzena", "1 vez por mês", "Outros" }));
         spinnerEscalaTrabalho
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
     }
 
@@ -119,7 +119,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                    Local[] locais = new Gson().fromJson(response, Local[].class);
 
                    spinnerLocalTrabalho
-                           .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_item, locais));
+                           .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_dropdown_item, locais));
                }
             }
         }, null);
@@ -140,7 +140,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                     FuncaoEmpresa[] funcoes = new Gson().fromJson(response, FuncaoEmpresa[].class);
 
                     spinnerConfCargo
-                            .setAdapter(new ArrayAdapter<FuncaoEmpresa>(context, android.R.layout.simple_spinner_item, funcoes));
+                            .setAdapter(new ArrayAdapter<FuncaoEmpresa>(context, android.R.layout.simple_spinner_dropdown_item, funcoes));
                 }
             }
         }, null);

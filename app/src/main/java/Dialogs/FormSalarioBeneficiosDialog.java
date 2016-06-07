@@ -8,9 +8,13 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import Infrastructure.IBasic;
 import Models.Empresas.Vaga;
@@ -56,6 +60,8 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
     private Button buttonFechar;
     private Button buttonGravar;
 
+    private List<String> beneficios;
+
     public FormSalarioBeneficiosDialog(Context context)
     {
         super(context);
@@ -80,33 +86,35 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
 
     public void initialize()
     {
+        beneficios = new ArrayList<String>();
+
         spinnerFaixaSalarial = (Spinner) findViewById(R.id.spinnerFaixaSalarial);
         radioGroupConfidencial = (RadioGroup) findViewById(R.id.radioGroupConfidencial);
         radioButtonConfSalarioSim = (RadioButton) findViewById(R.id.radioButtonConfSalarioSim);
 
-        checkBoxValeTransporte = (CheckBox) findViewById(R.id.checkBoxValeTransporte);
-        checkBoxValeAlimentacao = (CheckBox) findViewById(R.id.checkBoxValeAlimentacao);
-        checkBoxCestaBasica = (CheckBox) findViewById(R.id.checkBoxCestaBasica);
-        checkBoxAjudaCusto = (CheckBox) findViewById(R.id.checkBoxAjudaCusto);
-        checkBoxAssistMedica = (CheckBox) findViewById(R.id.checkBoxAssistMedica);
-        checkBoxSeguroVida = (CheckBox) findViewById(R.id.checkBoxSeguroVida);
-        checkBoxAuxEdu = (CheckBox) findViewById(R.id.checkBoxAuxEdu);
-        checkBoxAuxFarmacia = (CheckBox) findViewById(R.id.checkBoxAuxFarmacia);
-        checkBoxAuxCombustivel = (CheckBox) findViewById(R.id.checkBoxAuxCombustivel);
-        checkBoxEstacionamento = (CheckBox) findViewById(R.id.checkBoxEstacionamento);
-        checkBoxBonusResultado = (CheckBox) findViewById(R.id.checkBoxBonusResultado);
-        checkBoxOutros = (CheckBox) findViewById(R.id.checkBoxOutros);
-        checkBoxValeRefeicao = (CheckBox) findViewById(R.id.checkBoxValeRefeicao);
-        checkBoxVALocal = (CheckBox) findViewById(R.id.checkBoxVALocal);
-        checkBoxPLR = (CheckBox) findViewById(R.id.checkBoxPLR);
-        checkBoxComissao = (CheckBox) findViewById(R.id.checkBoxComissao);
-        checkBoxAssistOdonto = (CheckBox) findViewById(R.id.checkBoxAssistOdonto);
-        checkBoxPrevPrivada = (CheckBox) findViewById(R.id.checkBoxPrevPrivada);
-        checkBoxAuxIdioma = (CheckBox) findViewById(R.id.checkBoxAuxIdioma);
-        checkBoxAuxCreche = (CheckBox) findViewById(R.id.checkBoxAuxCreche);
-        checkBoxVeiculoEmpresa = (CheckBox) findViewById(R.id.checkBoxVeiculoEmpresa);
-        checkBoxCelCorp = (CheckBox) findViewById(R.id.checkBoxCelCorp);
-        checkBoxHorarioFlexivel = (CheckBox) findViewById(R.id.checkBoxHorarioFlexivel);
+        checkBoxValeTransporte              = (CheckBox) findViewById(R.id.checkBoxValeTransporte);
+        checkBoxValeAlimentacao             = (CheckBox) findViewById(R.id.checkBoxValeAlimentacao);
+        checkBoxCestaBasica                 = (CheckBox) findViewById(R.id.checkBoxCestaBasica);
+        checkBoxAjudaCusto                  = (CheckBox) findViewById(R.id.checkBoxAjudaCusto);
+        checkBoxAssistMedica                = (CheckBox) findViewById(R.id.checkBoxAssistMedica);
+        checkBoxSeguroVida                  = (CheckBox) findViewById(R.id.checkBoxSeguroVida);
+        checkBoxAuxEdu                      = (CheckBox) findViewById(R.id.checkBoxAuxEdu);
+        checkBoxAuxFarmacia                 = (CheckBox) findViewById(R.id.checkBoxAuxFarmacia);
+        checkBoxAuxCombustivel              = (CheckBox) findViewById(R.id.checkBoxAuxCombustivel);
+        checkBoxEstacionamento              = (CheckBox) findViewById(R.id.checkBoxEstacionamento);
+        checkBoxBonusResultado              = (CheckBox) findViewById(R.id.checkBoxBonusResultado);
+        checkBoxOutros                      = (CheckBox) findViewById(R.id.checkBoxOutros);
+        checkBoxValeRefeicao                = (CheckBox) findViewById(R.id.checkBoxValeRefeicao);
+        checkBoxVALocal                     = (CheckBox) findViewById(R.id.checkBoxVALocal);
+        checkBoxPLR                         = (CheckBox) findViewById(R.id.checkBoxPLR);
+        checkBoxComissao                    = (CheckBox) findViewById(R.id.checkBoxComissao);
+        checkBoxAssistOdonto                = (CheckBox) findViewById(R.id.checkBoxAssistOdonto);
+        checkBoxPrevPrivada                 = (CheckBox) findViewById(R.id.checkBoxPrevPrivada);
+        checkBoxAuxIdioma                   = (CheckBox) findViewById(R.id.checkBoxAuxIdioma);
+        checkBoxAuxCreche                   = (CheckBox) findViewById(R.id.checkBoxAuxCreche);
+        checkBoxVeiculoEmpresa              = (CheckBox) findViewById(R.id.checkBoxVeiculoEmpresa);
+        checkBoxCelCorp                     = (CheckBox) findViewById(R.id.checkBoxCelCorp);
+        checkBoxHorarioFlexivel             = (CheckBox) findViewById(R.id.checkBoxHorarioFlexivel);
 
         buttonFechar = (Button) findViewById(R.id.buttonFecharSalario);
         buttonGravar = (Button) findViewById(R.id.buttonGravarSalario);
@@ -114,13 +122,38 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
         buttonFechar.setOnClickListener(buttonFechar_click);
         buttonGravar.setOnClickListener(buttonGravar_click);
 
+        checkBoxValeTransporte.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxValeAlimentacao.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxCestaBasica.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAjudaCusto.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAssistMedica.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxSeguroVida.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAuxEdu.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAuxFarmacia.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAuxCombustivel.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxEstacionamento.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxBonusResultado.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxOutros.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxValeRefeicao.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxVALocal.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxPLR.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxComissao.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAssistOdonto.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxPrevPrivada.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAuxIdioma.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxAuxCreche.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxVeiculoEmpresa.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxCelCorp.setOnCheckedChangeListener(checkBoxes_change);
+        checkBoxHorarioFlexivel.setOnCheckedChangeListener(checkBoxes_change);
+
+
         carregarSpinner();
     }
 
     private void carregarSpinner()
     {
         spinnerFaixaSalarial
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, new String[]
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]
                         {
                                 "Salário Mínimo à R$ 1.000,00",
                                 "R$ 1.001,00 à R$ 1.500,00",
@@ -154,12 +187,33 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
         {
             vaga.setSalarioVisivel(radioButtonConfSalarioSim.isChecked() ? "Sim" : "Não");
             vaga.setPretensao(spinnerFaixaSalarial.getSelectedItem().toString());
-            vaga.setValeTransporte(checkBoxValeTransporte.isChecked());
-            vaga.setValeRefeicao(checkBoxValeRefeicao.isChecked());
-            vaga.setValeAlimentacao(checkBoxValeAlimentacao.isChecked());
-            vaga.setValeAlimentacaoLocal(checkBoxVALocal.isChecked());
+            vaga.setBeneficios(Join(beneficios));
 
             dismiss();
         }
     };
+
+    CompoundButton.OnCheckedChangeListener checkBoxes_change = new CompoundButton.OnCheckedChangeListener()
+    {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+        {
+            CheckBox checkBox = (CheckBox) buttonView;
+
+            if(isChecked)
+                beneficios.add(checkBox.getText().toString());
+            else
+                beneficios.remove(checkBox.getText().toString());
+        }
+    };
+
+    private String Join(List<String> lista)
+    {
+        String full = "";
+
+        for (String a: lista)
+            full += a + " ,";
+
+        return full;
+    }
 }

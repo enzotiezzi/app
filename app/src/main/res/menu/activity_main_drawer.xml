@@ -5,11 +5,11 @@
 
         <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="Inicio"/>
         <item
             android:id="@+id/criar_vaga"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_criar_vaga"
             android:title="Criar Vaga"/>
         <item
             android:id="@+id/vagas_pendentes"

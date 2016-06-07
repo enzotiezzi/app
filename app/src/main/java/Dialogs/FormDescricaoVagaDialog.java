@@ -79,9 +79,9 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
     public void carregarSpinners()
     {
         spinnerGenero
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, new String[]{ "Masculino", "Feminino" }));
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "Masculino", "Feminino" }));
         spinnerEscolaridade
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]
                                 {
                                         "Analfabeto",
@@ -93,11 +93,11 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
                                         "Pós-Graduação/Especialização", "Mestrado", "Doutorado", "Pós-Doutorado"
                                 }));
         spinnerIdadeMinima
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, new String[]{ "Masculino", "Feminino" }));
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "Masculino", "Feminino" }));
         spinnerExpMinima
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, new String[]{ "0-3 meses", "4-6 meses", "7-12", "1-2 anos", "2-5 anos", "5+ anos"}));
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "0-3 meses", "4-6 meses", "7-12", "1-2 anos", "2-5 anos", "5+ anos"}));
         spinnerIdiomaNecessario
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, new String[]{ "Inglês", "Espanhol", "Francês", "Italino", "Alemão", "Japonês", "Outros" }));
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "Inglês", "Espanhol", "Francês", "Italino", "Alemão", "Japonês", "Outros" }));
     }
 
     View.OnClickListener buttonFechar_click = new View.OnClickListener()
