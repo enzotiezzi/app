@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -90,6 +91,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         buttonFechar.setOnClickListener(buttonFechar_click);
         buttonGravar.setOnClickListener(buttonGravar_click);
 
+        spinnerLocalTrabalho.setOnItemSelectedListener(spinnerLocalTrabalho_itemSelected);
+
         carregarLocais();
         carregarCargos();
 
@@ -168,6 +171,24 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
             vaga.setHorarioEntrada(editTextHorarioEntrada.getText().toString());
             vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
             vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
+
+            dismiss();
+        }
+    };
+
+
+    AdapterView.OnItemSelectedListener spinnerLocalTrabalho_itemSelected = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            Local l = (Local)parent.getAdapter().getItem(position);
+
+            editTextTituloVaga.setText(l.getNome()+" - ");
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent)
+        {
         }
     };
 }

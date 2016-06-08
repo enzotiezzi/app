@@ -64,7 +64,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private void setupVaga()
     {
         vaga = new Vaga();
-        vaga.setIdUsuario(new SessionManager(getActivity()).getPreferences("idEmpresa"));
+        vaga.setIdUsuario(new SessionManager(getActivity()).getPreferences("idUsuario"));
     }
 
     @Override
@@ -131,6 +131,15 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         {
             ShowMessage.showDialog(getActivity(), "Aviso", "O criação de vaga foi cancelada", "OK", null);
             setupVaga();
+        }
+    };
+
+    View.OnClickListener textViewResumoVaga_click = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+
         }
     };
 

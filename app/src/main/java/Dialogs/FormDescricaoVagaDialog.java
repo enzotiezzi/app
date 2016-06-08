@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Infrastructure.IBasic;
 import Models.Empresas.Vaga;
 import br.com.zelar.zellarempresas.R;
@@ -93,7 +96,9 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
                                         "Pós-Graduação/Especialização", "Mestrado", "Doutorado", "Pós-Doutorado"
                                 }));
         spinnerIdadeMinima
-                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "Masculino", "Feminino" }));
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>(){{for(int i = 14; i < 80; i++) add(String.valueOf(i));}}));
+        spinnerIdadeMaxima
+                .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>(){{for(int i = 14; i < 80; i++) add(String.valueOf(i));}}));
         spinnerExpMinima
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "0-3 meses", "4-6 meses", "7-12", "1-2 anos", "2-5 anos", "5+ anos"}));
         spinnerIdiomaNecessario

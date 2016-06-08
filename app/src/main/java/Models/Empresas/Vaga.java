@@ -140,6 +140,8 @@ public class Vaga extends Entidade
     private String CEP;
     private Boolean CandidatadoParaVaga;
 
+    private Local localObjeto;
+
     public String getIdLocal()
     {
         return IdLocal;
@@ -1258,5 +1260,13 @@ public class Vaga extends Entidade
     public void setIdUsuario(String idUsuario)
     {
         IdUsuario = idUsuario;
+    }
+
+    public Models.Empresas.Local getLocalObjeto() {
+        return localObjeto;
+    }
+
+    public void setLocalObjeto(Models.Empresas.Local localObjeto) {
+        this.localObjeto = localObjeto;
     }
 }

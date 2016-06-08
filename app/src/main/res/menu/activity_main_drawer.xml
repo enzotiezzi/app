@@ -13,7 +13,7 @@
             android:title="Criar Vaga"/>
         <item
             android:id="@+id/vagas_pendentes"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_vaga_pendente"
             android:title="Vagas Pendentes"/>
     </group>
 
