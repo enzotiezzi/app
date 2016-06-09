@@ -125,6 +125,8 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
             vaga.setEscolaridade(spinnerEscolaridade.getSelectedItem().toString());
             vaga.setTempoExperienciaNaArea(spinnerExpMinima.getSelectedItem().toString());
             vaga.setIdioma(spinnerIdiomaNecessario.getSelectedItem().toString());
+            vaga.setFaixaEtariaInicio(spinnerIdadeMinima.getSelectedItem().toString());
+            vaga.setFaixaEtariaFim(spinnerIdadeMaxima.getSelectedItem().toString());
 
             dismiss();
         }

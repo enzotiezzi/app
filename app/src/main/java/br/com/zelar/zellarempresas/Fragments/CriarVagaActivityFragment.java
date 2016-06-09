@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import Dialogs.DetalhesVagaDialog;
 import Dialogs.FormDadosEssenciaisDialog;
 import Dialogs.FormDescricaoVagaDialog;
 import Dialogs.FormSalarioBeneficiosDialog;
@@ -80,6 +81,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         textViewVerEssenciais.setOnClickListener(textViewVerEssenciais_click);
         textViewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
         textViewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
+        textViewResumoVaga.setOnClickListener(textViewResumoVaga_click);
 
         buttonCancelar.setOnClickListener(buttonCancelar_click);
         buttonPublicar.setOnClickListener(buttonPublicar_click);
@@ -124,6 +126,19 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         }
     };
 
+    View.OnClickListener textViewResumoVaga_click = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            DetalhesVagaDialog detalhesVagaDialog = new DetalhesVagaDialog(context);
+            detalhesVagaDialog.setVaga(vaga);
+            detalhesVagaDialog.show();
+            Window window = detalhesVagaDialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+    };
+
     View.OnClickListener buttonCancelar_click = new View.OnClickListener()
     {
         @Override
@@ -134,14 +149,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         }
     };
 
-    View.OnClickListener textViewResumoVaga_click = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View v)
-        {
 
-        }
-    };
 
     View.OnClickListener buttonPublicar_click = new View.OnClickListener()
     {
