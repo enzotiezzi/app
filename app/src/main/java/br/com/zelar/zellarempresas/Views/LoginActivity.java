@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import Dialogs.ShowMessage;
 import Http.HttpClientHelper;
 import Http.ICallback;
 import Models.Empresas.Authentication;
@@ -73,7 +74,10 @@ public class LoginActivity extends AppCompatActivity
                             Intent i = new Intent(context, MainActivity.class);
                             context.startActivity(i);
                         }
-
+                        else
+                        {
+                            ShowMessage.showDialog(context, "Aviso", "Usuário ou senha incorreto(s)", "OK", null);
+                        }
                     }
                 }
             }, a);

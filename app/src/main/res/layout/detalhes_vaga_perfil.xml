@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Gênero:"
+            android:textStyle="bold"
             android:layout_marginRight="5dp"/>
 
         <TextView
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Escolaridade:"
+            android:textStyle="bold"
             android:layout_marginRight="5dp"/>
 
         <TextView
@@ -70,6 +72,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Faixa de idade:"
+            android:textStyle="bold"
             android:layout_marginRight="5dp"/>
 
         <TextView
@@ -92,6 +95,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Exp. mínima:"
+            android:textStyle="bold"
             android:layout_marginRight="5dp"/>
 
         <TextView

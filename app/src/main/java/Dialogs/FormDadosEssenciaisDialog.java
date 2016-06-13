@@ -184,6 +184,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
             Local l = (Local)parent.getAdapter().getItem(position);
 
             editTextTituloVaga.setText(l.getNome()+" - ");
+            vaga.setLocalObjeto(l);
         }
 
         @Override

@@ -180,7 +180,8 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
         }
     };
 
-    View.OnClickListener buttonGravar_click = new View.OnClickListener()
+    View.OnClickListener buttonGravar_click =
+            new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
