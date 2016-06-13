@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
+import br.com.zelar.zellarempresas.Fragments.EscolherMetodoCriacaoActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
 import br.com.zelar.zellarempresas.R;
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.criar_vaga:
-                fragment = new CriarVagaActivityFragment();
+                fragment = new EscolherMetodoCriacaoActivityFragment();
                 break;
         }
 
