@@ -11,6 +11,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import org.w3c.dom.Text;
 
 import Dialogs.DetalhesVagaDialog;
@@ -43,6 +45,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private Button buttonPublicar;
 
     private Vaga vaga;
+    private Vaga vagaBundle = null;
 
     public CriarVagaActivityFragment()
     {
@@ -50,22 +53,41 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         thisView = inflater.inflate(R.layout.fragment_criar_vaga, container, false);
         context = getContext();
 
         initialize();
+        carregarBundle(getArguments());
         setupVaga();
 
         return thisView;
     }
 
+    private void carregarBundle(Bundle b)
+    {
+        if(b != null)
+        {
+            String json = b.getString("vaga");
+
+            if(json != null)
+                vagaBundle = new Gson().fromJson(json, Vaga.class);
+        }
+
+    }
+
     private void setupVaga()
     {
-        vaga = new Vaga();
-        vaga.setIdUsuario(new SessionManager(getActivity()).getPreferences("idUsuario"));
+        if(vagaBundle != null)
+        {
+            vaga = vagaBundle;
+        }
+        else
+        {
+            vaga = new Vaga();
+            vaga.setIdUsuario(new SessionManager(getActivity()).getPreferences("idUsuario"));
+        }
     }
 
     @Override

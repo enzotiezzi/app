@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 
+import Dialogs.CopiarVagaDialog;
+import Dialogs.DetalhesVagaDialog;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -16,6 +19,7 @@ import br.com.zelar.zellarempresas.R;
 public class EscolherMetodoCriacaoActivityFragment extends Fragment
 {
     private View view;
+    private Context context;
 
     private Button buttonCriarNovaVaga;
     private Button buttonCopiarVaga;
@@ -28,6 +32,7 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         view =  inflater.inflate(R.layout.fragment_escolher_metodo_criacao, container, false);
+        context = getContext();
 
         buttonCriarNovaVaga = (Button) view.findViewById(R.id.buttonCriarNovaVaga);
         buttonCopiarVaga = (Button) view.findViewById(R.id.buttonCopiarVaga);
@@ -55,7 +60,10 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
         @Override
         public void onClick(View v)
         {
-
+            CopiarVagaDialog copiarVagaDialog = new CopiarVagaDialog(context, getFragmentManager());
+            copiarVagaDialog.show();
+            Window window = copiarVagaDialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     };
 }

@@ -1,6 +1,5 @@
 package Models.Empresas;
 
-import java.util.Date;
 
 /**
  * Created by enzo on 30/05/2016.
@@ -66,8 +65,8 @@ public class Vaga extends Entidade
     private String DiasSemana;
     private String Empresa;
     private String Localidade;
-    private Date DataAbertura;
-    private Date DataFechamento;
+    private String DataAbertura;
+    private String DataFechamento;
     private String GrupoVaga;
     private String NomeFuncaoCTPS;
     private String MotivoAberturaVaga;
@@ -104,9 +103,9 @@ public class Vaga extends Entidade
     private Boolean BolsaEducacaoOutros;
     private Boolean Farmacia;
     private Boolean HorarioFlexivel;
-    private Date DataCriacao;
+    private String DataCriacao;
     private String UsuarioCriacao;
-    private Date DataAlteracao;
+    private String DataAlteracao;
     private String UsuarioAlteracao;
     private String EtapaAtual;
     private String IdCandidatoContratado;
@@ -652,22 +651,22 @@ public class Vaga extends Entidade
         Localidade = localidade;
     }
 
-    public Date getDataAbertura()
+    public String getDataAbertura()
     {
         return DataAbertura;
     }
 
-    public void setDataAbertura(Date dataAbertura)
+    public void setDataAbertura(String dataAbertura)
     {
         DataAbertura = dataAbertura;
     }
 
-    public Date getDataFechamento()
+    public String getDataFechamento()
     {
         return DataFechamento;
     }
 
-    public void setDataFechamento(Date dataFechamento)
+    public void setDataFechamento(String dataFechamento)
     {
         DataFechamento = dataFechamento;
     }
@@ -1002,12 +1001,12 @@ public class Vaga extends Entidade
         HorarioFlexivel = horarioFlexivel;
     }
 
-    public Date getDataCriacao()
+    public String getDataCriacao()
     {
         return DataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao)
+    public void setDataCriacao(String dataCriacao)
     {
         DataCriacao = dataCriacao;
     }
@@ -1022,12 +1021,12 @@ public class Vaga extends Entidade
         UsuarioCriacao = usuarioCriacao;
     }
 
-    public Date getDataAlteracao()
+    public String getDataAlteracao()
     {
         return DataAlteracao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao)
+    public void setDataAlteracao(String dataAlteracao)
     {
         DataAlteracao = dataAlteracao;
     }
@@ -1268,5 +1267,11 @@ public class Vaga extends Entidade
 
     public void setLocalObjeto(Models.Empresas.Local localObjeto) {
         this.localObjeto = localObjeto;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.Titulo;
     }
 }
