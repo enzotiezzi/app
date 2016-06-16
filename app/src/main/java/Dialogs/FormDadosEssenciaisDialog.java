@@ -23,6 +23,7 @@ import Models.Empresas.FuncaoEmpresa;
 import Models.Empresas.Local;
 import Models.Empresas.Vaga;
 import Session.SessionManager;
+import Utilities.ObjectUtilities;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -93,9 +94,6 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
         spinnerLocalTrabalho.setOnItemSelectedListener(spinnerLocalTrabalho_itemSelected);
 
-        carregarLocais();
-        carregarCargos();
-
         spinnerNomeEmpresa
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{new SessionManager(context).getPreferences("nomeEmpresa")}));
@@ -106,18 +104,28 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
 
-        carregarCampos();
+        carregarLocais();
+        carregarCargos();
     }
 
     private void carregarCampos()
     {
         if(vaga.getUniqueId() != null)
         {
-            radioButtonConfSim.setChecked(vaga.getConfidencial().toUpperCase() == "SIM");
-            editTextTituloVaga.setText(vaga.getTitulo());
-            editTextHorarioEntrada.setText(vaga.getHorarioEntrada());
-            editTextHorarioSaida.setText(vaga.getHorarioSaida());
+            radioButtonConfSim.setChecked(ObjectUtilities.getValue(vaga.getConfidencial()).toUpperCase() == "SIM");
+            editTextTituloVaga.setText(ObjectUtilities.getValue(vaga.getTitulo()));
+            editTextHorarioEntrada.setText(ObjectUtilities.getValue(vaga.getHorarioEntrada()));
+            editTextHorarioSaida.setText(ObjectUtilities.getValue(vaga.getHorarioSaida()));
 
+            int positionCargo = ObjectUtilities.getPositionByValue(vaga.getConfidencial(), spinnerConfCargo.getAdapter());
+            int positionLocalTrabalho = ObjectUtilities.getPositionByValue(vaga.getLocal(), spinnerLocalTrabalho.getAdapter());
+            int positionDiaTrabalho = ObjectUtilities.getPositionByValue(vaga.getDiasSemana(), spinnerDiasTrabalho.getAdapter());
+            int positionEscalaTrabalho = ObjectUtilities.getPositionByValue(vaga.getEscala(), spinnerLocalTrabalho.getAdapter());
+
+            spinnerConfCargo.setSelection(positionCargo);
+            spinnerLocalTrabalho.setSelection(positionLocalTrabalho);
+            spinnerDiasTrabalho.setSelection(positionDiaTrabalho);
+            spinnerEscalaTrabalho.setSelection(positionEscalaTrabalho);
         }
     }
 
@@ -138,6 +146,9 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                    spinnerLocalTrabalho
                            .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_dropdown_item, locais));
                }
+
+                // carregando spinners
+
             }
         }, null);
     }
@@ -159,6 +170,9 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                     spinnerConfCargo
                             .setAdapter(new ArrayAdapter<FuncaoEmpresa>(context, android.R.layout.simple_spinner_dropdown_item, funcoes));
                 }
+
+                //
+                carregarCampos();
             }
         }, null);
     }

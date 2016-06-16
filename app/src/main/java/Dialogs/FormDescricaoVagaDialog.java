@@ -15,6 +15,7 @@ import java.util.List;
 
 import Infrastructure.IBasic;
 import Models.Empresas.Vaga;
+import Utilities.ObjectUtilities;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -57,6 +58,7 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
         setContentView(R.layout.form_main_descricao);
 
         initialize();
+        carregarCampos();
     }
 
     public void initialize()
@@ -77,6 +79,29 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
         buttonGravar.setOnClickListener(buttonGravar_click);
 
         carregarSpinners();
+    }
+
+    private void carregarCampos()
+    {
+        if(vaga.getUniqueId() != null)
+        {
+            editTextDescricaoAtividadesVaga.setText(ObjectUtilities.getValue(vaga.getDescricaoDaAtividade()));
+            editTextDescricaoPerfilVaga.setText(ObjectUtilities.getValue(vaga.getDescricaoDoPerfil()));
+
+            int positionGenero = ObjectUtilities.getPositionByValue(vaga.getGenero(), spinnerGenero.getAdapter());
+            int positionEscolaridadeMinima = ObjectUtilities.getPositionByValue(vaga.getEscolaridade(), spinnerEscolaridade.getAdapter());
+            int positionIdadeMinima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtaria().split("-")[0].trim(), spinnerIdadeMinima.getAdapter());
+            int positionIdadeMaxima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtaria().split("-")[1].trim(), spinnerIdadeMaxima.getAdapter());
+            int positionExtMinima = ObjectUtilities.getPositionByValue(vaga.getTempoExperienciaNaArea(), spinnerExpMinima.getAdapter());
+            int positionIdioma = ObjectUtilities.getPositionByValue(vaga.getIdioma(), spinnerIdiomaNecessario.getAdapter());
+
+            spinnerGenero.setSelection(positionGenero);
+            spinnerEscolaridade.setSelection(positionEscolaridadeMinima);
+            spinnerIdadeMinima.setSelection(positionIdadeMinima);
+            spinnerIdadeMaxima.setSelection(positionIdadeMaxima);
+            spinnerExpMinima.setSelection(positionExtMinima);
+            spinnerIdiomaNecessario.setSelection(positionIdioma);
+        }
     }
 
     public void carregarSpinners()

@@ -13,11 +13,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Infrastructure.IBasic;
 import Models.Empresas.Vaga;
+import Utilities.ObjectUtilities;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -82,6 +85,45 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
         setContentView(R.layout.form_main_salario_beneficios);
 
         initialize();
+        carregarCampos();
+    }
+
+    private void carregarCampos()
+    {
+
+        if(vaga.getUniqueId() != null)
+        {
+            int positionSalario = ObjectUtilities.getPositionByValue(vaga.getPretensao(), spinnerFaixaSalarial.getAdapter());
+
+            spinnerFaixaSalarial.setSelection(positionSalario);
+            radioButtonConfSalarioSim.setChecked(vaga.getSalarioVisivel().toUpperCase() == "SIM");
+
+            List<String> b = Arrays.asList(vaga.getBeneficios().split(","));
+
+            checkBoxValeTransporte.setChecked(b.contains(checkBoxValeTransporte.getText()));
+            checkBoxValeAlimentacao.setChecked(b.contains(checkBoxValeAlimentacao.getText()));
+            checkBoxCestaBasica.setChecked(b.contains(checkBoxCestaBasica.getText()));
+            checkBoxAjudaCusto.setChecked(b.contains(checkBoxAjudaCusto.getText()));
+            checkBoxAssistMedica.setChecked(b.contains(checkBoxAssistMedica.getText()));
+            checkBoxSeguroVida.setChecked(b.contains(checkBoxSeguroVida.getText()));
+            checkBoxAuxEdu.setChecked(b.contains(checkBoxAuxEdu.getText()));
+            checkBoxAuxFarmacia.setChecked(b.contains(checkBoxAuxFarmacia.getText()));
+            checkBoxAuxCombustivel.setChecked(b.contains(checkBoxAuxCombustivel.getText()));
+            checkBoxEstacionamento.setChecked(b.contains(checkBoxEstacionamento.getText()));
+            checkBoxBonusResultado.setChecked(b.contains(checkBoxBonusResultado.getText()));
+            checkBoxOutros.setChecked(b.contains(checkBoxOutros.getText()));
+            checkBoxValeRefeicao.setChecked(b.contains(checkBoxValeRefeicao.getText()));
+            checkBoxVALocal.setChecked(b.contains(checkBoxVALocal.getText()));
+            checkBoxPLR.setChecked(b.contains(checkBoxPLR.getText()));
+            checkBoxComissao.setChecked(b.contains(checkBoxComissao.getText()));
+            checkBoxAssistOdonto.setChecked(b.contains(checkBoxAssistOdonto.getText()));
+            checkBoxPrevPrivada.setChecked(b.contains(checkBoxPrevPrivada.getText()));
+            checkBoxAuxIdioma.setChecked(b.contains(checkBoxAuxIdioma.getText()));
+            checkBoxAuxCreche.setChecked(b.contains(checkBoxAuxCreche.getText()));
+            checkBoxVeiculoEmpresa.setChecked(b.contains(checkBoxVeiculoEmpresa.getText()));
+            checkBoxCelCorp.setChecked(b.contains(checkBoxCelCorp.getText()));
+            checkBoxHorarioFlexivel.setChecked(b.contains(checkBoxHorarioFlexivel.getText()));
+        }
     }
 
     public void initialize()
