@@ -105,6 +105,20 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         spinnerEscalaTrabalho
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
+
+        carregarCampos();
+    }
+
+    private void carregarCampos()
+    {
+        if(vaga.getUniqueId() != null)
+        {
+            radioButtonConfSim.setChecked(vaga.getConfidencial().toUpperCase() == "SIM");
+            editTextTituloVaga.setText(vaga.getTitulo());
+            editTextHorarioEntrada.setText(vaga.getHorarioEntrada());
+            editTextHorarioSaida.setText(vaga.getHorarioSaida());
+
+        }
     }
 
     private void carregarLocais()
