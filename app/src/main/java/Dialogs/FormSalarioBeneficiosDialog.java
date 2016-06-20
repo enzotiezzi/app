@@ -96,9 +96,9 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
             int positionSalario = ObjectUtilities.getPositionByValue(vaga.getPretensao(), spinnerFaixaSalarial.getAdapter());
 
             spinnerFaixaSalarial.setSelection(positionSalario);
-            radioButtonConfSalarioSim.setChecked(vaga.getSalarioVisivel().toUpperCase() == "SIM");
+            radioButtonConfSalarioSim.setChecked(ObjectUtilities.getValue(vaga.getSalarioVisivel()).toUpperCase() == "SIM");
 
-            List<String> b = Arrays.asList(vaga.getBeneficios().split(","));
+            List<String> b = Arrays.asList(ObjectUtilities.getValue(vaga.getBeneficios()).split(","));
 
             checkBoxValeTransporte.setChecked(b.contains(checkBoxValeTransporte.getText()));
             checkBoxValeAlimentacao.setChecked(b.contains(checkBoxValeAlimentacao.getText()));

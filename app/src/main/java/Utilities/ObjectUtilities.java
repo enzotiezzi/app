@@ -25,7 +25,7 @@ public class ObjectUtilities
         {
             String item = spinnerAdapter.getItem(i).toString();
 
-            if(item == value)
+            if(item.equals(value))
             {
                 position = i;
                 break;

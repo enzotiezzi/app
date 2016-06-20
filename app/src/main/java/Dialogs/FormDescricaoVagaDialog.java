@@ -90,8 +90,8 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
 
             int positionGenero = ObjectUtilities.getPositionByValue(vaga.getGenero(), spinnerGenero.getAdapter());
             int positionEscolaridadeMinima = ObjectUtilities.getPositionByValue(vaga.getEscolaridade(), spinnerEscolaridade.getAdapter());
-            int positionIdadeMinima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtaria().split("-")[0].trim(), spinnerIdadeMinima.getAdapter());
-            int positionIdadeMaxima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtaria().split("-")[1].trim(), spinnerIdadeMaxima.getAdapter());
+            int positionIdadeMinima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtariaInicio(), spinnerIdadeMinima.getAdapter());
+            int positionIdadeMaxima = ObjectUtilities.getPositionByValue(vaga.getFaixaEtariaFim(), spinnerIdadeMaxima.getAdapter());
             int positionExtMinima = ObjectUtilities.getPositionByValue(vaga.getTempoExperienciaNaArea(), spinnerExpMinima.getAdapter());
             int positionIdioma = ObjectUtilities.getPositionByValue(vaga.getIdioma(), spinnerIdiomaNecessario.getAdapter());
 
@@ -150,7 +150,8 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
             vaga.setEscolaridade(spinnerEscolaridade.getSelectedItem().toString());
             vaga.setTempoExperienciaNaArea(spinnerExpMinima.getSelectedItem().toString());
             vaga.setIdioma(spinnerIdiomaNecessario.getSelectedItem().toString());
-            vaga.setFaixaEtaria(spinnerIdadeMinima.getSelectedItem().toString() + " - " + spinnerIdadeMaxima.getSelectedItem().toString());
+            vaga.setFaixaEtariaInicio(spinnerIdadeMinima.getSelectedItem().toString());
+            vaga.setFaixaEtariaFim(spinnerIdadeMaxima.getSelectedItem().toString());
 
             dismiss();
         }

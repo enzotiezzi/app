@@ -114,13 +114,13 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         {
             radioButtonConfSim.setChecked(ObjectUtilities.getValue(vaga.getConfidencial()).toUpperCase() == "SIM");
             editTextTituloVaga.setText(ObjectUtilities.getValue(vaga.getTitulo()));
-            editTextHorarioEntrada.setText(ObjectUtilities.getValue(vaga.getHorarioEntrada()));
-            editTextHorarioSaida.setText(ObjectUtilities.getValue(vaga.getHorarioSaida()));
+            editTextHorarioEntrada.setText(ObjectUtilities.getValue(vaga.getHorarioEntradaHoras() + ":" + vaga.getHorarioSaidaHoras()));
+            editTextHorarioSaida.setText(ObjectUtilities.getValue(vaga.getHorarioSaidaHoras() + ":" + vaga.getHorarioSaidaMinutos()));
 
-            int positionCargo = ObjectUtilities.getPositionByValue(vaga.getConfidencial(), spinnerConfCargo.getAdapter());
+            int positionCargo = ObjectUtilities.getPositionByValue(vaga.getFuncao(), spinnerConfCargo.getAdapter());
             int positionLocalTrabalho = ObjectUtilities.getPositionByValue(vaga.getLocal(), spinnerLocalTrabalho.getAdapter());
             int positionDiaTrabalho = ObjectUtilities.getPositionByValue(vaga.getDiasSemana(), spinnerDiasTrabalho.getAdapter());
-            int positionEscalaTrabalho = ObjectUtilities.getPositionByValue(vaga.getEscala(), spinnerLocalTrabalho.getAdapter());
+            int positionEscalaTrabalho = ObjectUtilities.getPositionByValue(vaga.getEscala(), spinnerEscalaTrabalho.getAdapter());
 
             spinnerConfCargo.setSelection(positionCargo);
             spinnerLocalTrabalho.setSelection(positionLocalTrabalho);
