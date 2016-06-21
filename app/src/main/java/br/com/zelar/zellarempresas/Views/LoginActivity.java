@@ -79,6 +79,10 @@ public class LoginActivity extends AppCompatActivity
                             ShowMessage.showDialog(context, "Aviso", "Usuário ou senha incorreto(s)", "OK", null);
                         }
                     }
+                    else
+                    {
+                        ShowMessage.showDialog(context, "Aviso", "Erro ao tentar logar, tente novamente mais tarde", "OK", null);
+                    }
                 }
             }, a);
         }
