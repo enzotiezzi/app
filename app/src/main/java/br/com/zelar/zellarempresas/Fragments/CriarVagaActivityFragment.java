@@ -25,6 +25,7 @@ import Http.ICallback;
 import Infrastructure.IBasic;
 import Models.Empresas.Vaga;
 import Session.SessionManager;
+import Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -178,7 +179,9 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            HttpClientHelper.sendRequest(getActivity(), "post", "http://10.0.2.2/Zellar/Mobile/CriarVaga", new ICallback()
+            String url = Utils.buildURL(context, "Mobile/CriarVaga");
+
+            HttpClientHelper.sendRequest(getActivity(), "post", url, new ICallback()
             {
                 @Override
                 public void onRequestEnd(int statusCode, Throwable t, String response)

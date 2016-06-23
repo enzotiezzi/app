@@ -21,6 +21,7 @@ import android.widget.Button;
 import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.EscolherMetodoCriacaoActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
+import br.com.zelar.zellarempresas.Fragments.VagasPendentesActivityFragment;
 import br.com.zelar.zellarempresas.R;
 
 public class MainActivity extends AppCompatActivity
@@ -103,6 +104,10 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.criar_vaga:
                 fragment = new EscolherMetodoCriacaoActivityFragment();
+                break;
+
+            case R.id.vagas_pendentes:
+                fragment = new VagasPendentesActivityFragment();
                 break;
         }
 

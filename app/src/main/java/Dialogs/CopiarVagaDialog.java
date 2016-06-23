@@ -20,6 +20,7 @@ import Infrastructure.IBasic;
 import Models.Empresas.Local;
 import Models.Empresas.Vaga;
 import Session.SessionManager;
+import Utilities.Utils;
 import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
 import br.com.zelar.zellarempresas.R;
 
@@ -68,7 +69,7 @@ public class CopiarVagaDialog extends Dialog implements IBasic
     private void carregarLocais()
     {
         String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
-        String url = "http://10.0.2.2/Zellar/Mobile/ListarLocaisEmpresa?idEmpresa="+idEmpresa;
+        String url = Utils.buildURL(context, "Mobile/ListarLocaisEmpresa?idEmpresa="+idEmpresa);
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
@@ -93,7 +94,9 @@ public class CopiarVagaDialog extends Dialog implements IBasic
         {
             Local l = (Local) parent.getSelectedItem();
 
-            HttpClientHelper.sendRequest(context, "get", "http://10.0.2.2/Zellar/Mobile/ListarVagasEmpresa?idLocal="+l.getUniqueId(), new ICallback() {
+            String url = Utils.buildURL(context, "Mobile/ListarVagasEmpresa?idLocal="+l.getUniqueId());
+
+            HttpClientHelper.sendRequest(context, "get", url, new ICallback() {
                 @Override
                 public void onRequestEnd(int statusCode, Throwable t, String response)
                 {

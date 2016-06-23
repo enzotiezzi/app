@@ -17,6 +17,7 @@ import Http.HttpClientHelper;
 import Http.ICallback;
 import Models.Empresas.Authentication;
 import Session.SessionManager;
+import Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
 
 public class LoginActivity extends AppCompatActivity
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity
             a.setLogin(login);
             a.setSenha(senha);
 
-            String url = "http://10.0.2.2/Zellar/Home/LoginMobile";
+            String url = Utils.buildURL(context, "Home/LoginMobile");
 
             HttpClientHelper.sendRequest(context, "post", url, new ICallback()
             {

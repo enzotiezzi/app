@@ -24,6 +24,7 @@ import Models.Empresas.Local;
 import Models.Empresas.Vaga;
 import Session.SessionManager;
 import Utilities.ObjectUtilities;
+import Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
 
 /**
@@ -132,7 +133,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
     private void carregarLocais()
     {
         String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
-        String url = "http://10.0.2.2/Zellar/Mobile/ListarLocaisEmpresa?idEmpresa="+idEmpresa;
+        String url = Utils.buildURL(context, "Mobile/ListarLocaisEmpresa?idEmpresa="+idEmpresa);
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
@@ -156,7 +157,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
     private void carregarCargos()
     {
         String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
-        String url = "http://10.0.2.2/Zellar/Mobile/ListarFuncoesEmpresa?idEmpresa="+idEmpresa;
+        String url = Utils.buildURL(context, "Mobile/ListarFuncoesEmpresa?idEmpresa="+idEmpresa);
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
