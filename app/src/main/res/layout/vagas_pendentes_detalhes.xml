@@ -151,19 +151,18 @@
         android:layout_marginTop="15dp"
         android:weightSum="2">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewVagasPendentesReprovar"
+            android:src="@drawable/thumbs_down"
+            android:layout_weight="1"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageViewVagasPendentesAprovar"
             android:src="@drawable/thumbs_up"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageViewVagasPendentesReprovar"
-            android:src="@drawable/thumbs_down"
             android:layout_weight="1"/>
     </LinearLayout>
 </LinearLayout>
