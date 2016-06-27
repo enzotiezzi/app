@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import Models.Empresas.AprovacaoComVaga;
 import Models.Empresas.Vaga;
 import Utilities.ObjectUtilities;
 import br.com.zelar.zellarempresas.R;
@@ -17,10 +18,10 @@ import br.com.zelar.zellarempresas.R;
 public class VagasPendentesAdapter extends BaseAdapter
 {
     private Context context;
-    private Vaga[] vagas;
+    private AprovacaoComVaga[] vagas;
     private LayoutInflater layoutInflater;
 
-    public VagasPendentesAdapter(Context context, Vaga[] vagas)
+    public VagasPendentesAdapter(Context context, AprovacaoComVaga[] vagas)
     {
         this.context = context;
         this.vagas = vagas;
@@ -70,12 +71,12 @@ public class VagasPendentesAdapter extends BaseAdapter
             vagaPendentesHelper = (VagaPendentesHelper) convertView.getTag();
         }
 
-        Vaga v = vagas[position];
+        Vaga v = vagas[position].getVaga();
 
         vagaPendentesHelper.textViewVagaPendenteNome.setText(ObjectUtilities.getValue(v.getTitulo()));
 
         vagaPendentesHelper.textViewVagaPendenteCargo.setText(ObjectUtilities.getValue(v.getFuncao()));
-        vagaPendentesHelper.textViewVagaPendenteLocal.setText(ObjectUtilities.getValue(v.getLocal()));
+        vagaPendentesHelper.textViewVagaPendenteLocal.setText(ObjectUtilities.getValue(v.getLocalidade()));
         vagaPendentesHelper.textViewVagaPendenteEscala.setText(ObjectUtilities.getValue(v.getEscala()));
         vagaPendentesHelper.textViewVagaPendenteHorario.setText(ObjectUtilities.getValue(v.getHorarioEntradaHoras() + ":" + v.getHorarioEntradaMinutos() +" - " + v.getHorarioSaidaHoras() + ":" + v.getHorarioSaidaMinutos()));
         vagaPendentesHelper.textViewVagaPendenteSalario.setText(ObjectUtilities.getValue(v.getPretensao()));

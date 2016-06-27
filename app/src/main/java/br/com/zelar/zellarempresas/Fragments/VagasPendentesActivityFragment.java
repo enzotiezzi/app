@@ -21,6 +21,7 @@ import Dialogs.ShowMessage;
 import Http.HttpClientHelper;
 import Http.ICallback;
 import Infrastructure.IBasic;
+import Infrastructure.IDialogActions;
 import Models.Empresas.AprovacaoComVaga;
 import Models.Empresas.Vaga;
 import Session.SessionManager;
@@ -77,22 +78,11 @@ public class VagasPendentesActivityFragment extends Fragment implements IBasic
                 {
                     AprovacaoComVaga[] aprovacoes = new Gson().fromJson(response, AprovacaoComVaga[].class);
 
-                    if (aprovacoes.length > 0)
-                    {
-                        List<Vaga> listaVagas = new ArrayList<Vaga>();
+                    VagasPendentesAdapter vagasPendentesAdapter = new VagasPendentesAdapter(context, aprovacoes);
 
-                        for (AprovacaoComVaga a : aprovacoes)
-                            listaVagas.add(a.getVaga());
+                    listViewVagasPendentes.setAdapter(vagasPendentesAdapter);
 
-                        Vaga[] vagas = new Vaga[listaVagas.size()];
-                        listaVagas.toArray(vagas);
-
-                        VagasPendentesAdapter vagasPendentesAdapter = new VagasPendentesAdapter(context, vagas);
-
-                        listViewVagasPendentes.setAdapter(vagasPendentesAdapter);
-                    }
-                    else
-                        ShowMessage.showDialog(context, "Aviso", "Não há vagas pendentes", "Ok", null);
+                    // TODO: colocar um textview para quando não haver vagas pendentes
                 }
             }
         }, null);
@@ -102,15 +92,25 @@ public class VagasPendentesActivityFragment extends Fragment implements IBasic
     AdapterView.OnItemClickListener listViewVagasPendentes_itemClick = new AdapterView.OnItemClickListener()
     {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        public void onItemClick(final AdapterView<?> parent, View view, final int position, long id)
         {
-            Vaga v = (Vaga) parent.getAdapter().getItem(position);
+            AprovacaoComVaga av = (AprovacaoComVaga) parent.getAdapter().getItem(position);
 
             DetalhesVagasPendentesDialog detalhesVagasPendentesDialog = new DetalhesVagasPendentesDialog(context);
-            detalhesVagasPendentesDialog.setVaga(v);
+            detalhesVagasPendentesDialog.setAprovacaoComVaga(av);
+            detalhesVagasPendentesDialog.setDialogActions(new IDialogActions()
+            {
+                @Override
+                public void onDialogActionEnd()
+                {
+                    carregarVagasPendentes();
+                }
+            });
             detalhesVagasPendentesDialog.show();
             Window window = detalhesVagasPendentesDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     };
+
+
 }

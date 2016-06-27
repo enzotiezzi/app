@@ -11,6 +11,8 @@ import android.widget.TextView;
 import Http.HttpClientHelper;
 import Http.ICallback;
 import Infrastructure.IBasic;
+import Infrastructure.IDialogActions;
+import Models.Empresas.AprovacaoComVaga;
 import Models.Empresas.Vaga;
 import Utilities.ObjectUtilities;
 import Utilities.Utils;
@@ -19,10 +21,13 @@ import br.com.zelar.zellarempresas.R;
 /**
  * Created by Usuário on 24/06/2016.
  */
+
 public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
 {
+
     private Context context;
-    private Vaga vaga;
+    private AprovacaoComVaga aprovacaoComVaga;
+    private IDialogActions dialogActions;
 
     private TextView textViewVagaPendenteDetalhesNomeVaga;
     private ImageView imageVagasPendentesDetalhesFechar;
@@ -44,9 +49,14 @@ public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
         this.context = context;
     }
 
-    public void setVaga(Vaga vaga)
+    public void setAprovacaoComVaga(AprovacaoComVaga aprovacaoComVaga)
     {
-        this.vaga = vaga;
+        this.aprovacaoComVaga = aprovacaoComVaga;
+    }
+
+    public void setDialogActions(IDialogActions dialogActions)
+    {
+        this.dialogActions = dialogActions;
     }
 
     @Override
@@ -82,12 +92,14 @@ public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
 
     private void carregarCampos()
     {
+        Vaga vaga = aprovacaoComVaga.getVaga();
+
         textViewVagaPendenteDetalhesNomeVaga.setText(ObjectUtilities.getValue(vaga.getTitulo()));
 
         textViewVagasPendentesDetalhesCargo.setText(ObjectUtilities.getValue(vaga.getFuncao()));
-        textViewVagasPendentesDetalhesLocal.setText(ObjectUtilities.getValue(vaga.getLocal()));
+        textViewVagasPendentesDetalhesLocal.setText(ObjectUtilities.getValue(vaga.getLocalidade()));
         textViewVagasPendentesDetalhesEscala.setText(ObjectUtilities.getValue(vaga.getEscala()));
-        textViewVagasPendentesDetalhesHorario.setText(ObjectUtilities.getValue(vaga.getHorarioEntrada()) + " - " + vaga.getHorarioSaida());
+        textViewVagasPendentesDetalhesHorario.setText(ObjectUtilities.getValue(vaga.getHorarioEntradaHoras()) +":"+vaga.getHorarioEntradaMinutos() + " - " + vaga.getHorarioSaidaHoras()+":"+vaga.getHorarioSaidaMinutos());
         textViewVagasPendentesDetalhesSalario.setText(ObjectUtilities.getValue(vaga.getPretensao()));
     }
 
@@ -127,7 +139,7 @@ public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
         else
             rota = "Mobile/ReprovarVaga";
 
-        String url = Utils.buildURL(context, rota+"?idVaga=" + vaga.getUniqueId());
+        String url = Utils.buildURL(context, rota+"?idVaga=" + aprovacaoComVaga.getAprovacao().getUniqueId());
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
@@ -144,6 +156,9 @@ public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
                         msg = "Vaga reprovada com sucesso";
 
                     ShowMessage.showDialog(context, "Aviso", msg, "Ok", null);
+
+                    if(dialogActions != null)
+                        dialogActions.onDialogActionEnd();
 
                     dismiss();
                 }
