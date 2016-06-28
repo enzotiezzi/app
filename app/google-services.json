@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "583021998462",
+    "project_id": "zellar-rh"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583021998462:android:1092ad0cc21f4030",
+        "android_client_info": {
+          "package_name": "br.com.zelar.zellarempresas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583021998462-mbmmo6f4jrsf4av5jqn7dh0b6rc9v7lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.zelar.zellarempresas",
+            "certificate_hash": "4466212EABBC65738CC68A480E97C66A28A0143D"
+          }
+        },
+        {
+          "client_id": "583021998462-rpqr8mr6qro0tq14akdngklkudkko23v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQhKw5Uu6HIiu9ugcphtf4I0zGh-FYks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

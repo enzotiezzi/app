@@ -7,17 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import Dialogs.ShowMessage;
-import Http.HttpClientHelper;
-import Http.ICallback;
-import Models.Empresas.Authentication;
-import Session.SessionManager;
-import Utilities.Utils;
+import br.com.zelar.zellarempresas.Dialogs.ShowMessage;
+import br.com.zelar.zellarempresas.Http.HttpClientHelper;
+import br.com.zelar.zellarempresas.Http.ICallback;
+import br.com.zelar.zellarempresas.Empresas.Authentication;
+import br.com.zelar.zellarempresas.PushNotification.PushManager;
+import br.com.zelar.zellarempresas.Session.SessionManager;
+import br.com.zelar.zellarempresas.Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
 
 public class LoginActivity extends AppCompatActivity
@@ -40,6 +39,8 @@ public class LoginActivity extends AppCompatActivity
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
 
         buttonLogin.setOnClickListener(buttonLogin_click);
+
+        PushManager.initialize(context);
     }
 
     View.OnClickListener buttonLogin_click = new View.OnClickListener()

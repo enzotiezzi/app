@@ -12,22 +12,16 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import Adapters.VagasPendentesAdapter;
-import Dialogs.DetalhesVagasPendentesDialog;
-import Dialogs.ShowMessage;
-import Http.HttpClientHelper;
-import Http.ICallback;
-import Infrastructure.IBasic;
-import Infrastructure.IDialogActions;
-import Models.Empresas.AprovacaoComVaga;
-import Models.Empresas.Vaga;
-import Session.SessionManager;
-import Utilities.Utils;
+import br.com.zelar.zellarempresas.Adapters.VagasPendentesAdapter;
+import br.com.zelar.zellarempresas.Dialogs.DetalhesVagasPendentesDialog;
+import br.com.zelar.zellarempresas.Http.HttpClientHelper;
+import br.com.zelar.zellarempresas.Http.ICallback;
+import br.com.zelar.zellarempresas.Infrastructure.IBasic;
+import br.com.zelar.zellarempresas.Infrastructure.IDialogActions;
+import br.com.zelar.zellarempresas.Empresas.AprovacaoComVaga;
+import br.com.zelar.zellarempresas.Session.SessionManager;
+import br.com.zelar.zellarempresas.Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
-import br.com.zelar.zellarempresas.Views.VagasPendentesActivity;
 
 /**
  * A placeholder fragment containing a simple view.

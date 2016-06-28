@@ -3,7 +3,6 @@ package br.com.zelar.zellarempresas.Fragments;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,17 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
-import Dialogs.DetalhesVagaDialog;
-import Dialogs.FormDadosEssenciaisDialog;
-import Dialogs.FormDescricaoVagaDialog;
-import Dialogs.FormSalarioBeneficiosDialog;
-import Dialogs.ShowMessage;
-import Http.HttpClientHelper;
-import Http.ICallback;
-import Infrastructure.IBasic;
-import Models.Empresas.Vaga;
-import Session.SessionManager;
-import Utilities.Utils;
+import br.com.zelar.zellarempresas.Dialogs.DetalhesVagaDialog;
+import br.com.zelar.zellarempresas.Dialogs.FormDadosEssenciaisDialog;
+import br.com.zelar.zellarempresas.Dialogs.FormDescricaoVagaDialog;
+import br.com.zelar.zellarempresas.Dialogs.FormSalarioBeneficiosDialog;
+import br.com.zelar.zellarempresas.Dialogs.ShowMessage;
+import br.com.zelar.zellarempresas.Http.HttpClientHelper;
+import br.com.zelar.zellarempresas.Http.ICallback;
+import br.com.zelar.zellarempresas.Infrastructure.IBasic;
+import br.com.zelar.zellarempresas.Empresas.Vaga;
+import br.com.zelar.zellarempresas.Session.SessionManager;
+import br.com.zelar.zellarempresas.Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
 
 /**

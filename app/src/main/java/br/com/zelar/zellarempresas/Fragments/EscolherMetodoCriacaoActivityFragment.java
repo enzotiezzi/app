@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import Dialogs.CopiarVagaDialog;
-import Dialogs.DetalhesVagaDialog;
+import br.com.zelar.zellarempresas.Dialogs.CopiarVagaDialog;
 import br.com.zelar.zellarempresas.R;
 
 /**
