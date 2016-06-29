@@ -26,7 +26,7 @@ public class SessionManager
     public String getPreferences(String key)
     {
         SharedPreferences preferences = this.context.getSharedPreferences("empresas", this.context.MODE_PRIVATE);
-        String guid = preferences.getString(key, "");
+        String guid = preferences.getString(key, null);
 
         return guid;
     }

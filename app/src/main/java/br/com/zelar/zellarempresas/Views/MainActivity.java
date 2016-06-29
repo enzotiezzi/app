@@ -22,6 +22,7 @@ import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.EscolherMetodoCriacaoActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.VagasPendentesActivityFragment;
+import br.com.zelar.zellarempresas.PushNotification.PushManager;
 import br.com.zelar.zellarempresas.R;
 
 public class MainActivity extends AppCompatActivity
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         Button b = (Button) findViewById(R.id.buttonTeste);
+
 
         getSupportFragmentManager()
                 .beginTransaction()

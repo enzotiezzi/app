@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity
 
         buttonLogin.setOnClickListener(buttonLogin_click);
 
-        PushManager.initialize(context);
+        checarLogado();
     }
 
     View.OnClickListener buttonLogin_click = new View.OnClickListener()
@@ -89,4 +89,17 @@ public class LoginActivity extends AppCompatActivity
             }, a);
         }
     };
+
+    private void checarLogado()
+    {
+        SessionManager s = new SessionManager(context);
+
+        String idUsuario = s.getPreferences("idUsuario");
+
+        if(idUsuario != null)
+        {
+            Intent i = new Intent(context, MainActivity.class);
+            context.startActivity(i);
+        }
+    }
 }
