@@ -42,12 +42,20 @@ public class RegistrationIntentService extends IntentService
             // Storing the registration id that indicates whether the generated token has been
             // sent to your server. If it is not stored, send the token to your server,
             // otherwise your server should have already received the token.
-            if ((regID=sharedPreferences.getString("registrationID", null)) == null) {
+
+            regID = sharedPreferences.getString("registrationID", null);
+
+            if (regID == null)
+            {
                 NotificationHub hub = new NotificationHub(NotificationSettings.HubName,
                         NotificationSettings.HubListenConnectionString, this);
                 Log.i(TAG, "Attempting to register with NH using token : " + token);
 
-                regID = hub.register(token, new SessionManager(this).getPreferences("idUsuario")).getRegistrationId();
+                String tag = new SessionManager(this).getPreferences("idUsuario");
+
+                regID = hub.register(token, tag).getRegistrationId();
+
+                //hub.unregisterAll("gcm");
 
                 // If you want to use tags...
                 // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/

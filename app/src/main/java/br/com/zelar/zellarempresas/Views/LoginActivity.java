@@ -43,6 +43,14 @@ public class LoginActivity extends AppCompatActivity
         checarLogado();
     }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+
+        checarLogado();
+    }
+
     View.OnClickListener buttonLogin_click = new View.OnClickListener()
     {
         @Override

@@ -78,17 +78,20 @@ public class DetalhesVagaDialog extends Dialog implements IBasic
     {
         Local l = vaga.getLocalObjeto();
 
-        textViewDetalhesCEP.setText(ObjectUtilities.getValue(l.getCEP()));
-        textViewDetalhesEndereco.setText(ObjectUtilities.getValue(l.getRua()));
-        textViewDetalhesNumero.setText(ObjectUtilities.getValue(l.getNumero()));
-        textViewDetalhesComplemento.setText(ObjectUtilities.getValue(l.getComplemento()));
-        textViewDetalhesBairro.setText(ObjectUtilities.getValue(l.getBairro()));
-        textViewDetalhesCidade.setText(ObjectUtilities.getValue(l.getCidade()));
-        textViewDetalhesPais.setText(ObjectUtilities.getValue(l.getPais()));
+        if(l != null)
+        {
+            textViewDetalhesCEP.setText(ObjectUtilities.getValue(l.getCEP()));
+            textViewDetalhesEndereco.setText(ObjectUtilities.getValue(l.getRua()));
+            textViewDetalhesNumero.setText(ObjectUtilities.getValue(l.getNumero()));
+            textViewDetalhesComplemento.setText(ObjectUtilities.getValue(l.getComplemento()));
+            textViewDetalhesBairro.setText(ObjectUtilities.getValue(l.getBairro()));
+            textViewDetalhesCidade.setText(ObjectUtilities.getValue(l.getCidade()));
+            textViewDetalhesPais.setText(ObjectUtilities.getValue(l.getPais()));
 
-        textViewDetalhesGenero.setText(ObjectUtilities.getValue(vaga.getGenero()));
-        textViewDetalhesEscolaridade.setText(ObjectUtilities.getValue(vaga.getEscolaridade()));
-        textViewDetalhesFaixaIdade.setText(ObjectUtilities.getValue(vaga.getFaixaEtariaInicio() + " - " + vaga.getFaixaEtariaFim()));
-        textViewDetalhesExpMinima.setText(ObjectUtilities.getValue(vaga.getTempoExperienciaNaArea()));
+            textViewDetalhesGenero.setText(ObjectUtilities.getValue(vaga.getGenero()));
+            textViewDetalhesEscolaridade.setText(ObjectUtilities.getValue(vaga.getEscolaridade()));
+            textViewDetalhesFaixaIdade.setText(ObjectUtilities.getValue(vaga.getFaixaEtariaInicio() + " - " + vaga.getFaixaEtariaFim()));
+            textViewDetalhesExpMinima.setText(ObjectUtilities.getValue(vaga.getTempoExperienciaNaArea()));
+        }
     }
 }

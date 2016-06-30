@@ -35,12 +35,36 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawer.isDrawerOpen(Gravity.RIGHT))
+                {
+                    drawer.closeDrawer(Gravity.RIGHT);
+                }
+                else
+                {
+                    drawer.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -49,20 +73,34 @@ public class MainActivity extends AppCompatActivity
 
         Button b = (Button) findViewById(R.id.buttonTeste);
 
+        Intent i = getIntent();
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, new HomeActivityFragment())
-                .commit();
+        boolean fromPush = i.getBooleanExtra("fromPush", false);
+
+        if(!fromPush)
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new HomeActivityFragment())
+                    .commit();
+        }
+        else
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new VagasPendentesActivityFragment())
+                    .commit();
+        }
+
     }
 
     @Override
     public void onBackPressed()
     {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START))
+        if (drawer.isDrawerOpen(GravityCompat.END))
         {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.END);
         } else
         {
             super.onBackPressed();
@@ -120,7 +158,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.END);
         return true;
     }
 }
