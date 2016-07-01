@@ -38,19 +38,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (drawer.isDrawerOpen(Gravity.RIGHT))
-                {
-                    drawer.closeDrawer(Gravity.RIGHT);
-                }
-                else
-                {
-                    drawer.openDrawer(Gravity.RIGHT);
-                }
-            }
-        });
+
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -98,9 +86,9 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed()
     {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.END))
+        if (drawer.isDrawerOpen(GravityCompat.START))
         {
-            drawer.closeDrawer(GravityCompat.END);
+            drawer.closeDrawer(GravityCompat.START);
         } else
         {
             super.onBackPressed();
@@ -158,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

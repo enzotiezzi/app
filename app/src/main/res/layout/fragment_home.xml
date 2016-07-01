@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -6,6 +6,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
                 tools:context=".Fragments.HomeActivityFragment"
                 tools:showIn="@layout/activity_home">
 
@@ -14,8 +15,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hello, it&apos;s me"
-        android:id="@+id/textView34"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
-</RelativeLayout>
+        android:text="Grupo"
+        android:id="@+id/textViewGrupo"
+        android:textColor="@color/zellarGray"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerGrupo"
+        android:textColor="@color/zellarGray"/>
+</LinearLayout>

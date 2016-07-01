@@ -1,8 +1,8 @@
 <resources>
 
-    <!--<string name="SERVER_URL">http://10.0.2.2/Zellar</string>-->
+    <string name="SERVER_URL">http://10.0.2.2/Zellar</string>
     <!--<string name="SERVER_URL">http://www.zellar.com.br</string>-->
-    <string name="SERVER_URL">http://h-zellar.azurewebsites.net/</string>
+    <!--<string name="SERVER_URL">http://h-zellar.azurewebsites.net/</string>-->
 
     <string name="app_name">Zellar Empresas</string>
     <string name="wait">Aguarde</string>
