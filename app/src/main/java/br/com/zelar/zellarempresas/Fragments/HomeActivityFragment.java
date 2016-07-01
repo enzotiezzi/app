@@ -61,7 +61,7 @@ public class HomeActivityFragment extends Fragment implements IBasic
 
         String url = Utils.buildURL(context, "Mobile/ListarGruposUsuario?idUsuario="+idUsuario);
 
-g        HttpClientHelper.sendRequest(context, "get", url, new ICallback()
+        HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
             @Override
             public void onRequestEnd(int statusCode, Throwable t, String response)
