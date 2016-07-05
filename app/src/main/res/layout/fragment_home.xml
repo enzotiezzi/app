@@ -15,13 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Grupo"
+        android:text="Vagas por semana"
         android:id="@+id/textViewGrupo"
-        android:textColor="@color/zellarGray"/>
+        android:textColor="@color/zellarGray"
+        android:layout_marginBottom="10dp"/>
 
-    <Spinner
+    <br.com.zelar.zellarempresas.Custom.ExpandableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerGrupo"
-        android:textColor="@color/zellarGray"/>
+        android:id="@+id/expandableView" />
+
 </LinearLayout>

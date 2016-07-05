@@ -8,10 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
+import java.util.List;
+
+import br.com.zelar.zellarempresas.Custom.ExpandableItem;
+import br.com.zelar.zellarempresas.Custom.ExpandableLayout;
 import br.com.zelar.zellarempresas.Empresas.RelatorioVaga;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
@@ -29,7 +34,7 @@ public class HomeActivityFragment extends Fragment implements IBasic
     private Context context;
     private View view;
 
-    private Spinner spinnerGrupo;
+    private ExpandableLayout expandableLayout;
 
     public HomeActivityFragment()
     {
@@ -44,7 +49,7 @@ public class HomeActivityFragment extends Fragment implements IBasic
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         initialize();
-        carregarGrupos();
+        carregarRelatorio();
 
         return view;
     }
@@ -52,58 +57,52 @@ public class HomeActivityFragment extends Fragment implements IBasic
     @Override
     public void initialize()
     {
-        spinnerGrupo = (Spinner) view.findViewById(R.id.spinnerGrupo);
+        expandableLayout = (ExpandableLayout) view.findViewById(R.id.expandableView);
     }
 
-    public void carregarGrupos()
+    public void carregarRelatorio()
     {
+        String grupo = "NA";
         String idUsuario = new SessionManager(context).getPreferences("idUsuario");
 
-        String url = Utils.buildURL(context, "Mobile/ListarGruposUsuario?idUsuario="+idUsuario);
+        String url = Utils.buildURL(context, "Mobile/BuscarRelatorioVaga?idUsuario="+idUsuario+"&grupo="+grupo);
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
             @Override
             public void onRequestEnd(int statusCode, Throwable t, String response)
             {
-                if(statusCode == 200 && t == null)
+                if (statusCode == 200 && t == null)
                 {
-                    String[] grupos = new Gson().fromJson(response, String[].class);
+                    RelatorioVaga[] relatorioVagas = new Gson().fromJson(response, RelatorioVaga[].class);
 
-                    if (grupos.length > 0)
-                        spinnerGrupo.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, grupos));
+                    // TODO: Como apresentar essas informações
+
                 }
             }
         }, null);
     }
 
-    AdapterView.OnItemSelectedListener spinnerGrupo_selectedItem = new AdapterView.OnItemSelectedListener()
+    private View[] montarViews(RelatorioVaga[] relatorioVagas)
     {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        View[] views = new View[relatorioVagas.length];
+
+        for (int i = 0; i < relatorioVagas.length; i++)
         {
-            String grupo = (String) parent.getAdapter().getItem(position);
-            String idUsuario = new SessionManager(context).getPreferences("idUsuario");
+            ExpandableItem e = new ExpandableItem();
+            e.setTitle(relatorioVagas[i].getSemana());
 
-            String url = Utils.buildURL(context, "Mobile/BuscarRelatorioVaga?idUsuario="+idUsuario+"&grupo="+grupo);
-
-            HttpClientHelper.sendRequest(context, "get", url, new ICallback()
-            {
-                @Override
-                public void onRequestEnd(int statusCode, Throwable t, String response)
-                {
-                    if (statusCode == 200 && t == null)
-                    {
-                        RelatorioVaga[] relatorioVagas = new Gson().fromJson(response, RelatorioVaga[].class);
-
-                        // TODO: Como apresentar essas informações  
-                    }
-                }
-            }, null);
         }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {}
-    };
+        return views;
+    }
+
+    private View montarView(RelatorioVaga relatorioVaga)
+    {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View v = layoutInflater.inflate(R.layout.relatorio_vagas_semana, null);
+
+        return v;
+    }
 }

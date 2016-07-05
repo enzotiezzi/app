@@ -84,4 +84,10 @@ public class RelatorioVaga
     {
         Ordem = ordem;
     }
+
+    @Override
+    public String toString()
+    {
+        return Semana;
+    }
 }
