@@ -1,6 +1,7 @@
 package br.com.zelar.zellarempresas.Custom;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,51 +16,75 @@ import br.com.zelar.zellarempresas.R;
 /**
  * Created by Usuário on 05/07/2016.
  */
-public class ExpandableLayout extends LinearLayout
+public class ExpandableView extends View
 {
     private Context context;
     private View rootView;
 
     private ExpandableItem[] expandableItems;
 
-    public ExpandableLayout(Context context)
+    public ExpandableView(Context context, ExpandableItem[] expandableItems)
     {
         super(context);
         this.context = context;
-
-        draw(context);
-    }
-
-    public void setExpandableItems(ExpandableItem[] expandableItems)
-    {
         this.expandableItems = expandableItems;
+
+        draw();
     }
 
-    private void draw(Context context)
+    public ExpandableView(Context context, AttributeSet attrs, ExpandableItem[] expandableItems)
     {
-        rootView =  inflate(context, R.layout.expandable_view, this);
+        super(context, attrs);
+        this.context = context;
+        this.expandableItems = expandableItems;
+
+        draw();
+    }
+
+    public ExpandableView(Context context, AttributeSet attrs, int defStyleAttr, ExpandableItem[] expandableItems)
+    {
+        super(context, attrs, defStyleAttr);
+        this.context = context;
+        this.expandableItems = expandableItems;
+
+        draw();
+    }
+
+    private void draw()
+    {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        rootView = layoutInflater.inflate(R.layout.expandable_view, null, true);
 
         ViewGroup viewGroup = (ViewGroup) rootView.findViewById(R.id.appendItemPoint);
 
-        for (ExpandableItem i : expandableItems)
+        for (int j = 0; j < expandableItems.length; j++)
         {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ExpandableItem i = expandableItems[j];
 
             View v = layoutInflater.inflate(R.layout.expandable_view_item, null);
 
-            TextView textViewTitle = (TextView) viewGroup.findViewById(R.id.textViewTitle);
+            TextView textViewTitle = (TextView) v.findViewById(R.id.textViewTitle);
             View expandTitle = v.findViewById(R.id.expandTitle);
-            expandTitle.setOnClickListener(expandTitle_click);
-            ViewGroup viewGroupItem = (ViewGroup) v.findViewById(R.id.appendPoint);
+            final ViewGroup viewGroupItem = (ViewGroup) v.findViewById(R.id.appendPoint);
 
             textViewTitle.setText(i.getTitle());
-            viewGroupItem.addView(i.getV());
+            viewGroupItem.addView(i.getV(), 0);
 
-            viewGroup.addView(v);
+            expandTitle.setOnClickListener(new OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    toggle_contents(viewGroupItem);
+                }
+            });
+
+            viewGroup.addView(v, j);
         }
     }
 
-    public void toggle_contents(View v)
+    private void toggle_contents(View v)
     {
         if(v.isShown())
         {
@@ -99,13 +124,4 @@ public class ExpandableLayout extends LinearLayout
             }
         }
     }
-
-    OnClickListener expandTitle_click = new OnClickListener()
-    {
-        @Override
-        public void onClick(View v)
-        {
-            toggle_contents(v);
-        }
-    };
 }

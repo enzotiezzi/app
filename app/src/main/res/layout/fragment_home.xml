@@ -20,9 +20,19 @@
         android:textColor="@color/zellarGray"
         android:layout_marginBottom="10dp"/>
 
-    <br.com.zelar.zellarempresas.Custom.ExpandableLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/expandableView" />
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/appendPart">
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
