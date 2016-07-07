@@ -44,15 +44,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Horário de entrada*"
+                android:text="Hor. de entrada*"
                 android:id="@+id/textView19"/>
 
             <EditText
-                android:layout_width="398dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="time"
                 android:ems="10"
-                android:id="@+id/editTextHorarioEntrada"/>
+                android:id="@+id/editTextHorarioEntrada"
+                android:maxLength="5" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Horário de saída*"
+                android:text="Hor. de saída*"
                 android:id="@+id/textView20"/>
 
             <EditText
@@ -73,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="time"
                 android:ems="10"
-                android:id="@+id/editTextHorarioSaida"/>
+                android:id="@+id/editTextHorarioSaida"
+                android:maxLength="5"/>
         </LinearLayout>
     </LinearLayout>
 
