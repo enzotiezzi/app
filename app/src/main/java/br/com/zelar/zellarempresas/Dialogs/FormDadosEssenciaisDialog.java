@@ -50,17 +50,24 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
     private Button buttonFechar;
     private Button buttonGravar;
 
+    private boolean saved;
 
     public FormDadosEssenciaisDialog(Context context)
     {
         super(context);
 
         this.context = context;
+        this.saved = false;
     }
 
     public void setVaga(Vaga vaga)
     {
         this.vaga = vaga;
+    }
+
+    public void unsave()
+    {
+        this.saved = false;
     }
 
     @Override
@@ -111,7 +118,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
     private void carregarCampos()
     {
-        if(vaga.getUniqueId() != null)
+        if(vaga.getUniqueId() != null || saved)
         {
             radioButtonConfSim.setChecked(ObjectUtilities.getValue(vaga.getConfidencial()).toUpperCase() == "SIM");
             editTextTituloVaga.setText(ObjectUtilities.getValue(vaga.getTitulo()));
@@ -201,6 +208,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
             vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
             vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
 
+            saved = true;
             dismiss();
         }
     };

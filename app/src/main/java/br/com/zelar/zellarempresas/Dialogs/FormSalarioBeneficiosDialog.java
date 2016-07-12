@@ -64,6 +64,8 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
 
     private List<String> beneficios;
 
+    private boolean saved;
+
     public FormSalarioBeneficiosDialog(Context context)
     {
         super(context);
@@ -74,6 +76,11 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
     public void setVaga(Vaga vaga)
     {
         this.vaga = vaga;
+    }
+
+    public void unsave()
+    {
+        this.saved = false;
     }
 
     @Override
@@ -90,7 +97,7 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
     private void carregarCampos()
     {
 
-        if(vaga.getUniqueId() != null)
+        if(vaga.getUniqueId() != null || saved)
         {
             int positionSalario = ObjectUtilities.getPositionByValue(vaga.getPretensao(), spinnerFaixaSalarial.getAdapter());
 
@@ -230,6 +237,8 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
             vaga.setSalarioVisivel(radioButtonConfSalarioSim.isChecked() ? "Sim" : "Não");
             vaga.setPretensao(spinnerFaixaSalarial.getSelectedItem().toString());
             vaga.setBeneficios(Join(beneficios));
+
+            saved = true;
 
             dismiss();
         }

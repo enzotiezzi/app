@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:id="@+id/textViewRelatorioAbertas"/>
+            android:id="@+id/textViewRelatorioAbertas"
+            android:textColor="@color/zellarGray"/>
     </LinearLayout>
 
     <LinearLayout
@@ -46,7 +47,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:id="@+id/textViewRelatorioFechadas"/>
+            android:id="@+id/textViewRelatorioFechadas"
+            android:textColor="@color/zellarGray"/>
     </LinearLayout>
 
     <LinearLayout
@@ -68,7 +70,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:id="@+id/textViewRelatorioEmAberto"/>
+            android:id="@+id/textViewRelatorioEmAberto"
+            android:textColor="@color/zellarGray"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Tempo médio de fechamento: "
+            android:text="T. médio de fechamento: "
             android:textStyle="bold"
             android:textColor="@color/zellarGray"/>
 
@@ -90,7 +93,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:id="@+id/textViewRelatorioTempoMedio"/>
+            android:id="@+id/textViewRelatorioTempoMedio"
+            android:textColor="@color/zellarGray"/>
     </LinearLayout>
 
 </LinearLayout>

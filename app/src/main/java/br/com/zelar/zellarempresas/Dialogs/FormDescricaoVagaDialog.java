@@ -37,16 +37,24 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
     private Button buttonFechar;
     private Button buttonGravar;
 
+    private boolean saved;
+
     public FormDescricaoVagaDialog(Context context)
     {
         super(context);
 
         this.context = context;
+        this.saved = false;
     }
 
     public void setVaga(Vaga vaga)
     {
         this.vaga = vaga;
+    }
+
+    public void unsave()
+    {
+        this.saved = false;
     }
 
     @Override
@@ -59,7 +67,7 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
         initialize();
         carregarCampos();
     }
-
+    
     public void initialize()
     {
         editTextDescricaoAtividadesVaga = (EditText) findViewById(R.id.editTextDescricaoAtividadesVaga);
@@ -82,7 +90,7 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
 
     private void carregarCampos()
     {
-        if(vaga.getUniqueId() != null)
+        if(vaga.getUniqueId() != null || saved)
         {
             editTextDescricaoAtividadesVaga.setText(ObjectUtilities.getValue(vaga.getDescricaoDaAtividade()));
             editTextDescricaoPerfilVaga.setText(ObjectUtilities.getValue(vaga.getDescricaoDoPerfil()));
@@ -151,6 +159,8 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
             vaga.setIdioma(spinnerIdiomaNecessario.getSelectedItem().toString());
             vaga.setFaixaEtariaInicio(spinnerIdadeMinima.getSelectedItem().toString());
             vaga.setFaixaEtariaFim(spinnerIdadeMaxima.getSelectedItem().toString());
+
+            saved = true;
 
             dismiss();
         }

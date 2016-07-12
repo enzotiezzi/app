@@ -34,6 +34,10 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private View thisView;
     private Context context;
 
+    private FormDadosEssenciaisDialog formDadosEssenciaisDialog;
+    private FormSalarioBeneficiosDialog formSalarioBeneficiosDialog;
+    private FormDescricaoVagaDialog formDescricaoVagaDialog;
+
     private TextView textViewVerEssenciais;
     private TextView textViewDescricaoAtividades;
     private TextView textViewResumoVaga;
@@ -86,11 +90,20 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
             vaga = new Vaga();
             vaga.setIdUsuario(new SessionManager(getActivity()).getPreferences("idUsuario"));
         }
+
+        formDadosEssenciaisDialog.unsave();
+        formSalarioBeneficiosDialog.unsave();
+        formDescricaoVagaDialog.unsave();
     }
 
     @Override
     public void initialize()
     {
+
+        formDadosEssenciaisDialog = new FormDadosEssenciaisDialog(context);
+        formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(context);
+        formDescricaoVagaDialog = new FormDescricaoVagaDialog(context);
+
         textViewDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewDescricaoAtividades);
         textViewVerEssenciais = (TextView) thisView.findViewById(R.id.textViewVerEssenciais);
         textViewResumoVaga = (TextView) thisView.findViewById(R.id.textViewResumoVaga);
@@ -112,7 +125,6 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            FormDadosEssenciaisDialog formDadosEssenciaisDialog = new FormDadosEssenciaisDialog(context);
             formDadosEssenciaisDialog.setVaga(vaga);
             formDadosEssenciaisDialog.show();
             Window window = formDadosEssenciaisDialog.getWindow();
@@ -125,7 +137,6 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            FormSalarioBeneficiosDialog formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(context);
             formSalarioBeneficiosDialog.setVaga(vaga);
             formSalarioBeneficiosDialog.show();
             Window window = formSalarioBeneficiosDialog.getWindow();
@@ -138,7 +149,6 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            FormDescricaoVagaDialog formDescricaoVagaDialog = new FormDescricaoVagaDialog(context);
             formDescricaoVagaDialog.setVaga(vaga);
             formDescricaoVagaDialog.show();
             Window window = formDescricaoVagaDialog.getWindow();

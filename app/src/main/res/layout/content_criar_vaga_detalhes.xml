@@ -18,6 +18,7 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent">
     </include>
+
     <include layout="@layout/vaga_salario_beneficios"
              android:id="@+id/salarioBeneficios"
              android:layout_below="@+id/dadosEssenciais"
@@ -25,6 +26,7 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent">
     </include>
+
     <include layout="@layout/vaga_descricao_atividades"
              android:id="@+id/descicaoAtividades"
              android:layout_below="@+id/salarioBeneficios"
@@ -32,6 +34,7 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent">
     </include>
+    
     <include layout="@layout/vaga_resumo"
              android:id="@+id/resumo"
              android:layout_below="@+id/descicaoAtividades"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -129,18 +130,22 @@ public class HomeActivityFragment extends Fragment implements IBasic
         final ViewGroup viewGroup = (ViewGroup) v.findViewById(R.id.appendPoint);
 
         TextView textViewTitle = (TextView) v.findViewById(R.id.textViewTitle);
+        ImageView imageViewStatusIcon = (ImageView) v.findViewById(R.id.imageViewStatusIcon);
 
         textViewTitle.setText(title);
 
-        // adiciona relatorio_vagas
-        textViewTitle.setOnClickListener(new View.OnClickListener()
+        View.OnClickListener expandView_click = new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 toggle_contents(viewGroup);
             }
-        });
+        };
+
+        // adiciona relatorio_vagas
+        textViewTitle.setOnClickListener(expandView_click);
+        imageViewStatusIcon.setOnClickListener(expandView_click);
 
         viewGroup.addView(contentView, 0);
 
