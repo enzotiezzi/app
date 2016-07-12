@@ -1,9 +1,13 @@
 package br.com.zelar.zellarempresas.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,6 +26,7 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
 
     private Button buttonCriarNovaVaga;
     private Button buttonCopiarVaga;
+    private Button buttonLigarCentral;
 
     public EscolherMetodoCriacaoActivityFragment()
     {
@@ -35,9 +40,11 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
 
         buttonCriarNovaVaga = (Button) view.findViewById(R.id.buttonCriarNovaVaga);
         buttonCopiarVaga = (Button) view.findViewById(R.id.buttonCopiarVaga);
+        buttonLigarCentral = (Button) view.findViewById(R.id.buttonLigarCentral);
 
         buttonCriarNovaVaga.setOnClickListener(buttonCriarNovaVaga_click);
         buttonCopiarVaga.setOnClickListener(buttonCopiarVaga_click);
+        buttonLigarCentral.setOnClickListener(buttonLigarCentral_click);
 
         return view;
     }
@@ -63,6 +70,16 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
             copiarVagaDialog.show();
             Window window = copiarVagaDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+    };
+
+    View.OnClickListener buttonLigarCentral_click = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "972900499"));
+            startActivity(intent);
         }
     };
 }

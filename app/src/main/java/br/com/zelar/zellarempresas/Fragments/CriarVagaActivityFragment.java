@@ -76,7 +76,6 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
             if(json != null)
                 vagaBundle = new Gson().fromJson(json, Vaga.class);
         }
-
     }
 
     private void setupVaga()

@@ -31,6 +31,15 @@
             android:text="Copiar uma vaga"
             android:id="@+id/buttonCopiarVaga"
             android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ligar para Central"
+            android:id="@+id/buttonLigarCentral"
+            android:background="@color/zellarGreen"
             android:textColor="#ffffff"/>
     </LinearLayout>
 </LinearLayout>

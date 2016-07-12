@@ -16,6 +16,9 @@ import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
@@ -185,6 +188,38 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         }, null);
     }
 
+    public boolean validar()
+    {
+        boolean valid = true;
+
+        if(editTextHorarioEntrada.length() == 0 || editTextHorarioSaida.length() == 0)
+        {
+            valid = false;
+            ShowMessage.showDialog(context, "Aviso", "O campo horário é obrugatório", "Ok", null);
+        }
+
+        String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        Pattern pattern = Pattern.compile(TIME24HOURS_PATTERN);
+
+        Matcher matcherEntrada = pattern.matcher(editTextHorarioEntrada.getText().toString());
+        Matcher matcherSaida = pattern.matcher(editTextHorarioSaida.getText().toString());
+
+        if(editTextHorarioEntrada.length() > 0)
+        {
+            if(!matcherEntrada.matches())
+                ShowMessage.showDialog(context, "Aviso", "O horário de entrada é inválido", "Ok", null);
+        }
+
+
+        if(editTextHorarioSaida.length() > 0)
+        {
+            if(!matcherSaida.matches())
+                ShowMessage.showDialog(context, "Aviso", "O horário de saída é inválido", "Ok", null);
+        }
+
+        return valid;
+    }
+
     View.OnClickListener buttonFechar_click = new View.OnClickListener()
     {
         @Override
@@ -199,17 +234,20 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         @Override
         public void onClick(View v)
         {
-            vaga.setConfidencial(radioButtonConfSim.isChecked() ? "Sim":"Não");
-            vaga.setIdLocal(((Local)spinnerLocalTrabalho.getSelectedItem()).getUniqueId());
-            vaga.setTitulo(editTextTituloVaga.getText().toString());
-            vaga.setDiasSemana(spinnerDiasTrabalho.getSelectedItem().toString());
-            vaga.setEscala(spinnerEscalaTrabalho.getSelectedItem().toString());
-            vaga.setHorarioEntrada(editTextHorarioEntrada.getText().toString());
-            vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
-            vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
+            if(validar())
+            {
+                vaga.setConfidencial(radioButtonConfSim.isChecked() ? "Sim" : "Não");
+                vaga.setIdLocal(((Local) spinnerLocalTrabalho.getSelectedItem()).getUniqueId());
+                vaga.setTitulo(editTextTituloVaga.getText().toString());
+                vaga.setDiasSemana(spinnerDiasTrabalho.getSelectedItem().toString());
+                vaga.setEscala(spinnerEscalaTrabalho.getSelectedItem().toString());
+                vaga.setHorarioEntrada(editTextHorarioEntrada.getText().toString());
+                vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
+                vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
 
-            saved = true;
-            dismiss();
+                saved = true;
+                dismiss();
+            }
         }
     };
 
