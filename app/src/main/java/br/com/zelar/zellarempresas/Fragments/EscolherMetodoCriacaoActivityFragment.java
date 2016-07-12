@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import br.com.zelar.zellarempresas.Dialogs.CopiarVagaDialog;
 import br.com.zelar.zellarempresas.R;
@@ -24,9 +25,9 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
     private View view;
     private Context context;
 
-    private Button buttonCriarNovaVaga;
-    private Button buttonCopiarVaga;
-    private Button buttonLigarCentral;
+    private View buttonCriarNovaVaga;
+    private View buttonCopiarVaga;
+    private View buttonLigarCentral;
 
     public EscolherMetodoCriacaoActivityFragment()
     {
@@ -38,9 +39,9 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
         view =  inflater.inflate(R.layout.fragment_escolher_metodo_criacao, container, false);
         context = getContext();
 
-        buttonCriarNovaVaga = (Button) view.findViewById(R.id.buttonCriarNovaVaga);
-        buttonCopiarVaga = (Button) view.findViewById(R.id.buttonCopiarVaga);
-        buttonLigarCentral = (Button) view.findViewById(R.id.buttonLigarCentral);
+        buttonCriarNovaVaga = view.findViewById(R.id.buttonCriarNovaVaga);
+        buttonCopiarVaga = view.findViewById(R.id.buttonCopiarVaga);
+        buttonLigarCentral = view.findViewById(R.id.buttonLigarCentral);
 
         buttonCriarNovaVaga.setOnClickListener(buttonCriarNovaVaga_click);
         buttonCopiarVaga.setOnClickListener(buttonCopiarVaga_click);
@@ -78,8 +79,16 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
         @Override
         public void onClick(View v)
         {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "972900499"));
-            startActivity(intent);
+            try
+            {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "972900499"));
+                startActivity(intent);
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
         }
     };
 }

@@ -195,7 +195,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         if(editTextHorarioEntrada.length() == 0 || editTextHorarioSaida.length() == 0)
         {
             valid = false;
-            ShowMessage.showDialog(context, "Aviso", "O campo horário é obrugatório", "Ok", null);
+            ShowMessage.showDialog(context, "Aviso", "O campo horário é obrigatório", "Ok", null);
         }
 
         String TIME24HOURS_PATTERN = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
@@ -209,7 +209,6 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
             if(!matcherEntrada.matches())
                 ShowMessage.showDialog(context, "Aviso", "O horário de entrada é inválido", "Ok", null);
         }
-
 
         if(editTextHorarioSaida.length() > 0)
         {
