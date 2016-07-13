@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import br.com.zelar.zellarempresas.Custom.ExpandableItem;
-import br.com.zelar.zellarempresas.Custom.ExpandableView;
 import br.com.zelar.zellarempresas.Empresas.RelatorioVaga;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
@@ -32,7 +30,6 @@ public class HomeActivityFragment extends Fragment implements IBasic
     private Context context;
     private View view;
 
-    private ExpandableView expandableView;
 
     public HomeActivityFragment()
     {
@@ -85,25 +82,6 @@ public class HomeActivityFragment extends Fragment implements IBasic
                 }
             }
         }, null);
-    }
-
-    private ExpandableItem[] montarItens(RelatorioVaga[] relatorioVagas)
-    {
-        ExpandableItem[] views = new ExpandableItem[relatorioVagas.length];
-
-        for (int i = 0; i < relatorioVagas.length; i++)
-        {
-            ExpandableItem e = new ExpandableItem();
-
-            View contentView = montarView(relatorioVagas[i]);
-
-            e.setTitle(relatorioVagas[i].getSemana());
-            e.setV(contentView);
-
-            views[i] = e;
-        }
-
-        return views;
     }
 
     private View[] montarLista(RelatorioVaga[] relatorioVagas)

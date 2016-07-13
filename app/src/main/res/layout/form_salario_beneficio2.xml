@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,269 +11,181 @@
         android:id="@+id/textView23"
         android:layout_marginBottom="10dp"/>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:weightSum="2">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vale transporte"
-                android:id="@+id/checkBoxValeTransporte"
-                android:layout_weight="1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vale alimentação"
-                android:id="@+id/checkBoxValeAlimentacao"
-                android:layout_weight="1"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vale transporte"
+                    android:id="@+id/checkBoxValeTransporte" />
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vale alimentação"
+                    android:id="@+id/checkBoxValeAlimentacao" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cesta Básica"
+                    android:id="@+id/checkBoxCestaBasica" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aj. de custo"
+                    android:id="@+id/checkBoxAjudaCusto" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assist. médica"
+                    android:id="@+id/checkBoxAssistMedica" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Seguro de vida"
+                    android:id="@+id/checkBoxSeguroVida" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aux. educação"
+                    android:id="@+id/checkBoxAuxEdu" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aux. farmácia"
+                    android:id="@+id/checkBoxAuxFarmacia" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aux. combustível"
+                    android:id="@+id/checkBoxAuxCombustivel" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estacionamento"
+                    android:id="@+id/checkBoxEstacionamento" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bônus por resultado"
+                    android:id="@+id/checkBoxBonusResultado" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Outros"
+                    android:id="@+id/checkBoxOutros" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vale refeição"
+                    android:id="@+id/checkBoxValeRefeicao"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="V.A no local"
+                    android:id="@+id/checkBoxVALocal"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Part. nos lucros"
+                    android:id="@+id/checkBoxPLR"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comissão"
+                    android:id="@+id/checkBoxComissao"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assist. odontológica"
+                    android:id="@+id/checkBoxAssistOdonto"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prev. privada"
+                    android:id="@+id/checkBoxPrevPrivada"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aux. Idioma"
+                    android:id="@+id/checkBoxAuxIdioma"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aux. Creche"
+                    android:id="@+id/checkBoxAuxCreche"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Veículo da empresa"
+                    android:id="@+id/checkBoxVeiculoEmpresa"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Celular corp."
+                    android:id="@+id/checkBoxCelCorp"
+                    android:layout_alignParentRight="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Horário flexível"
+                    android:id="@+id/checkBoxHorarioFlexivel"
+                    android:layout_alignParentRight="true"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cesta Básica"
-                android:id="@+id/checkBoxCestaBasica"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aj. de custo"
-                android:id="@+id/checkBoxAjudaCusto"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Assist. médica"
-                android:id="@+id/checkBoxAssistMedica"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seguro de vida"
-                android:id="@+id/checkBoxSeguroVida"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aux. educação"
-                android:id="@+id/checkBoxAuxEdu"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aux. farmácia"
-                android:id="@+id/checkBoxAuxFarmacia"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aux. combustível"
-                android:id="@+id/checkBoxAuxCombustivel"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estacionamento"
-                android:id="@+id/checkBoxEstacionamento"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bônus por resultado"
-                android:id="@+id/checkBoxBonusResultado"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Outros"
-                android:id="@+id/checkBoxOutros"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vale refeição"
-                android:id="@+id/checkBoxValeRefeicao"
-                android:layout_weight="1" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="V.A no local"
-                android:id="@+id/checkBoxVALocal"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Part. nos lucros"
-                android:id="@+id/checkBoxPLR"
-                android:layout_alignParentRight="true"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comissão"
-                android:id="@+id/checkBoxComissao"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Assist. odontológica"
-                android:id="@+id/checkBoxAssistOdonto"
-                android:layout_alignParentRight="true"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Prev. privada"
-                android:id="@+id/checkBoxPrevPrivada"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aux. Idioma"
-                android:id="@+id/checkBoxAuxIdioma"
-                android:layout_alignParentRight="true"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aux. Creche"
-                android:id="@+id/checkBoxAuxCreche"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Veículo da empresa"
-                android:id="@+id/checkBoxVeiculoEmpresa"
-                android:layout_alignParentRight="true"/>
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Celular corp."
-                android:id="@+id/checkBoxCelCorp"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Horário flexível"
-                android:id="@+id/checkBoxHorarioFlexivel"
-                android:layout_alignParentRight="true"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -299,4 +211,5 @@
             android:background="@color/colorPrimary"
             android:textColor="#ffffff"/>
     </LinearLayout>
+
 </LinearLayout>

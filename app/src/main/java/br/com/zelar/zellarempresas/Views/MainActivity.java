@@ -20,6 +20,7 @@ import android.widget.Button;
 
 import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.EscolherMetodoCriacaoActivityFragment;
+import br.com.zelar.zellarempresas.Fragments.GestaoEmpresaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.VagasPendentesActivityFragment;
 import br.com.zelar.zellarempresas.PushNotification.PushManager;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.container, new HomeActivityFragment())
+                    .replace(R.id.container, new GestaoEmpresaActivityFragment())
                     .commit();
         }
         else

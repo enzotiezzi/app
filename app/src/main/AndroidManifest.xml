@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.zelar.zellarempresas">
+<manifest package="br.com.zelar.zellarempresas"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <permission
         android:name="br.com.zelar.zellarempresas.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature"/>
 
-    <uses-permission android:name="br.com.zelar.zellarempresas.permission.C2D_MESSAGE" />
+    <uses-permission android:name="br.com.zelar.zellarempresas.permission.C2D_MESSAGE"/>
 
     <meta-data
         android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
+        android:value="@integer/google_play_services_version"/>
 
     <application
         android:allowBackup="true"
@@ -26,26 +26,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
-
         <service
-            android:name="br.com.zelar.zellarempresas.PushNotification.MyInstanceIDService"
+            android:name=".PushNotification.MyInstanceIDService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-
         <service
-            android:name="br.com.zelar.zellarempresas.PushNotification.RegistrationIntentService"
-            android:exported="false"></service>
+            android:name=".PushNotification.RegistrationIntentService"
+            android:exported="false"/>
 
         <receiver
             android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 
-                <category android:name="br.com.zelar.zellarempresas" />
+                <category android:name="br.com.zelar.zellarempresas"/>
             </intent-filter>
         </receiver>
 
@@ -53,32 +51,36 @@
             android:name=".Views.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".Views.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Views.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Views.CriarVagaActivity"
             android:label="@string/title_activity_criar_vaga"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Views.EscolherMetodoCriacaoActivity"
             android:label="@string/title_activity_escolher_metodo_criacao"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Views.VagasPendentesActivity"
             android:label="@string/title_activity_vagas_pendentes"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Views.GestaoEmpresaActivity"
+            android:label="@string/title_activity_gestao_empresa"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
