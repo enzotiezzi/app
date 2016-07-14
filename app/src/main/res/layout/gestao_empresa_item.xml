@@ -15,12 +15,6 @@
             android:src="@drawable/empresa_top"
             android:layout_marginRight="5dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageViewOpen"
-            android:src="@drawable/arrow_down_primary"
-            android:layout_marginRight="5dp"/>
 
         <TextView
             android:layout_width="24dp"
@@ -28,8 +22,16 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:visibility="gone"
             android:textColor="@color/colorPrimary"
+            android:gravity="center"
             android:textStyle="bold"
             android:id="@+id/textViewNumeroGrupo"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageViewOpen"
+            android:src="@drawable/arrow_down_primary"
+            android:layout_marginRight="5dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,6 +57,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="0"
                     android:id="@+id/textViewLocais"
+                    android:gravity="center"
                     android:layout_marginRight="5dp"/>
 
                 <TextView
@@ -63,6 +66,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="0"
                     android:id="@+id/textViewPessoas"
+                    android:gravity="center"
                     android:layout_marginRight="5dp"/>
 
                 <TextView
@@ -70,6 +74,7 @@
                     android:layout_height="24dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="0"
+                    android:gravity="center"
                     android:id="@+id/textViewVagas"/>
             </LinearLayout>
 
@@ -82,7 +87,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/appendGroup"
-        android:paddingRight="8dp">
+        android:visibility="gone">
 
     </LinearLayout>
 
