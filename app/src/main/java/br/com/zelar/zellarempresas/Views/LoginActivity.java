@@ -82,6 +82,8 @@ public class LoginActivity extends AppCompatActivity
                             sessionManager.setPreferences("idUsuario", authentication.getIdUsuario());
 
                             Intent i = new Intent(context, MainActivity.class);
+
+                            PushManager.initialize(context);
                             context.startActivity(i);
                         }
                         else

@@ -2,6 +2,7 @@ package br.com.zelar.zellarempresas.Session;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * Created by enzo on 31/05/2016.
@@ -29,5 +30,18 @@ public class SessionManager
         String guid = preferences.getString(key, null);
 
         return guid;
+    }
+
+    public void cleanPreferences()
+    {
+        // sistema
+        SharedPreferences sharedPreferences = this.context.getSharedPreferences("empresas", this.context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // default
+        SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        defaultSharedPreferences.edit().clear().commit();
+        editor.clear().commit();
     }
 }

@@ -42,7 +42,6 @@ public class HomeActivityFragment extends Fragment implements IBasic
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         context = getContext();
-        PushManager.initialize(context);
 
         initialize();
         carregarRelatorio();

@@ -15,6 +15,16 @@
             android:id="@+id/vagas_pendentes"
             android:icon="@drawable/ic_vaga_pendente"
             android:title="Vagas Pendentes"/>
+
+        <item
+            android:id="@+id/vagas_semana"
+            android:icon="@drawable/vagas_semana"
+            android:title="Vagas por semana"/>
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Sair"/>
     </group>
 
     <!--<item android:title="Communicate">

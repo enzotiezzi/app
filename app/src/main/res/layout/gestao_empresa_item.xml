@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textViewNomeGrupo"
-            android:text="Title"/>
+            android:text="Title"
+            android:textColor="@color/colorPrimary"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +59,8 @@
                     android:text="0"
                     android:id="@+id/textViewLocais"
                     android:gravity="center"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/colorPrimary"/>
 
                 <TextView
                     android:layout_width="24dp"
@@ -67,7 +69,9 @@
                     android:text="0"
                     android:id="@+id/textViewPessoas"
                     android:gravity="center"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/colorPrimary"
+                    android:background="#f2f2f2"/>
 
                 <TextView
                     android:layout_width="24dp"
@@ -75,12 +79,20 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="0"
                     android:gravity="center"
-                    android:id="@+id/textViewVagas"/>
+                    android:id="@+id/textViewVagas"
+                    android:textColor="@color/colorPrimary"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

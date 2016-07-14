@@ -9,5 +9,21 @@
                 tools:context=".Fragments.GestaoEmpresaActivityFragment"
                 tools:showIn="@layout/activity_gestao_empresa">
 
-    <include layout="@layout/gestao_empresa_main"></include>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView2"
+        android:fillViewport="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView2"
+            android:fillViewport="true">
+
+
+            <include layout="@layout/gestao_empresa_main"></include>
+        </ScrollView>
+    </HorizontalScrollView>
 </RelativeLayout>

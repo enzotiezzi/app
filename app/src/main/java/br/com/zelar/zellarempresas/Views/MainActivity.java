@@ -3,6 +3,7 @@ package br.com.zelar.zellarempresas.Views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.VagasPendentesActivityFragment;
 import br.com.zelar.zellarempresas.PushNotification.PushManager;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Session.SessionManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         switch (id)
         {
             case R.id.home:
-                fragment = new HomeActivityFragment();
+                fragment = new GestaoEmpresaActivityFragment();
                 break;
 
             case R.id.criar_vaga:
@@ -137,6 +139,16 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.vagas_pendentes:
                 fragment = new VagasPendentesActivityFragment();
+                break;
+
+            case R.id.vagas_semana:
+                fragment = new HomeActivityFragment();
+                break;
+
+            case R.id.logout:
+                new SessionManager(context).cleanPreferences();
+                finish();
+                System.exit(0);
                 break;
         }
 

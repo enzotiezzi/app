@@ -114,6 +114,10 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         spinnerEscalaTrabalho
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
+        spinnerConfCargo.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
+            new String[]{ "Carregando..." }));
+        spinnerLocalTrabalho.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
+                new String[]{ "Carregando..." }));
 
         carregarLocais();
         carregarCargos();
@@ -255,11 +259,14 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
         {
-            Local l = (Local)parent.getAdapter().getItem(position);
+            if(!parent.getAdapter().getItem(position).toString().equals("Carregando..."))
+            {
+                Local l = (Local)parent.getAdapter().getItem(position);
 
-            editTextTituloVaga.setText(l.getNome()+" - ");
-            vaga.setLocalObjeto(l);
-            vaga.setIdLocal(l.getUniqueId());
+                editTextTituloVaga.setText(l.getNome()+" - ");
+                vaga.setLocalObjeto(l);
+                vaga.setIdLocal(l.getUniqueId());
+            }
         }
 
         @Override
