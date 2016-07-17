@@ -24,6 +24,7 @@ import br.com.zelar.zellarempresas.Empresas.Vaga;
 import br.com.zelar.zellarempresas.Session.SessionManager;
 import br.com.zelar.zellarempresas.Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Validators.VagaValidator;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -185,20 +186,46 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            String url = Utils.buildURL(context, "Mobile/CriarVaga");
-
-            HttpClientHelper.sendRequest(getActivity(), "post", url, new ICallback()
+            if(validar())
             {
-                @Override
-                public void onRequestEnd(int statusCode, Throwable t, String response)
+                String url = Utils.buildURL(context, "Mobile/CriarVaga");
+
+                HttpClientHelper.sendRequest(getActivity(), "post", url, new ICallback()
                 {
-                   if (statusCode == 200 && t == null)
-                   {
-                       ShowMessage.showDialog(getActivity(), "Aviso", "Vaga publicada com sucesso", "OK", null);
-                       setupVaga();
-                   }
-                }
-            }, vaga);
+                    @Override
+                    public void onRequestEnd(int statusCode, Throwable t, String response)
+                    {
+                        if (statusCode == 200 && t == null)
+                        {
+                            ShowMessage.showDialog(getActivity(), "Aviso", "Vaga publicada com sucesso", "OK", null);
+                            setupVaga();
+                        }
+                    }
+                }, vaga);
+            }
         }
     };
+
+    private boolean validar()
+    {
+        boolean valid = true;
+
+        VagaValidator vagaValidator = new VagaValidator(context);
+
+        // valida horarios
+
+        if(!vagaValidator.validateHourMin(vaga.getHorarioEntrada()))
+        {
+            valid = false;
+            ShowMessage.showDialog(context, "Aviso", "O horário de entrada é inválido", "Ok", null);
+        }
+
+        if(!vagaValidator.validateHourMin(vaga.getHorarioSaida()))
+        {
+            valid = false;
+            ShowMessage.showDialog(context, "Aviso", "O horário de saída é inválido", "Ok", null);
+        }
+
+        return valid;
+    }
 }

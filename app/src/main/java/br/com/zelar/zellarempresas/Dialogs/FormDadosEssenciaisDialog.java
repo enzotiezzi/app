@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -29,6 +30,7 @@ import br.com.zelar.zellarempresas.Session.SessionManager;
 import br.com.zelar.zellarempresas.Utilities.ObjectUtilities;
 import br.com.zelar.zellarempresas.Utilities.Utils;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Validators.VagaValidator;
 
 /**
  * Created by enzo on 02/06/2016.
@@ -54,6 +56,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
     private Button buttonGravar;
 
     private boolean saved;
+    private boolean loadedLocais;
+    private boolean loadedCargos;
 
     public FormDadosEssenciaisDialog(Context context)
     {
@@ -61,6 +65,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
         this.context = context;
         this.saved = false;
+        this.loadedLocais = false;
+        this.loadedCargos = false;
     }
 
     public void setVaga(Vaga vaga)
@@ -115,7 +121,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                         new String[]{ "5x2", "Seg-Sex", "6x2", "6x1", "12x36", "5x1"}));
         spinnerConfCargo.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
-            new String[]{ "Carregando..." }));
+                new String[]{ "Carregando..." }));
         spinnerLocalTrabalho.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
                 new String[]{ "Carregando..." }));
 
@@ -160,6 +166,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
                    spinnerLocalTrabalho
                            .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_dropdown_item, locais));
+
+                    loadedLocais = true;
                }
 
                 // carregando spinners
@@ -184,6 +192,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
                     spinnerConfCargo
                             .setAdapter(new ArrayAdapter<FuncaoEmpresa>(context, android.R.layout.simple_spinner_dropdown_item, funcoes));
+
+                    loadedCargos = true;
                 }
 
                 //
@@ -195,6 +205,18 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
     public boolean validar()
     {
         boolean valid = true;
+
+        if(!loadedLocais)
+        {
+            valid = false;
+            ShowMessage.showDialog(context, "Aviso", "A lista de locais precisa ser carregada antes", "Ok", null);
+        }
+
+        if(!loadedCargos)
+        {
+            valid = false;
+            ShowMessage.showDialog(context, "Aviso", "A lista de cargos precisa ser carregada antes", "Ok", null);
+        }
 
         if(editTextHorarioEntrada.length() == 0 || editTextHorarioSaida.length() == 0)
         {
