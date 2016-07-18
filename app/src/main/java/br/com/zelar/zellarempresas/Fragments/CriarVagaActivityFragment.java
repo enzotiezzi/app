@@ -176,10 +176,17 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         {
             ShowMessage.showDialog(getActivity(), "Aviso", "O criação de vaga foi cancelada", "OK", null);
             setupVaga();
+            changeFragment();
         }
     };
 
-
+    private void changeFragment()
+    {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, new EscolherMetodoCriacaoActivityFragment())
+                .commit();
+    }
 
     View.OnClickListener buttonPublicar_click = new View.OnClickListener()
     {
@@ -199,6 +206,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
                         {
                             ShowMessage.showDialog(getActivity(), "Aviso", "Vaga publicada com sucesso", "OK", null);
                             setupVaga();
+                            changeFragment();
                         }
                     }
                 }, vaga);
