@@ -99,7 +99,7 @@ public class DetalhesVagasPendentesDialog extends Dialog implements IBasic
         textViewVagasPendentesDetalhesCargo.setText(ObjectUtilities.getValue(vaga.getFuncao()));
         textViewVagasPendentesDetalhesLocal.setText(ObjectUtilities.getValue(vaga.getLocalidade()));
         textViewVagasPendentesDetalhesEscala.setText(ObjectUtilities.getValue(vaga.getEscala()));
-        textViewVagasPendentesDetalhesHorario.setText(vaga.getHorarioEntrada() +  " - " + ObjectUtilities.getValue(vaga.getHorarioSaida()));
+        textViewVagasPendentesDetalhesHorario.setText(vaga.getHorarioEntradaHoras() + ":" + vaga.getHorarioEntradaMinutos() +  " - " + ObjectUtilities.getValue(vaga.getHorarioSaidaHoras()) + ":" + ObjectUtilities.getValue(vaga.getHorarioSaidaMinutos()));
         textViewVagasPendentesDetalhesSalario.setText(ObjectUtilities.getValue(vaga.getPretensao()));
     }
 

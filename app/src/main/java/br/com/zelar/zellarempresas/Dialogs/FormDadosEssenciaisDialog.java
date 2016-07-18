@@ -268,6 +268,10 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                 vaga.setEscala(spinnerEscalaTrabalho.getSelectedItem().toString());
                 vaga.setHorarioEntrada(editTextHorarioEntrada.getText().toString());
                 vaga.setHorarioSaida(editTextHorarioSaida.getText().toString());
+                vaga.setHorarioEntradaHoras(editTextHorarioEntrada.getText().toString().split(":")[0]);
+                vaga.setHorarioEntradaMinutos(editTextHorarioEntrada.getText().toString().split(":")[1]);
+                vaga.setHorarioSaidaHoras(editTextHorarioSaida.getText().toString().split(":")[0]);
+                vaga.setHorarioSaidaMinutos(editTextHorarioSaida.getText().toString().split(":")[1]);
                 vaga.setIdFuncao(((FuncaoEmpresa) spinnerConfCargo.getSelectedItem()).getUniqueId());
 
                 saved = true;

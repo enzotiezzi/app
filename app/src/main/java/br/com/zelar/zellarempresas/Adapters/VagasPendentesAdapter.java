@@ -78,7 +78,7 @@ public class VagasPendentesAdapter extends BaseAdapter
         vagaPendentesHelper.textViewVagaPendenteCargo.setText(ObjectUtilities.getValue(v.getFuncao()));
         vagaPendentesHelper.textViewVagaPendenteLocal.setText(ObjectUtilities.getValue(v.getLocalidade()));
         vagaPendentesHelper.textViewVagaPendenteEscala.setText(ObjectUtilities.getValue(v.getEscala()));
-        vagaPendentesHelper.textViewVagaPendenteHorario.setText(ObjectUtilities.getValue(v.getHorarioEntrada()) +  " - " + ObjectUtilities.getValue(v.getHorarioSaida()));
+        vagaPendentesHelper.textViewVagaPendenteHorario.setText(v.getHorarioEntradaHoras() + ":" + v.getHorarioEntradaMinutos() +  " - " + ObjectUtilities.getValue(v.getHorarioSaidaHoras()) + ":" + ObjectUtilities.getValue(v.getHorarioSaidaMinutos()));
         vagaPendentesHelper.textViewVagaPendenteSalario.setText(ObjectUtilities.getValue(v.getPretensao()));
 
         return convertView;
