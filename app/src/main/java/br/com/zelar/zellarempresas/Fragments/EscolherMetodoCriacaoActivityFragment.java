@@ -15,7 +15,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.zelar.zellarempresas.Dialogs.CopiarVagaDialog;
+import br.com.zelar.zellarempresas.Dialogs.EditarNumeroCentralDialog;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Session.SessionManager;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -46,6 +48,9 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
         buttonCriarNovaVaga.setOnClickListener(buttonCriarNovaVaga_click);
         buttonCopiarVaga.setOnClickListener(buttonCopiarVaga_click);
         buttonLigarCentral.setOnClickListener(buttonLigarCentral_click);
+
+        buttonLigarCentral.setLongClickable(true);
+        buttonLigarCentral.setOnLongClickListener(buttonLigarCentral_longClick);
 
         return view;
     }
@@ -81,14 +86,40 @@ public class EscolherMetodoCriacaoActivityFragment extends Fragment
         {
             try
             {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "972900499"));
-                startActivity(intent);
+                String numero = new SessionManager(context).getPreferences("telefoneCentral");
+
+                if(numero != null)
+                {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + numero));
+                    startActivity(intent);
+                }
+                else
+                {
+                    EditarNumeroCentralDialog editarNumeroCentralDialog = new EditarNumeroCentralDialog(context);
+                    editarNumeroCentralDialog.show();
+                    Window window = editarNumeroCentralDialog.getWindow();
+                    window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
             }
             catch(Exception e)
             {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
+        }
+    };
+
+    View.OnLongClickListener buttonLigarCentral_longClick = new View.OnLongClickListener()
+    {
+        @Override
+        public boolean onLongClick(View v)
+        {
+            EditarNumeroCentralDialog editarNumeroCentralDialog = new EditarNumeroCentralDialog(context);
+            editarNumeroCentralDialog.show();
+            Window window = editarNumeroCentralDialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            return false;
         }
     };
 }
