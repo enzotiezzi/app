@@ -298,9 +298,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent)
-        {
-        }
+        public void onNothingSelected(AdapterView<?> parent){}
     };
 
     AdapterView.OnItemSelectedListener spinnerConfCargo_itemSelected = new AdapterView.OnItemSelectedListener()
@@ -318,7 +316,6 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
+        public void onNothingSelected(AdapterView<?> parent) {}
     };
 }
