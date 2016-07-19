@@ -110,6 +110,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         buttonGravar.setOnClickListener(buttonGravar_click);
 
         spinnerLocalTrabalho.setOnItemSelectedListener(spinnerLocalTrabalho_itemSelected);
+        spinnerConfCargo.setOnItemSelectedListener(spinnerConfCargo_itemSelected);
 
         spinnerNomeEmpresa
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,
@@ -126,7 +127,6 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                 new String[]{ "Carregando..." }));
 
         carregarLocais();
-        carregarCargos();
     }
 
     private void carregarCampos()
@@ -168,6 +168,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
                            .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_dropdown_item, locais));
 
                     loadedLocais = true;
+
+                   carregarCargos();
                }
 
                 // carregando spinners
@@ -298,6 +300,25 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         @Override
         public void onNothingSelected(AdapterView<?> parent)
         {
+        }
+    };
+
+    AdapterView.OnItemSelectedListener spinnerConfCargo_itemSelected = new AdapterView.OnItemSelectedListener()
+    {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            if(!parent.getAdapter().getItem(position).toString().equals("Carregando..."))
+            {
+                FuncaoEmpresa c = (FuncaoEmpresa) parent.getAdapter().getItem(position);
+
+                String local = editTextTituloVaga.getText().toString();
+                editTextTituloVaga.setText(local + c.getNomeFuncao());
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
         }
     };
 }
