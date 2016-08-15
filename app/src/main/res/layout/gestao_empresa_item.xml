@@ -70,8 +70,7 @@
                     android:id="@+id/textViewPessoas"
                     android:gravity="center"
                     android:layout_marginRight="5dp"
-                    android:textColor="@color/colorPrimary"
-                    android:background="#f2f2f2"/>
+                    android:textColor="@color/colorPrimary"/>
 
                 <TextView
                     android:layout_width="24dp"
