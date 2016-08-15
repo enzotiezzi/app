@@ -1,6 +1,7 @@
 package br.com.zelar.zellarempresas.Custom;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.Image;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class GroupItemView extends LinearLayout
 
     private Context context;
     private View v;
+    private LinearLayout linearLayoutItem;
 
     private int nivel;
     private GestaoEmpresaTreeViewModel gestaoEmpresaTreeViewModel;
@@ -98,6 +100,8 @@ public class GroupItemView extends LinearLayout
         gestaoEmpresaTreeViewModels = new ArrayList<>();
         nivel = 1;
 
+        linearLayoutItem = (LinearLayout) v.findViewById(R.id.linearLayoutItem);
+
         imageViewTipo = (ImageView) v.findViewById(R.id.imageViewTipo);
         imageViewOpen = (ImageView) v.findViewById(R.id.imageViewOpen);
         textViewNumeroGrupo = (TextView) v.findViewById(R.id.textViewNumeroGrupo);
@@ -135,6 +139,7 @@ public class GroupItemView extends LinearLayout
                 imageViewTipo.setVisibility(GONE);
                 textViewNumeroGrupo.setVisibility(VISIBLE);
                 textViewNumeroGrupo.setText("G" + ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getNumero()));
+                //linearLayoutItem.setBackgroundColor(Color.parseColor("#E1BEE7"));
                 break;
         }
     }

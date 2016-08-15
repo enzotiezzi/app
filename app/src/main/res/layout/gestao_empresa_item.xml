@@ -6,7 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/linearLayoutItem">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -52,34 +53,52 @@
                 android:orientation="horizontal"
                 android:layout_gravity="right">
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="0"
-                    android:id="@+id/textViewLocais"
                     android:gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:textColor="@color/colorPrimary"/>
+                    android:layout_marginRight="5dp">
 
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="0"
-                    android:id="@+id/textViewPessoas"
-                    android:gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="0"
+                        android:id="@+id/textViewLocais"
+                        android:textColor="@color/colorPrimary"/>
+                </RelativeLayout>
 
-                <TextView
+                <RelativeLayout
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="0"
                     android:gravity="center"
-                    android:id="@+id/textViewVagas"
-                    android:textColor="@color/colorPrimary"/>
+                    android:layout_marginRight="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="0"
+                        android:id="@+id/textViewPessoas"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="0"
+                        android:gravity="center"
+                        android:id="@+id/textViewVagas"
+                        android:textColor="@color/colorPrimary"/>
+                </RelativeLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -90,8 +109,8 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#f2f2f2"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

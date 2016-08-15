@@ -34,18 +34,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/localizacao_top"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/imageViewLocalIcon"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/grupo_top"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/imageViewPessoasIcon"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/maleta_top"/>
+                    android:src="@drawable/maleta_top"
+                    android:id="@+id/imageViewVagasIcon"/>
             </LinearLayout>
 
             <ScrollView

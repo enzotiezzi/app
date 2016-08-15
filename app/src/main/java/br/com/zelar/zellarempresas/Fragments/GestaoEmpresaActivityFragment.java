@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -28,6 +30,10 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
     private View view;
 
     private ViewGroup viewGroup;
+
+    private ImageView imageViewLocalIcon;
+    private ImageView imageViewPessoasIcon;
+    private ImageView imageViewVagasIcon;
 
     public GestaoEmpresaActivityFragment()
     {
@@ -51,6 +57,28 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
     {
         viewGroup = (ViewGroup) view.findViewById(R.id.appendGroupItem);
 
+        imageViewLocalIcon = (ImageView) view.findViewById(R.id.imageViewLocalIcon);
+        imageViewPessoasIcon = (ImageView) view.findViewById(R.id.imageViewPessoasIcon);
+        imageViewVagasIcon = (ImageView) view.findViewById(R.id.imageViewVagasIcon);
+
+        imageViewLocalIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showIconDescription("Quantidade de locais");
+            }
+        });
+        imageViewPessoasIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showIconDescription("Quantidade de pessoas");
+            }
+        });
+        imageViewVagasIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showIconDescription("Quantidade de vagas");
+            }
+        });
     }
 
     private void carregarEmpresas()
@@ -80,5 +108,10 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
                 }
             }
         }, null);
+    }
+
+    private void showIconDescription(String msg)
+    {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 }

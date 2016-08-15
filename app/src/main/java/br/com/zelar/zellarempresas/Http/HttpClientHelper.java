@@ -77,6 +77,8 @@ public class HttpClientHelper
                 {
                     if(response != null)
                         onResponse.onRequestEnd(200, null, response);
+                    else
+                        onResponse.onRequestEnd(500, new Throwable("response null"), null);
                 }
 
                 progressDialog.dismiss();
