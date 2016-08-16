@@ -180,8 +180,7 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 
     private void carregarCargos()
     {
-        String idEmpresa = new SessionManager(context).getPreferences("idEmpresa");
-        String url = Utils.buildURL(context, "Mobile/ListarFuncoesEmpresa?idEmpresa="+idEmpresa);
+        String url = Utils.buildURL(context, "Mobile/ListarFuncoesEmpresa");
 
         HttpClientHelper.sendRequest(context, "get", url, new ICallback()
         {
