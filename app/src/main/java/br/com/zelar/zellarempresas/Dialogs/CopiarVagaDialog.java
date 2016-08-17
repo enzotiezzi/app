@@ -14,6 +14,11 @@ import android.widget.Spinner;
 
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
@@ -79,7 +84,7 @@ public class CopiarVagaDialog extends Dialog implements IBasic
                 if (statusCode == 200 && t == null)
                 {
                     Local[] locais = new Gson().fromJson(response, Local[].class);
-
+                    
                     spinnerCopiarLocal
                             .setAdapter(new ArrayAdapter<Local>(context, android.R.layout.simple_spinner_dropdown_item, locais));
                 }

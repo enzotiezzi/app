@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -120,10 +121,22 @@ public class GroupItemView extends LinearLayout
     {
         setupIconType();
 
-        textViewNomeGrupo.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getNome()));
+        final String nomeOriginal = gestaoEmpresaTreeViewModel.getNome();
+        String nomeReduzido = nomeOriginal.length() >= 14 ? nomeOriginal.substring(0, 14) + "...    ": nomeOriginal;
+
+        textViewNomeGrupo.setText(ObjectUtilities.getValue(nomeReduzido));
         textViewLocais.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeLocal()) );
         textViewPessoas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdePessoas()));
         textViewVagas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeVagas()));
+
+        textViewNomeGrupo.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(getContext(), nomeOriginal, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void setupIconType()
@@ -176,6 +189,7 @@ public class GroupItemView extends LinearLayout
                                     GroupItemView groupItemView = new GroupItemView(context);
                                     groupItemView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                                     groupItemView.setGestaoEmpresaTreeViewModel(empresas[i]);
+                                    if(i % 2 == (nivel % 2)) groupItemView.setZebra();
                                     groupItemView.setNivel(nivel);
 
                                     appendGroup.addView(groupItemView, i);
@@ -229,5 +243,10 @@ public class GroupItemView extends LinearLayout
                 v.startAnimation(a);
             }
         }
+    }
+
+    private void setZebra()
+    {
+        linearLayoutItem.setBackgroundColor(Color.parseColor("#F3E5F5"));
     }
 }

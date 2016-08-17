@@ -44,6 +44,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private TextView textViewResumoVaga;
     private TextView textViewSalarioBeneficios;
 
+    private View viewDadosEssenciais;
+    private View viewDescricaoAtividades;
+    private View viewResumoVaga;
+    private View viewSalarioBeneficios;
+
     private Button buttonCancelar;
     private Button buttonPublicar;
 
@@ -104,6 +109,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(context);
         formDescricaoVagaDialog = new FormDescricaoVagaDialog(context);
 
+        viewDadosEssenciais = thisView.findViewById(R.id.dadosEssenciais);
+        viewDescricaoAtividades = thisView.findViewById(R.id.descicaoAtividades);
+        viewSalarioBeneficios = thisView.findViewById(R.id.salarioBeneficios);
+        viewResumoVaga = thisView.findViewById(R.id.resumo);
+
         textViewDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewDescricaoAtividades);
         textViewVerEssenciais = (TextView) thisView.findViewById(R.id.textViewVerEssenciais);
         textViewResumoVaga = (TextView) thisView.findViewById(R.id.textViewResumoVaga);
@@ -115,6 +125,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         textViewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
         textViewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
         textViewResumoVaga.setOnClickListener(textViewResumoVaga_click);
+
+        viewDadosEssenciais.setOnClickListener(textViewVerEssenciais_click);
+        viewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
+        viewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
+        viewResumoVaga.setOnClickListener(textViewResumoVaga_click);
 
         buttonCancelar.setOnClickListener(buttonCancelar_click);
         buttonPublicar.setOnClickListener(buttonPublicar_click);
