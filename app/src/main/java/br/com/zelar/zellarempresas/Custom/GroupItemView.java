@@ -121,22 +121,10 @@ public class GroupItemView extends LinearLayout
     {
         setupIconType();
 
-        final String nomeOriginal = gestaoEmpresaTreeViewModel.getNome();
-        String nomeReduzido = nomeOriginal.length() >= 14 ? nomeOriginal.substring(0, 14) + "...    ": nomeOriginal;
-
-        textViewNomeGrupo.setText(ObjectUtilities.getValue(nomeReduzido));
+        textViewNomeGrupo.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getNome()));
         textViewLocais.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeLocal()) );
         textViewPessoas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdePessoas()));
         textViewVagas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeVagas()));
-
-        textViewNomeGrupo.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(getContext(), nomeOriginal, Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     private void setupIconType()
@@ -152,7 +140,6 @@ public class GroupItemView extends LinearLayout
                 imageViewTipo.setVisibility(GONE);
                 textViewNumeroGrupo.setVisibility(VISIBLE);
                 textViewNumeroGrupo.setText("G" + ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getNumero()));
-                //linearLayoutItem.setBackgroundColor(Color.parseColor("#E1BEE7"));
                 break;
         }
     }
