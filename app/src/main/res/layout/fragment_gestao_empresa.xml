@@ -40,6 +40,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/previsto_top"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/imageViewPrevistoIcon"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/grupo_top"
                     android:layout_marginRight="5dp"
                     android:id="@+id/imageViewPessoasIcon"/>

@@ -12,8 +12,19 @@ public class GestaoEmpresaTreeViewModel
     private String QtdeLocal;
     private String QtdePessoas;
     private String QtdeVagas;
+    private String QtdePrevisto;
 
     public GestaoEmpresaTreeViewModel(){}
+
+    public String getQtdePrevisto()
+    {
+        return QtdePrevisto;
+    }
+
+    public void setQtdePrevisto(String qtdePrevisto)
+    {
+        QtdePrevisto = qtdePrevisto;
+    }
 
     public String getTipo()
     {

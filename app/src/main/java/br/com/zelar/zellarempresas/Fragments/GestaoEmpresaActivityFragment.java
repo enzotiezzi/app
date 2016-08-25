@@ -34,6 +34,7 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
     private ImageView imageViewLocalIcon;
     private ImageView imageViewPessoasIcon;
     private ImageView imageViewVagasIcon;
+    private ImageView imageViewPrevistoIcon;
 
     public GestaoEmpresaActivityFragment()
     {
@@ -58,6 +59,7 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
         viewGroup = (ViewGroup) view.findViewById(R.id.appendGroupItem);
 
         imageViewLocalIcon = (ImageView) view.findViewById(R.id.imageViewLocalIcon);
+        imageViewPrevistoIcon = (ImageView) view.findViewById(R.id.imageViewPrevistoIcon);
         imageViewPessoasIcon = (ImageView) view.findViewById(R.id.imageViewPessoasIcon);
         imageViewVagasIcon = (ImageView) view.findViewById(R.id.imageViewVagasIcon);
 
@@ -65,6 +67,14 @@ public class GestaoEmpresaActivityFragment extends Fragment implements IBasic
             @Override
             public void onClick(View v) {
                 showIconDescription("Quantidade de locais");
+            }
+        });
+        imageViewPrevistoIcon.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                showIconDescription("Previsto");
             }
         });
         imageViewPessoasIcon.setOnClickListener(new View.OnClickListener() {

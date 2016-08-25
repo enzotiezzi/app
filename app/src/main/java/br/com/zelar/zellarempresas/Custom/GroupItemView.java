@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.internal.bind.ObjectTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ public class GroupItemView extends LinearLayout
     private TextView textViewNumeroGrupo;
     private TextView textViewNomeGrupo;
     private TextView textViewLocais;
+    private TextView textViewPrevisto;
     private TextView textViewPessoas;
     private TextView textViewVagas;
 
@@ -108,6 +110,7 @@ public class GroupItemView extends LinearLayout
         textViewNumeroGrupo = (TextView) v.findViewById(R.id.textViewNumeroGrupo);
         textViewNomeGrupo = (TextView) v.findViewById(R.id.textViewNomeGrupo);
         textViewLocais = (TextView) v.findViewById(R.id.textViewLocais);
+        textViewPrevisto = (TextView) v.findViewById(R.id.textViewPrevisto);
         textViewPessoas = (TextView) v.findViewById(R.id.textViewPessoas);
         textViewVagas = (TextView) v.findViewById(R.id.textViewVagas);
 
@@ -122,7 +125,8 @@ public class GroupItemView extends LinearLayout
         setupIconType();
 
         textViewNomeGrupo.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getNome()));
-        textViewLocais.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeLocal()) );
+        textViewLocais.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeLocal()));
+        textViewPrevisto.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdePrevisto()));
         textViewPessoas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdePessoas()));
         textViewVagas.setText(ObjectUtilities.getValue(gestaoEmpresaTreeViewModel.getQtdeVagas()));
     }
