@@ -92,6 +92,14 @@ public class GroupItemView extends LinearLayout
         layoutParams.setMargins(margin_left, 0, 0, 0);
 
         imageViewOpen.setLayoutParams(layoutParams);
+
+        // texto grande
+
+        if(nivel > 2)
+        {
+            String nomeFormatado = formatarNome();
+            textViewNomeGrupo.setText(nomeFormatado);
+        }
     }
 
     private void initialize()
@@ -194,6 +202,43 @@ public class GroupItemView extends LinearLayout
             toggleContents();
         }
     };
+
+    private String formatarNome()
+    {
+        // numero de caracteres em 1 linha
+        int maxCharacters = 7;
+
+        String nomeOriginal = gestaoEmpresaTreeViewModel.getNome();
+        String nomeFormatado = nomeOriginal;
+
+        if(nomeOriginal.length() >= maxCharacters)
+        {
+            int inicio = 0;
+            int fim = maxCharacters;
+
+            nomeFormatado = "";
+
+            int qtdLinhas = nomeOriginal.length() / maxCharacters;
+
+            String[] linhas = new String[qtdLinhas];
+
+            for (int i = 0; i < linhas.length; i++)
+            {
+                linhas[i] = nomeOriginal.substring(inicio, fim);
+
+                inicio+=maxCharacters;
+                fim+=maxCharacters;
+
+                if(fim > nomeOriginal.length())
+                    fim = nomeOriginal.length();
+            }
+
+            for(int i = 0; i < linhas.length; i++)
+                nomeFormatado += linhas[i] + (i == linhas.length - 1 ? "" : "\n");
+        }
+
+        return nomeFormatado;
+    }
 
     private void toggleContents()
     {
