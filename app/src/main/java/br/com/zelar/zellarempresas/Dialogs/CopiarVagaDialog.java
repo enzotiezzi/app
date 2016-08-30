@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
+import br.com.zelar.zellarempresas.Empresas.VagaVM;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
@@ -107,10 +108,10 @@ public class CopiarVagaDialog extends Dialog implements IBasic
                 {
                     if(statusCode == 200 && t == null)
                     {
-                        Vaga[] vagas = new Gson().fromJson(response, Vaga[].class);
+                        VagaVM[] vagasVM = converterVagas(new Gson().fromJson(response, Vaga[].class));
 
                         spinnerCopiarVaga
-                                .setAdapter(new ArrayAdapter<Vaga>(context, android.R.layout.simple_spinner_dropdown_item, vagas));
+                                .setAdapter(new ArrayAdapter<VagaVM>(context, android.R.layout.simple_spinner_dropdown_item, vagasVM));
                     }
                 }
             }, null);
@@ -121,12 +122,27 @@ public class CopiarVagaDialog extends Dialog implements IBasic
         {}
     };
 
+    private VagaVM[] converterVagas(Vaga[] vagas)
+    {
+        VagaVM[] vagasVM = new VagaVM[vagas.length];
+
+        for(int i = 0; i < vagas.length; i++)
+        {
+            VagaVM vagaVM = new VagaVM();
+            vagaVM.setVaga(vagas[i]);
+
+            vagasVM[i] = vagaVM;
+        }
+
+        return vagasVM;
+    }
+
     View.OnClickListener buttonCopiarSelecionar_click = new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
-            Vaga vaga = (Vaga) spinnerCopiarVaga.getSelectedItem();
+            Vaga vaga = ((VagaVM) spinnerCopiarVaga.getSelectedItem()).getVaga();
             Local l = (Local) spinnerCopiarLocal.getSelectedItem();
 
             vaga.setLocalObjeto(l);

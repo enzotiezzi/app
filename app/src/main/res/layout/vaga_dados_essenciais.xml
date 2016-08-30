@@ -16,4 +16,11 @@
             android:layout_marginBottom="10dp"
             android:id="@+id/textViewVerEssenciais"/>
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView9"
+        android:background="@drawable/corners"/>
 </LinearLayout>
