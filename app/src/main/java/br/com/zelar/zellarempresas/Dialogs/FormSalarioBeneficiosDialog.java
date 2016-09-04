@@ -267,4 +267,18 @@ public class FormSalarioBeneficiosDialog extends Dialog implements IBasic
 
         return full;
     }
+
+    public int calcularPorcentagem()
+    {
+        // horario entrada, saida, titulo vaga
+        final double obrigatorios = 3;
+        double preenchidos = 2;
+
+        if(beneficios.size() > 0)
+            preenchidos++;
+
+        double porcentagem = (preenchidos/obrigatorios) * 100;
+
+        return (int)porcentagem;
+    }
 }

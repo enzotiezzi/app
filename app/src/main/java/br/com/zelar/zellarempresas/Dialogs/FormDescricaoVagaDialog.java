@@ -137,6 +137,23 @@ public class FormDescricaoVagaDialog extends Dialog implements IBasic
                 .setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, new String[]{ "Inglês", "Espanhol", "Francês", "Italino", "Alemão", "Japonês", "Outros" }));
     }
 
+    public int calcularPorcentagem()
+    {
+        // horario entrada, saida, titulo vaga
+        final double obrigatorios = 8;
+        double preenchidos = 6;
+
+        if(editTextDescricaoAtividadesVaga.length() != 0)
+            preenchidos++;
+
+        if(editTextDescricaoPerfilVaga.length() != 0)
+            preenchidos++;
+
+        double porcentagem = (preenchidos/obrigatorios) * 100;
+
+        return (int)porcentagem;
+    }
+
     View.OnClickListener buttonFechar_click = new View.OnClickListener()
     {
         @Override

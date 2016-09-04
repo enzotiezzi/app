@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -39,6 +40,8 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
 {
     private Context context;
     private Vaga vaga;
+
+    // procentagem
 
     private Spinner spinnerNomeEmpresa;
     private RadioGroup radioGroupEmpresaConfidencial;
@@ -244,6 +247,26 @@ public class FormDadosEssenciaisDialog extends Dialog implements IBasic
         }
 
         return valid;
+    }
+
+    public int calcularPorcentagem()
+    {
+        // horario entrada, saida, titulo vaga
+        final double obrigatorios = 8;
+        double preenchidos = 5;
+
+        if(editTextTituloVaga.length() != 0)
+            preenchidos++;
+
+        if(editTextHorarioEntrada.length() != 0)
+            preenchidos++;
+
+        if(editTextHorarioSaida.length() != 0)
+            preenchidos++;
+
+        double porcentagem = (preenchidos/obrigatorios) * 100;
+
+        return (int)porcentagem;
     }
 
     View.OnClickListener buttonFechar_click = new View.OnClickListener()

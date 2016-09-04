@@ -34,10 +34,18 @@
              android:layout_height="wrap_content"
              android:layout_width="match_parent">
     </include>
+
+    <include layout="@layout/vaga_dados_gestao"
+             android:id="@+id/dadosGestao"
+             android:layout_below="@+id/descicaoAtividades"
+             android:layout_marginBottom="10dp"
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent">
+    </include>
     
     <include layout="@layout/vaga_resumo"
              android:id="@+id/resumo"
-             android:layout_below="@+id/descicaoAtividades"
+             android:layout_below="@+id/dadosGestao"
              android:layout_marginBottom="10dp"
              android:layout_height="wrap_content"
              android:layout_width="match_parent">

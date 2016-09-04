@@ -19,8 +19,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="14dp"
+        android:layout_height="24dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView9"
+        android:id="@+id/textViewPorcDescricaoAtividades"
+        android:text="0%"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         android:background="@drawable/corners"/>
 </LinearLayout>

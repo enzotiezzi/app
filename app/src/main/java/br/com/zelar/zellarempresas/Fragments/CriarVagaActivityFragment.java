@@ -1,6 +1,7 @@
 package br.com.zelar.zellarempresas.Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,6 +39,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private FormDadosEssenciaisDialog formDadosEssenciaisDialog;
     private FormSalarioBeneficiosDialog formSalarioBeneficiosDialog;
     private FormDescricaoVagaDialog formDescricaoVagaDialog;
+
+    // porcentagens
+    private TextView textViewPorcDadosEssenc;
+    private TextView textViewPorcSalarioBeneficios;
+    private TextView textViewPorcDescricaoAtividades;
 
     private TextView textViewVerEssenciais;
     private TextView textViewDescricaoAtividades;
@@ -99,6 +105,8 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         formDadosEssenciaisDialog.unsave();
         formSalarioBeneficiosDialog.unsave();
         formDescricaoVagaDialog.unsave();
+
+        zerarPorcentagens();
     }
 
     @Override
@@ -108,6 +116,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         formDadosEssenciaisDialog = new FormDadosEssenciaisDialog(context);
         formSalarioBeneficiosDialog = new FormSalarioBeneficiosDialog(context);
         formDescricaoVagaDialog = new FormDescricaoVagaDialog(context);
+
+        // porcentagens
+        textViewPorcDadosEssenc = (TextView) thisView.findViewById(R.id.textViewPorcDadosEssenc);
+        textViewPorcSalarioBeneficios = (TextView) thisView.findViewById(R.id.textViewPorcSalarioBeneficios);
+        textViewPorcDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewPorcDescricaoAtividades);
 
         viewDadosEssenciais = thisView.findViewById(R.id.dadosEssenciais);
         viewDescricaoAtividades = thisView.findViewById(R.id.descicaoAtividades);
@@ -142,6 +155,15 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         {
             formDadosEssenciaisDialog.setVaga(vaga);
             formDadosEssenciaisDialog.show();
+            formDadosEssenciaisDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+            {
+                @Override
+                public void onDismiss(DialogInterface dialog)
+                {
+                    int p = formDadosEssenciaisDialog.calcularPorcentagem();
+                    textViewPorcDadosEssenc.setText(p + "%");
+                }
+            });
             Window window = formDadosEssenciaisDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
@@ -154,6 +176,15 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         {
             formSalarioBeneficiosDialog.setVaga(vaga);
             formSalarioBeneficiosDialog.show();
+            formSalarioBeneficiosDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+            {
+                @Override
+                public void onDismiss(DialogInterface dialog)
+                {
+                    int p = formSalarioBeneficiosDialog.calcularPorcentagem();
+                    textViewPorcSalarioBeneficios.setText(p + "%");
+                }
+            });
             Window window = formSalarioBeneficiosDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
@@ -166,6 +197,15 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         {
             formDescricaoVagaDialog.setVaga(vaga);
             formDescricaoVagaDialog.show();
+            formDescricaoVagaDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+            {
+                @Override
+                public void onDismiss(DialogInterface dialog)
+                {
+                    int p = formDescricaoVagaDialog.calcularPorcentagem();
+                    textViewPorcDescricaoAtividades.setText(p + "%");
+                }
+            });
             Window window = formDescricaoVagaDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
@@ -194,6 +234,13 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
             changeFragment();
         }
     };
+
+    private void zerarPorcentagens()
+    {
+        textViewPorcDescricaoAtividades.setText("0%");
+        textViewPorcSalarioBeneficios.setText("0%");
+        textViewPorcDadosEssenc.setText("0%");
+    }
 
     private void changeFragment()
     {
