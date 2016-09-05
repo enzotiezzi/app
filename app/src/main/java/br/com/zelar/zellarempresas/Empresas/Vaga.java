@@ -141,6 +141,22 @@ public class Vaga extends Entidade
 
     private Local localObjeto;
 
+    private String PrecisaCNH;
+    private String CategoriaCNH;
+    private String VagaParaDeficiente;
+    private String Deficiencias;
+    private String disponibilidadeViagem;
+    private String disponibilidadeMudarCidade;
+    private String veiculoProprio;
+
+    private String SalarioDiferenciado;
+    private String DescricaoDoPerfilCandidato;
+    private String NivelHabilidadeIdioma;
+    private String IdiomaObrigatorio;
+    private String DescricaoMotivoAberturaVaga;
+    private String PerfilNaoVisivelCandidato;
+    private String DataPrevAdmissao;
+
     public String getIdLocal()
     {
         return IdLocal;
@@ -1273,5 +1289,118 @@ public class Vaga extends Entidade
     public String toString()
     {
         return this.Titulo;
+    }
+
+
+    public String getPrecisaCNH() {
+        return PrecisaCNH;
+    }
+
+    public void setPrecisaCNH(String precisaCNH) {
+        PrecisaCNH = precisaCNH;
+    }
+
+    public String getCategoriaCNH() {
+        return CategoriaCNH;
+    }
+
+    public void setCategoriaCNH(String categoriaCNH) {
+        CategoriaCNH = categoriaCNH;
+    }
+
+    public String getVagaParaDeficiente() {
+        return VagaParaDeficiente;
+    }
+
+    public void setVagaParaDeficiente(String vagaParaDeficiente) {
+        VagaParaDeficiente = vagaParaDeficiente;
+    }
+
+    public String getDeficiencias() {
+        return Deficiencias;
+    }
+
+    public void setDeficiencias(String deficiencias) {
+        Deficiencias = deficiencias;
+    }
+
+    public String getDisponibilidadeViagem() {
+        return disponibilidadeViagem;
+    }
+
+    public void setDisponibilidadeViagem(String disponibilidadeViagem) {
+        this.disponibilidadeViagem = disponibilidadeViagem;
+    }
+
+    public String getDisponibilidadeMudarCidade() {
+        return disponibilidadeMudarCidade;
+    }
+
+    public void setDisponibilidadeMudarCidade(String disponibilidadeMudarCidade) {
+        this.disponibilidadeMudarCidade = disponibilidadeMudarCidade;
+    }
+
+    public String getVeiculoProprio() {
+        return veiculoProprio;
+    }
+
+    public void setVeiculoProprio(String veiculoProprio) {
+        this.veiculoProprio = veiculoProprio;
+    }
+
+    public String getSalarioDiferenciado() {
+        return SalarioDiferenciado;
+    }
+
+    public void setSalarioDiferenciado(String salarioDiferenciado) {
+        SalarioDiferenciado = salarioDiferenciado;
+    }
+
+    public String getDescricaoDoPerfilCandidato() {
+        return DescricaoDoPerfilCandidato;
+    }
+
+    public void setDescricaoDoPerfilCandidato(String descricaoDoPerfilCandidato) {
+        DescricaoDoPerfilCandidato = descricaoDoPerfilCandidato;
+    }
+
+    public String getNivelHabilidadeIdioma() {
+        return NivelHabilidadeIdioma;
+    }
+
+    public void setNivelHabilidadeIdioma(String nivelHabilidadeIdioma) {
+        NivelHabilidadeIdioma = nivelHabilidadeIdioma;
+    }
+
+    public String getIdiomaObrigatorio() {
+        return IdiomaObrigatorio;
+    }
+
+    public void setIdiomaObrigatorio(String idiomaObrigatorio) {
+        IdiomaObrigatorio = idiomaObrigatorio;
+    }
+
+    public String getDescricaoMotivoAberturaVaga() {
+        return DescricaoMotivoAberturaVaga;
+    }
+
+    public void setDescricaoMotivoAberturaVaga(String descricaoMotivoAberturaVaga) {
+        DescricaoMotivoAberturaVaga = descricaoMotivoAberturaVaga;
+    }
+
+    public String getPerfilNaoVisivelCandidato() {
+        return PerfilNaoVisivelCandidato;
+    }
+
+    public void setPerfilNaoVisivelCandidato(String perfilNaoVisivelCandidato) {
+        PerfilNaoVisivelCandidato = perfilNaoVisivelCandidato;
+    }
+
+    public String getDataPrevAdmissao() {
+        return DataPrevAdmissao;
+    }
+
+    public void setDataPrevAdmissao(String dataPrevAdmissao) {
+        DataPrevAdmissao = dataPrevAdmissao;
     }
 }
