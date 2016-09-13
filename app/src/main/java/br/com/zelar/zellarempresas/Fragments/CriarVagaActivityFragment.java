@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import br.com.zelar.zellarempresas.Dialogs.DadosGestaoDialog;
 import br.com.zelar.zellarempresas.Dialogs.DetalhesVagaDialog;
 import br.com.zelar.zellarempresas.Dialogs.FormDadosEssenciaisDialog;
 import br.com.zelar.zellarempresas.Dialogs.FormDescricaoVagaDialog;
@@ -54,6 +55,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
     private View viewDescricaoAtividades;
     private View viewResumoVaga;
     private View viewSalarioBeneficios;
+    private View viewCanalDivulgacao;
 
     private Button buttonCancelar;
     private Button buttonPublicar;
@@ -125,6 +127,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         viewDadosEssenciais = thisView.findViewById(R.id.dadosEssenciais);
         viewDescricaoAtividades = thisView.findViewById(R.id.descicaoAtividades);
         viewSalarioBeneficios = thisView.findViewById(R.id.salarioBeneficios);
+        viewCanalDivulgacao = thisView.findViewById(R.id.canalDivulgacao);
         viewResumoVaga = thisView.findViewById(R.id.resumo);
 
         textViewDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewDescricaoAtividades);
@@ -142,7 +145,9 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         viewDadosEssenciais.setOnClickListener(textViewVerEssenciais_click);
         viewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
         viewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
+        viewCanalDivulgacao.setOnClickListener(viewCanalDivulgacao_click);
         viewResumoVaga.setOnClickListener(textViewResumoVaga_click);
+
 
         buttonCancelar.setOnClickListener(buttonCancelar_click);
         buttonPublicar.setOnClickListener(buttonPublicar_click);
@@ -207,6 +212,18 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
                 }
             });
             Window window = formDescricaoVagaDialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+    };
+
+    View.OnClickListener viewCanalDivulgacao_click = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            DadosGestaoDialog dadosGestaoDialog = new DadosGestaoDialog(context);
+            dadosGestaoDialog.show();
+            Window window = dadosGestaoDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     };
