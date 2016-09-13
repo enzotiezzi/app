@@ -62,7 +62,7 @@ public class DivulgacaoView extends LinearLayout implements OnSelectedOptionChan
         textViewNaoDivulgar.setOnClickListener(textViewNaoDivulgar_click);
     }
 
-    public void serTitulo(String titulo)
+    public void setTitulo(String titulo)
     {
         textViewTituloDivulgacao.setText(titulo);
     }

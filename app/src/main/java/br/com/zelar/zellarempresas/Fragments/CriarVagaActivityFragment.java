@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import br.com.zelar.zellarempresas.Dialogs.DadosGestaoDialog;
+import br.com.zelar.zellarempresas.Dialogs.DivulgacaoDialog;
 import br.com.zelar.zellarempresas.Dialogs.DetalhesVagaDialog;
 import br.com.zelar.zellarempresas.Dialogs.FormDadosEssenciaisDialog;
 import br.com.zelar.zellarempresas.Dialogs.FormDescricaoVagaDialog;
@@ -221,9 +221,11 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void onClick(View v)
         {
-            DadosGestaoDialog dadosGestaoDialog = new DadosGestaoDialog(context);
-            dadosGestaoDialog.show();
-            Window window = dadosGestaoDialog.getWindow();
+            DivulgacaoDialog divulgacaoDialog = new DivulgacaoDialog(context);
+            divulgacaoDialog.show();
+            divulgacaoDialog.getDivulgacaoViewTrabalheConosco().setTitulo("Trabalhe Conosco");
+            divulgacaoDialog.getDivulgacaoViewZellar().setTitulo("Zellar RH");
+            Window window = divulgacaoDialog.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
     };
