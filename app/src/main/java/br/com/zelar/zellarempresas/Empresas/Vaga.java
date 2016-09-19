@@ -26,6 +26,7 @@ public class Vaga extends Entidade
     private String HorarioEntrada;
     private String HorarioSaida;
     private String TempoExperienciaNaArea;
+    private String TempoAberta;
     private String NivelHierarquico;
     private String FaixaEtaria;
     private String FaixaEtariaInicio;
@@ -315,6 +316,16 @@ public class Vaga extends Entidade
     public void setTempoExperienciaNaArea(String tempoExperienciaNaArea)
     {
         TempoExperienciaNaArea = tempoExperienciaNaArea;
+    }
+
+    public String getTempoAberta()
+    {
+        return TempoAberta;
+    }
+
+    public void setTempoAberta(String tempoAberta)
+    {
+        TempoAberta = tempoAberta;
     }
 
     public String getNivelHierarquico()

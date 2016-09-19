@@ -41,7 +41,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:hint="E-mail"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -52,7 +53,8 @@
             android:layout_below="@+id/editTextLogin"
             android:layout_centerHorizontal="true"
             android:hint="Senha"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"/>
 
         <Button
             android:layout_width="match_parent"

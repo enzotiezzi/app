@@ -23,6 +23,7 @@ import br.com.zelar.zellarempresas.Fragments.CriarVagaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.EscolherMetodoCriacaoActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.GestaoEmpresaActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.HomeActivityFragment;
+import br.com.zelar.zellarempresas.Fragments.ListaVagasActivityFragment;
 import br.com.zelar.zellarempresas.Fragments.VagasPendentesActivityFragment;
 import br.com.zelar.zellarempresas.PushNotification.PushManager;
 import br.com.zelar.zellarempresas.R;
@@ -143,6 +144,10 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.vagas_semana:
                 fragment = new HomeActivityFragment();
+                break;
+
+            case R.id.lista_vagas:
+                fragment = new ListaVagasActivityFragment();
                 break;
 
             case R.id.logout:

@@ -54,7 +54,6 @@ public class ItemVagaAdapter extends BaseAdapter
             LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.item_lista_vaga, null);
 
-            itemVagaHelper.checkBoxItemVaga = (CheckBox) convertView.findViewById(R.id.checkBoxItemVaga);
             itemVagaHelper.textViewTituloVaga = (TextView) convertView.findViewById(R.id.textViewTituloVaga);
             itemVagaHelper.textViewCargoEscalaHorario = (TextView) convertView.findViewById(R.id.textViewCargoEscalaHorario);
             itemVagaHelper.textViewEtapasCandidatosStatusTempo = (TextView) convertView.findViewById(R.id.textViewEtapasCandidatosStatusTempo);
@@ -76,13 +75,16 @@ public class ItemVagaAdapter extends BaseAdapter
 
         String qtdCandidaturas = ObjectUtilities.getValue(vaga.getQtdCandidatura()) + "cand.";
 
+        itemVagaHelper.textViewTituloVaga.setText(tituloVaga);
+        itemVagaHelper.textViewCargoEscalaHorario.setText(vaga.getFuncao() + ", " + vaga.getEscala() + ", " + horarioEntrada + " - " + horarioSaida);
+        itemVagaHelper.textViewEtapasCandidatosStatusTempo.setText(vaga.getCodigoEmpresa() + ", " + vaga.getEtapaAtual() + ", " + qtdCandidaturas + ", aberta há " + vaga.getTempoAberta() + " dias");
+
+
         return convertView;
     }
 
     class ItemVagaHelper
     {
-        public CheckBox checkBoxItemVaga;
-
         public TextView textViewTituloVaga;
         public TextView textViewCargoEscalaHorario;
         public TextView textViewEtapasCandidatosStatusTempo;

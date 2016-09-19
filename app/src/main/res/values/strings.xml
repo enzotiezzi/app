@@ -1,7 +1,7 @@
 <resources>
 
-    <!--<string name="SERVER_URL">http://10.0.2.2/Zellar</string>-->
-    <string name="SERVER_URL">http://www.zellar.com.br</string>
+    <string name="SERVER_URL">http://10.0.2.2/Zellar</string>
+    <!--<string name="SERVER_URL">http://www.zellar.com.br</string>-->
     <!--<string name="SERVER_URL">http://h-zellar.azurewebsites.net/</string>-->
 
     <string name="app_name">Zellar Empresas</string>
@@ -19,4 +19,6 @@
     <string name="title_activity_escolher_metodo_criacao">EscolherMetodoCriacaoActivity</string>
     <string name="title_activity_vagas_pendentes">VagasPendentesActivity</string>
     <string name="title_activity_gestao_empresa">GestaoEmpresaActivity</string>
+    <string name="title_activity_lista_vagas">Lista de vagas</string>
+    <string name="title_activity_gestao_vaga">GestaoVagaActivity</string>
 </resources>
