@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.zelar.zellarempresas.Custom.ExpandableTitleView;
 import br.com.zelar.zellarempresas.Custom.ProcessoSeletivoView;
+import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
 import br.com.zelar.zellarempresas.Empresas.Vaga;
 import br.com.zelar.zellarempresas.Empresas.VagaEtapa;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
@@ -31,6 +35,10 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
     private ExpandableTitleView expandableTitleView;
     private ProcessoSeletivoView processoSeletivoView;
 
+    private List<CandidatoEmpresa> descartados;
+    private List<CandidatoEmpresa> naoDescartados;
+
+
     public GestaoVagaActivityFragment()
     {
     }
@@ -51,6 +59,9 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
     @Override
     public void initialize()
     {
+        descartados = new ArrayList<>();
+        naoDescartados = new ArrayList<>();
+
         expandableTitleView = (ExpandableTitleView) v.findViewById(R.id.expandableTitleViewTitulo);
         processoSeletivoView = (ProcessoSeletivoView) v.findViewById(R.id.processoSeletivoView);
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import br.com.zelar.zellarempresas.Empresas.VagaEtapa;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Utilities.Utils;
 
 /**
  * Created by enzo on 20/09/2016.
@@ -22,6 +23,8 @@ public class ItemEtapaView extends LinearLayout implements IBasic
     private Button buttonNumeroEtapa;
 
     private VagaEtapa vagaEtapa;
+
+    private int skip = 0;
 
     public ItemEtapaView(Context context)
     {
@@ -52,6 +55,8 @@ public class ItemEtapaView extends LinearLayout implements IBasic
         view = layoutInflater.inflate(R.layout.component_item_etapa, this);
 
         buttonNumeroEtapa = (Button) view.findViewById(R.id.buttonNumeroEtapa);
+
+        buttonNumeroEtapa.setOnClickListener(buttonNumeroEtapa_click);
     }
 
     public void setNumeroEtapa(String numero)
@@ -68,4 +73,14 @@ public class ItemEtapaView extends LinearLayout implements IBasic
     {
         return vagaEtapa;
     }
+
+    OnClickListener buttonNumeroEtapa_click = new OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            String queryString = "?idEtapa=" + vagaEtapa.getUniqueId() + "&idVaga=" + vagaEtapa.getIdVaga() + "&pagina=" + skip;
+            String url = Utils.buildURL(getContext(), "");
+        }
+    };
 }
