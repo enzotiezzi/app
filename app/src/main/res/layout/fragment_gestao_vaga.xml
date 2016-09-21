@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -6,8 +6,53 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="br.com.zelar.zellarempresas.GestaoVagaActivityFragment"
-                tools:showIn="@layout/activity_gestao_vaga">
+                tools:context=".Fragments.GestaoVagaActivityFragment"
+                tools:showIn="@layout/activity_gestao_vaga"
+                android:orientation="vertical">
 
 
-</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView4"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <br.com.zelar.zellarempresas.Custom.ExpandableTitleView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expandableTitleViewTitulo"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp"/>
+
+            <br.com.zelar.zellarempresas.Custom.ProcessoSeletivoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/processoSeletivoView"
+                android:orientation="vertical"/>
+
+            <br.com.zelar.zellarempresas.Custom.GestaoVagaQuickActionsView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gestaoVagaQuickActionsView"
+                android:orientation="vertical"/>
+
+            <br.com.zelar.zellarempresas.Custom.GestaoVagaOpcaoListaView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/GestaoVagaOpcaoListaView"
+                android:orientation="vertical"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listViewCandidatos"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -77,7 +77,7 @@ public class ItemVagaAdapter extends BaseAdapter
 
         itemVagaHelper.textViewTituloVaga.setText(tituloVaga);
         itemVagaHelper.textViewCargoEscalaHorario.setText(vaga.getFuncao() + ", " + vaga.getEscala() + ", " + horarioEntrada + " - " + horarioSaida);
-        itemVagaHelper.textViewEtapasCandidatosStatusTempo.setText(vaga.getCodigoEmpresa() + ", " + vaga.getEtapaAtual() + ", " + qtdCandidaturas + ", aberta há " + vaga.getTempoAberta() + " dias");
+        itemVagaHelper.textViewEtapasCandidatosStatusTempo.setText("Cod: "+ vaga.getCodigoEmpresa() + ", " + vaga.getEtapaAtual() + ", " + qtdCandidaturas + ", aberta há " + vaga.getTempoAberta() + " dias");
 
 
         return convertView;

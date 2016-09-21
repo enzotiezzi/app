@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="br.com.zelar.zellarempresas.GestaoVagaActivity">
+    tools:context=".Views.GestaoVagaActivity">
 
     <include layout="@layout/content_gestao_vaga"/>
 

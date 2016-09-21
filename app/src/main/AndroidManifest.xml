@@ -91,7 +91,7 @@
                 android:value="br.com.zelar.zellarempresas.Views.MainActivity"/>
         </activity>
         <activity
-            android:name=".GestaoVagaActivity"
+            android:name=".Views.GestaoVagaActivity"
             android:label="@string/title_activity_gestao_vaga"
             android:parentActivityName=".Views.ListaVagasActivity"
             android:theme="@style/AppTheme.NoActionBar">

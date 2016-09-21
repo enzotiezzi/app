@@ -14,7 +14,6 @@ import java.util.List;
 
 import br.com.zelar.zellarempresas.Adapters.ItemVagaAdapter;
 import br.com.zelar.zellarempresas.Empresas.Vaga;
-import br.com.zelar.zellarempresas.GestaoVagaActivityFragment;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
@@ -96,7 +95,7 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
             Vaga v = (Vaga) parent.getAdapter().getItem(position);
 
             Bundle b = new Bundle();
-            b.putString("idVaga", v.getUniqueId());
+            b.putString("Vaga", new Gson().toJson(v));
 
             GestaoVagaActivityFragment gestaoVagaActivityFragment = new GestaoVagaActivityFragment();
             gestaoVagaActivityFragment.setArguments(b);
@@ -113,7 +112,7 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
         String idUsuairo;
         List<String> clusters;
         String idLocal;
-        String status = "Abertagit";
+        String status = "Aberta";
         String dataAberturaDe;
         String dataAberturaAte;
         String dataFechamentoDe;
