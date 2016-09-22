@@ -39,6 +39,7 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
     private List<CandidatoEmpresa> naoDescartados;
 
 
+
     public GestaoVagaActivityFragment()
     {
     }
