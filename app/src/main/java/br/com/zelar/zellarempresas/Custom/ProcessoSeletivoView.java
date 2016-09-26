@@ -19,15 +19,6 @@ import br.com.zelar.zellarempresas.Infrastructure.IBasic;
 import br.com.zelar.zellarempresas.R;
 import br.com.zelar.zellarempresas.Utilities.Utils;
 
-/**
- * Created by enzo on 21/09/2016.
- */
-interface OnLoadEnd
-{
-    void carregarListaDescartados(CandidatoEmpresa[] candidatos);
-    void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos);
-}
-
 public class ProcessoSeletivoView extends LinearLayout implements IBasic
 {
     private View view;
@@ -94,7 +85,8 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
             itemEtapaView.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
             itemEtapaView.setNumeroEtapa(String.valueOf((i+1)));
             itemEtapaView.setVagaEtapa(vagaEtapas[i]);
-            itemEtapaView.setOnClickListener(itemEtapa_click);
+            itemEtapaView.getButtonNumeroEtapa().setTag(itemEtapaView);
+            itemEtapaView.getButtonNumeroEtapa().setOnClickListener(itemEtapa_click);
 
             linearLayoutProcessoSeletivo.addView(itemEtapaView, i);
         }
@@ -105,7 +97,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
         @Override
         public void onClick(View v)
         {
-            ItemEtapaView itemEtapaView = (ItemEtapaView) v;
+            ItemEtapaView itemEtapaView = (ItemEtapaView) v.getTag();
 
             VagaEtapa vagaEtapa = itemEtapaView.getVagaEtapa();
 
@@ -127,7 +119,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
                {
                    CandidatoEmpresa[] candidatos = new Gson().fromJson(response, CandidatoEmpresa[].class);
 
-                   if(candidatos != null)
+                   if(candidatos != null && candidatos.length > 0)
                    {
                        onLoadEnd.carregarListaNaoDescartados(candidatos);
                        skipNaoDescartados += candidatos.length;
@@ -153,7 +145,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
                 {
                     CandidatoEmpresa[] candidatos = new Gson().fromJson(response, CandidatoEmpresa[].class);
 
-                    if(candidatos != null)
+                        if(candidatos != null && candidatos.length > 0)
                     {
                         onLoadEnd.carregarListaDescartados(candidatos);
                         skipNaoDescartados += candidatos.length;

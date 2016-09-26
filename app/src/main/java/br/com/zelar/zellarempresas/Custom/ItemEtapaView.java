@@ -59,6 +59,11 @@ public class ItemEtapaView extends LinearLayout implements IBasic
         buttonNumeroEtapa.setOnClickListener(buttonNumeroEtapa_click);
     }
 
+    public Button getButtonNumeroEtapa()
+    {
+        return buttonNumeroEtapa;
+    }
+
     public void setNumeroEtapa(String numero)
     {
         buttonNumeroEtapa.setText(numero);
