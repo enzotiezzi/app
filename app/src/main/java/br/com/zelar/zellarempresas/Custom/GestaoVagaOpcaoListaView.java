@@ -23,6 +23,8 @@ public class GestaoVagaOpcaoListaView extends LinearLayout implements IBasic
     private View viewNaoDescartados;
     private View viewDescartados;
 
+    private OnListToggleListener onListToggleListener;
+
     public GestaoVagaOpcaoListaView(Context context)
     {
         super(context);
@@ -61,12 +63,17 @@ public class GestaoVagaOpcaoListaView extends LinearLayout implements IBasic
         textViewDescartados.setOnClickListener(textViewDescartados_click);
     }
 
+    public void setOnListToggleListener(OnListToggleListener onListToggleListener)
+    {
+        this.onListToggleListener = onListToggleListener;
+    }
+
     OnClickListener textViewNaoDescartados_click = new OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
-            // TODO: trocar pra lista de não descartados
+            onListToggleListener.toggleNaoDescartados();
             toggleUnderline(false);
         }
     };
@@ -76,7 +83,7 @@ public class GestaoVagaOpcaoListaView extends LinearLayout implements IBasic
         @Override
         public void onClick(View v)
         {
-            // TODO: trocar para lista de descartados
+            onListToggleListener.toggleDescartados();
             toggleUnderline(true);
         }
     };

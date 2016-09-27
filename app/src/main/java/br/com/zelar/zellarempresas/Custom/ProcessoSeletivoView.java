@@ -119,10 +119,10 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
                {
                    CandidatoEmpresa[] candidatos = new Gson().fromJson(response, CandidatoEmpresa[].class);
 
-                   if(candidatos != null && candidatos.length > 0)
+                   if(candidatos != null)
                    {
                        onLoadEnd.carregarListaNaoDescartados(candidatos);
-                       skipNaoDescartados += candidatos.length;
+                       //skipNaoDescartados += candidatos.length;
                    }
 
                    carregarCandidatosDescartados(idEtapa, idVaga);
@@ -145,10 +145,10 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
                 {
                     CandidatoEmpresa[] candidatos = new Gson().fromJson(response, CandidatoEmpresa[].class);
 
-                        if(candidatos != null && candidatos.length > 0)
+                        if(candidatos != null)
                     {
                         onLoadEnd.carregarListaDescartados(candidatos);
-                        skipNaoDescartados += candidatos.length;
+                        //skipNaoDescartados += candidatos.length;
                     }
                 }
             }

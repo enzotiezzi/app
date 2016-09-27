@@ -76,7 +76,7 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         candidatos.remove(guid);
     }
 
-    private void limparLista()
+    public void limparLista()
     {
         candidatos = new ArrayList<>();
     }

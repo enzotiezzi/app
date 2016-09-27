@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Utilities.ObjectUtilities;
 
 /**
  * Created by Usuário on 26/09/2016.
@@ -20,7 +22,7 @@ public class CandidatoVagaAdapter extends BaseAdapter
 
     private CandidatoEmpresa[] candidatos;
 
-    private OnItemCheckListener onItemCheckListener;
+    private OnItemCheckedListener onItemCheckedListener;
 
     public CandidatoVagaAdapter(Context context, CandidatoEmpresa[] candidatos)
     {
@@ -69,17 +71,45 @@ public class CandidatoVagaAdapter extends BaseAdapter
             candidatoVagaEtapaHelper = (CandidatoVagaEtapaHelper) convertView.getTag();
         }
 
+        CandidatoEmpresa c = candidatos[position];
 
+        String idadeSexoCivilFilhoEnsino = ObjectUtilities.getValue(c.getGenero()) + ", "
+                + ObjectUtilities.getValue(c.getEstadoCivil()) + ", "
+                + ObjectUtilities.getValue(c.getQtdFilhos())+ " filhos, ";
+        String origem = "inscrição feita por " + ObjectUtilities.getValue(c.getOrigem());
 
+        candidatoVagaEtapaHelper.checkBoxChecar.setTag(c.getUniqueId());
+        candidatoVagaEtapaHelper.textViewNomeCandidato.setText(ObjectUtilities.getValue(c.getNome()));
+        candidatoVagaEtapaHelper.textViewIdadeSexoCivilFilhoEnsino.setText(idadeSexoCivilFilhoEnsino);
+        candidatoVagaEtapaHelper.textViewOrigem.setText(origem);
+
+        candidatoVagaEtapaHelper.checkBoxChecar.setOnCheckedChangeListener(onCheckedChangeListener);
 
         return convertView;
     }
 
-    public void setOnItemCheckListener(OnItemCheckListener onItemCheckListener)
+    public void setOnItemCheckedListener(OnItemCheckedListener onItemCheckedListener)
     {
-        this.onItemCheckListener = onItemCheckListener;
+        this.onItemCheckedListener = onItemCheckedListener;
     }
 
+    CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener()
+    {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+        {
+            String id = (String) buttonView.getTag();
+
+            if (isChecked)
+            {
+                onItemCheckedListener.onItemCheck(id);
+            }
+            else
+            {
+                onItemCheckedListener.onItemDischeck(id);
+            }
+        }
+    };
 
 
     class CandidatoVagaEtapaHelper

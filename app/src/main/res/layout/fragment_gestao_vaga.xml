@@ -44,7 +44,7 @@
             <br.com.zelar.zellarempresas.Custom.GestaoVagaOpcaoListaView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/GestaoVagaOpcaoListaView"
+                android:id="@+id/gestaoVagaOpcaoListaView"
                 android:orientation="vertical"/>
 
             <ListView

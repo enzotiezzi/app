@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.zelar.zellarempresas.Adapters.CandidatoVagaAdapter;
+import br.com.zelar.zellarempresas.Adapters.OnItemCheckedListener;
 import br.com.zelar.zellarempresas.Custom.ExpandableTitleView;
+import br.com.zelar.zellarempresas.Custom.GestaoVagaOpcaoListaView;
+import br.com.zelar.zellarempresas.Custom.GestaoVagaQuickActionsView;
+import br.com.zelar.zellarempresas.Custom.OnListToggleListener;
 import br.com.zelar.zellarempresas.Custom.OnLoadEnd;
 import br.com.zelar.zellarempresas.Custom.ProcessoSeletivoView;
 import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
@@ -37,10 +42,16 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
 
     private ExpandableTitleView expandableTitleView;
     private ProcessoSeletivoView processoSeletivoView;
+    private GestaoVagaQuickActionsView gestaoVagaQuickActionsView;
+    private GestaoVagaOpcaoListaView gestaoVagaOpcaoListaView;
     private ListView listViewCandidatos;
 
     private List<CandidatoEmpresa> descartados;
     private List<CandidatoEmpresa> naoDescartados;
+
+    private CandidatoVagaAdapter candidatoVagaAdapter;
+    private CandidatoVagaAdapter candidatoVagaAdapterNaoDescartados;
+
 
     public GestaoVagaActivityFragment()
     {
@@ -67,11 +78,15 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
 
         expandableTitleView = (ExpandableTitleView) v.findViewById(R.id.expandableTitleViewTitulo);
         processoSeletivoView = (ProcessoSeletivoView) v.findViewById(R.id.processoSeletivoView);
+        gestaoVagaQuickActionsView = (GestaoVagaQuickActionsView) v.findViewById(R.id.gestaoVagaQuickActionsView);
+        gestaoVagaOpcaoListaView = (GestaoVagaOpcaoListaView) v.findViewById(R.id.gestaoVagaOpcaoListaView);
         listViewCandidatos = (ListView) v.findViewById(R.id.listViewCandidatos);
 
         expandableTitleView.setTitulo(vaga.getTitulo());
 
         processoSeletivoView.setOnLoadEnd(onLoadEnd);
+        gestaoVagaOpcaoListaView.setOnListToggleListener(onListToggleListener);
+
     }
 
     private void carregarVaga()
@@ -116,13 +131,60 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
         @Override
         public void carregarListaDescartados(CandidatoEmpresa[] candidatos)
         {
+            descartados = new ArrayList<>();
             descartados.addAll(Arrays.asList(candidatos));
+
+            CandidatoEmpresa[] c = new CandidatoEmpresa[candidatos.length];
+            descartados.toArray(c);
+
+            candidatoVagaAdapter = new CandidatoVagaAdapter(getContext(), c);
+            candidatoVagaAdapter.setOnItemCheckedListener(onItemCheckListener);
         }
 
         @Override
         public void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos)
         {
+            naoDescartados = new ArrayList<>();
             naoDescartados.addAll(Arrays.asList(candidatos));
+
+            CandidatoEmpresa[] c = new CandidatoEmpresa[candidatos.length];
+            naoDescartados.toArray(c);
+
+            candidatoVagaAdapterNaoDescartados = new CandidatoVagaAdapter(getContext(), c);
+            candidatoVagaAdapterNaoDescartados.setOnItemCheckedListener(onItemCheckListener);
+            listViewCandidatos.setAdapter(candidatoVagaAdapterNaoDescartados);
+        }
+    };
+
+    OnItemCheckedListener onItemCheckListener =  new OnItemCheckedListener()
+    {
+        @Override
+        public void onItemCheck(String id)
+        {
+            gestaoVagaQuickActionsView.adicionarCandidato(id);
+        }
+
+        @Override
+        public void onItemDischeck(String id)
+        {
+            gestaoVagaQuickActionsView.removerCandidato(id);
+        }
+    };
+
+    OnListToggleListener onListToggleListener = new OnListToggleListener()
+    {
+        @Override
+        public void toggleDescartados()
+        {
+            listViewCandidatos.setAdapter(candidatoVagaAdapter);
+            gestaoVagaQuickActionsView.limparLista();
+        }
+
+        @Override
+        public void toggleNaoDescartados()
+        {
+            listViewCandidatos.setAdapter(candidatoVagaAdapterNaoDescartados);
+            gestaoVagaQuickActionsView.limparLista();
         }
     };
 }
