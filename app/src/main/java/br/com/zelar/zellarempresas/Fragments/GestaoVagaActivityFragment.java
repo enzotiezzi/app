@@ -150,6 +150,8 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
             CandidatoEmpresa[] c = new CandidatoEmpresa[candidatos.length];
             naoDescartados.toArray(c);
 
+            gestaoVagaOpcaoListaView.setQuantidadeNaoDescartados(String.valueOf(naoDescartados  .size()));
+
             candidatoVagaAdapterNaoDescartados = new CandidatoVagaAdapter(getContext(), c);
             candidatoVagaAdapterNaoDescartados.setOnItemCheckedListener(onItemCheckListener);
             listViewCandidatos.setAdapter(candidatoVagaAdapterNaoDescartados);

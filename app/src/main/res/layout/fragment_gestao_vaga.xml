@@ -39,13 +39,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gestaoVagaQuickActionsView"
-                android:orientation="vertical"/>
+                android:orientation="vertical"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"/>
 
             <br.com.zelar.zellarempresas.Custom.GestaoVagaOpcaoListaView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/gestaoVagaOpcaoListaView"
-                android:orientation="vertical"/>
+                android:orientation="vertical"
+                android:layout_marginBottom="4dp"/>
 
             <ListView
                 android:layout_width="match_parent"
