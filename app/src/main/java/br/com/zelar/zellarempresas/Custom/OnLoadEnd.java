@@ -7,6 +7,6 @@ import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
  */
 public interface OnLoadEnd
 {
-    void carregarListaDescartados(CandidatoEmpresa[] candidatos);
-    void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos);
+    void carregarListaDescartados(CandidatoEmpresa[] candidatos, String idEtapa);
+    void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos, String idEtapa);
 }

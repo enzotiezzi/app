@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:orientation="horizontal">
 
         <View
             android:layout_width="4dp"
@@ -26,8 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Objetivos Profissionais"
-                android:id="@+id/textViewObjetivos"
+                android:text="Experiências"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"/>
 
@@ -40,9 +39,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Cargos desejados: "
+                    android:text="Empresa: "
                     android:textStyle="bold"
-                    android:textColor="@color/zellarGray"/>
+                    android:textColor="@color/zellarGray"
+                    android:layout_marginBottom="4dp"/>
 
 
                 <TextView
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=""
-                    android:id="@+id/textViewCargosDesejados"/>
+                    android:id="@+id/textViewNomeEmpresaCV"/>
 
             </LinearLayout>
 
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Pret. salarial: "
+                    android:text="Salário: "
                     android:textStyle="bold"
                     android:textColor="@color/zellarGray"
                     android:layout_marginBottom="4dp"/>
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=""
-                    android:id="@+id/textViewPretSalarial"/>
+                    android:id="@+id/textViewSalarioCV"/>
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Restrição de viagens: "
+                    android:text="Cargo: "
                     android:textStyle="bold"
                     android:textColor="@color/zellarGray"
                     android:layout_marginBottom="4dp"/>
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=""
-                    android:id="@+id/textViewRestriViagem"/>
+                    android:id="@+id/textViewCargoCV"/>
 
             </LinearLayout>
 
@@ -111,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Restrição de dias: "
+                    android:text="Período: "
                     android:textStyle="bold"
                     android:textColor="@color/zellarGray"
                     android:layout_marginBottom="4dp"/>
@@ -122,31 +122,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text=""
-                    android:id="@+id/textViewRestriDias"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Restrição de período: "
-                    android:textStyle="bold"
-                    android:textColor="@color/zellarGray"
-                    android:layout_marginBottom="4dp"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text=""
-                    android:id="@+id/textViewRestriPeriodo"/>
+                    android:id="@+id/textViewPeriodoCV"/>
 
             </LinearLayout>
 

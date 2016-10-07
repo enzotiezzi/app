@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
@@ -27,6 +28,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
     private OnLoadEnd onLoadEnd;
 
     private VagaEtapa[] vagaEtapas;
+    private List<ItemEtapaView> items;
 
     private int skipDescartados = 0;
     private int skipNaoDescartados = 0;
@@ -55,6 +57,8 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
     @Override
     public void initialize()
     {
+        items = new ArrayList<>();
+
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         view = layoutInflater.inflate(R.layout.component_processo_seletivo, this);
@@ -88,6 +92,8 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
             itemEtapaView.getButtonNumeroEtapa().setTag(itemEtapaView);
             itemEtapaView.getButtonNumeroEtapa().setOnClickListener(itemEtapa_click);
 
+            items.add(itemEtapaView);
+
             linearLayoutProcessoSeletivo.addView(itemEtapaView, i);
         }
     }
@@ -105,7 +111,12 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
         }
     };
 
-    private void carregarCandidatosNaoDescartados(final String idEtapa, final String idVaga)
+    public void setInitial(int etapaAtual)
+    {
+        items.get(etapaAtual).getButtonNumeroEtapa().callOnClick();
+    }
+
+    public void carregarCandidatosNaoDescartados(final String idEtapa, final String idVaga)
     {
         String queryString = "?idEtapa=" + idEtapa + "&idVaga=" + idVaga + "&pagina=" + skipNaoDescartados;
         String url = Utils.buildURL(getContext(), "Mobile/ListarCandidatosEtapa" + queryString);
@@ -121,7 +132,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
 
                    if(candidatos != null)
                    {
-                       onLoadEnd.carregarListaNaoDescartados(candidatos);
+                       onLoadEnd.carregarListaNaoDescartados(candidatos, idEtapa);
                        //skipNaoDescartados += candidatos.length;
                    }
 
@@ -131,7 +142,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
         }, null);
     }
 
-    private void carregarCandidatosDescartados(String idEtapa, String idVaga)
+    private void carregarCandidatosDescartados(final String idEtapa, String idVaga)
     {
         String queryString = "?idEtapa=" + idEtapa + "&idVaga=" + idVaga + "&pagina=" + skipDescartados;
         String url = Utils.buildURL(getContext(), "Mobile/ListarCandidatosReprovadosEtapa" + queryString);
@@ -147,7 +158,7 @@ public class ProcessoSeletivoView extends LinearLayout implements IBasic
 
                         if(candidatos != null)
                     {
-                        onLoadEnd.carregarListaDescartados(candidatos);
+                        onLoadEnd.carregarListaDescartados(candidatos, idEtapa);
                         //skipNaoDescartados += candidatos.length;
                     }
                 }

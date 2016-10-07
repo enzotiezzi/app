@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Não descartados (0)"
+            android:text="Não descartados"
             android:id="@+id/textViewNaoDescartados"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"/>
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Descartados (0)"
+            android:text="Descartados"
             android:id="@+id/textViewDescartados"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"/>

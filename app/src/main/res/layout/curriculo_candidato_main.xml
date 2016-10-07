@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/curriculo_candidato_header"></include>
+
+            <include layout="@layout/currilo_candidato_objetivos_profissioanais"></include>
+
+            <include layout="@layout/curriculo_candidato_experiencias"></include>
+
+            <include layout="@layout/curriculo_candidato_formacao"></include>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

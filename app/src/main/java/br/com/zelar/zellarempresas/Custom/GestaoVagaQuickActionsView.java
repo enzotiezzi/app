@@ -7,12 +7,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.zelar.zellarempresas.Empresas.AvaliacaoCandidato;
+import br.com.zelar.zellarempresas.Http.HttpClientHelper;
+import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
 import br.com.zelar.zellarempresas.R;
+import br.com.zelar.zellarempresas.Session.SessionManager;
+import br.com.zelar.zellarempresas.Utilities.Utils;
 
 /**
  * Created by enzo on 21/09/2016.
@@ -26,6 +32,12 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
     private ImageView imageViewFavoritar;
 
     private List<String> candidatos;
+
+    private String idVaga;
+    private String idEtapa;
+
+    private OnReproveListener onReproveListener;
+
 
     public GestaoVagaQuickActionsView(Context context)
     {
@@ -66,6 +78,31 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         imageViewFavoritar.setOnClickListener(imageViewFavoritar_click);
     }
 
+    public void setOnReproveListener(OnReproveListener onReproveListener)
+    {
+        this.onReproveListener = onReproveListener;
+    }
+
+    public void setIdEtapa(String idEtapa)
+    {
+        this.idEtapa = idEtapa;
+    }
+
+    public void setIdVaga(String idVaga)
+    {
+        this.idVaga = idVaga;
+    }
+
+    public String getIdEtapa()
+    {
+        return idEtapa;
+    }
+
+    public String getIdVaga()
+    {
+        return idVaga;
+    }
+
     public void adicionarCandidato(String guid)
     {
         candidatos.add(guid);
@@ -86,7 +123,29 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         @Override
         public void onClick(View v)
         {
-            // TODO: reprovar candidatos
+            AvaliacaoCandidato avaliacaoCandidato = new AvaliacaoCandidato();
+            avaliacaoCandidato.setIdVaga(idVaga);
+            avaliacaoCandidato.setIdEtapa(idEtapa);
+            avaliacaoCandidato.setCandidatos(candidatos);
+
+            String url = Utils.buildURL(getContext(), "Mobile/ReprovarCandidato");
+
+            HttpClientHelper.sendRequest(getContext(), "post", url, new ICallback()
+            {
+                @Override
+                public void onRequestEnd(int statusCode, Throwable t, String response)
+                {
+                    if (statusCode == 200 && t == null)
+                    {
+                        Toast.makeText(getContext(), "Candidatos reprovados com sucesso", Toast.LENGTH_LONG).show();
+
+                        if (onReproveListener != null)
+                            onReproveListener.reprovarCandidato(candidatos);
+
+                        limparLista();
+                    }
+                }
+            }, avaliacaoCandidato);
         }
     };
 
@@ -95,7 +154,26 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         @Override
         public void onClick(View v)
         {
-            // TODO: aprovar candidatos
+            AvaliacaoCandidato avaliacaoCandidato = new AvaliacaoCandidato();
+            avaliacaoCandidato.setIdVaga(idVaga);
+            avaliacaoCandidato.setIdEtapa(idEtapa);
+            avaliacaoCandidato.setCandidatos(candidatos);
+
+            String url = Utils.buildURL(getContext(), "Mobile/AprovarCandidatoEtapa");
+
+            HttpClientHelper.sendRequest(getContext(), "post", url, new ICallback()
+            {
+                @Override
+                public void onRequestEnd(int statusCode, Throwable t, String response)
+                {
+                    if (statusCode == 200 && t == null)
+                    {
+                        Toast.makeText(getContext(), "Candidatos aprovados com sucesso", Toast.LENGTH_LONG).show();
+
+                        limparLista();
+                    }
+                }
+            }, avaliacaoCandidato);
         }
     };
 
@@ -104,7 +182,25 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         @Override
         public void onClick(View v)
         {
-            // TODO: favoritar candidatos
+            AvaliacaoCandidato avaliacaoCandidato = new AvaliacaoCandidato();
+            avaliacaoCandidato.setLoginUsuario(new SessionManager(getContext()).getPreferences("idUsuario"));
+            avaliacaoCandidato.setCandidatos(candidatos);
+
+            String url = Utils.buildURL(getContext(), "Mobile/AdicionarFavoritos");
+
+            HttpClientHelper.sendRequest(getContext(), "post", url, new ICallback()
+            {
+                @Override
+                public void onRequestEnd(int statusCode, Throwable t, String response)
+                {
+                    if (statusCode == 200 && t == null)
+                    {
+                        Toast.makeText(getContext(), "Candidatos favoritados com sucesso", Toast.LENGTH_LONG).show();
+
+                        limparLista();
+                    }
+                }
+            }, avaliacaoCandidato);
         }
     };
 }

@@ -105,6 +105,6 @@ public class GestaoVagaOpcaoListaView extends LinearLayout implements IBasic
     public void setQuantidadeNaoDescartados(String quantidadeNaoDescartados)
     {
         String original = textViewNaoDescartados.getText().toString();
-        textViewNaoDescartados.setText(original.replace("0", quantidadeNaoDescartados));
+        //textViewNaoDescartados.setText(original.replace("0", quantidadeNaoDescartados));
     }
 }

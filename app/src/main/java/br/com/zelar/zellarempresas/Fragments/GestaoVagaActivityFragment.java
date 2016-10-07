@@ -1,10 +1,12 @@
 package br.com.zelar.zellarempresas.Fragments;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import br.com.zelar.zellarempresas.Custom.GestaoVagaOpcaoListaView;
 import br.com.zelar.zellarempresas.Custom.GestaoVagaQuickActionsView;
 import br.com.zelar.zellarempresas.Custom.OnListToggleListener;
 import br.com.zelar.zellarempresas.Custom.OnLoadEnd;
+import br.com.zelar.zellarempresas.Custom.OnReproveListener;
 import br.com.zelar.zellarempresas.Custom.ProcessoSeletivoView;
 import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
 import br.com.zelar.zellarempresas.Empresas.Vaga;
@@ -30,6 +33,7 @@ import br.com.zelar.zellarempresas.Infrastructure.IBasic;
 import br.com.zelar.zellarempresas.R;
 import br.com.zelar.zellarempresas.Session.SessionManager;
 import br.com.zelar.zellarempresas.Utilities.Utils;
+import br.com.zelar.zellarempresas.Views.CurriculoCandidatoActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -86,6 +90,8 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
 
         processoSeletivoView.setOnLoadEnd(onLoadEnd);
         gestaoVagaOpcaoListaView.setOnListToggleListener(onListToggleListener);
+        gestaoVagaQuickActionsView.setOnReproveListener(reproveListener);
+
 
     }
 
@@ -120,6 +126,12 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
                     if (vagaEtapas != null)
                     {
                         processoSeletivoView.setVagaEtapas(vagaEtapas);
+
+                        char etapa = vaga.getEtapaAtual().charAt(0);
+
+                        int atual = Integer.parseInt(String.valueOf(etapa)) - 1;
+
+                        processoSeletivoView.setInitial(atual);
                     }
                 }
             }
@@ -129,8 +141,14 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
     OnLoadEnd onLoadEnd = new OnLoadEnd()
     {
         @Override
-        public void carregarListaDescartados(CandidatoEmpresa[] candidatos)
+        public void carregarListaDescartados(CandidatoEmpresa[] candidatos, String idEtapa)
         {
+            if (idEtapa != null && idEtapa.length() > 0)
+            {
+                gestaoVagaQuickActionsView.setIdEtapa(idEtapa);
+                gestaoVagaQuickActionsView.setIdVaga(vaga.getUniqueId());
+            }
+
             descartados = new ArrayList<>();
             descartados.addAll(Arrays.asList(candidatos));
 
@@ -138,12 +156,20 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
             descartados.toArray(c);
 
             candidatoVagaAdapter = new CandidatoVagaAdapter(getContext(), c);
+            candidatoVagaAdapter.setIdEtapa(idEtapa);
+            candidatoVagaAdapter.setIdVaga(vaga.getUniqueId());
             candidatoVagaAdapter.setOnItemCheckedListener(onItemCheckListener);
         }
 
         @Override
-        public void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos)
+        public void carregarListaNaoDescartados(CandidatoEmpresa[] candidatos, String idEtapa)
         {
+            if (idEtapa != null && idEtapa.length() > 0)
+            {
+                gestaoVagaQuickActionsView.setIdEtapa(idEtapa);
+                gestaoVagaQuickActionsView.setIdVaga(vaga.getUniqueId());
+            }
+
             naoDescartados = new ArrayList<>();
             naoDescartados.addAll(Arrays.asList(candidatos));
 
@@ -154,6 +180,8 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
 
             candidatoVagaAdapterNaoDescartados = new CandidatoVagaAdapter(getContext(), c);
             candidatoVagaAdapterNaoDescartados.setOnItemCheckedListener(onItemCheckListener);
+            candidatoVagaAdapterNaoDescartados.setIdEtapa(idEtapa);
+            candidatoVagaAdapterNaoDescartados.setIdVaga(vaga.getUniqueId());
             listViewCandidatos.setAdapter(candidatoVagaAdapterNaoDescartados);
         }
     };
@@ -189,4 +217,27 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
             gestaoVagaQuickActionsView.limparLista();
         }
     };
+
+    OnReproveListener reproveListener = new OnReproveListener()
+    {
+        @Override
+        public void reprovarCandidato(List<String> candidatos)
+        {
+            String idEtapa = gestaoVagaQuickActionsView.getIdEtapa();
+            String idVaga = gestaoVagaQuickActionsView.getIdVaga();
+
+            processoSeletivoView.carregarCandidatosNaoDescartados(idEtapa, idVaga);
+        }
+    };
+
+    @Override
+    public void onResume()
+    {
+        String idEtapa = gestaoVagaQuickActionsView.getIdEtapa();
+        String idVaga = gestaoVagaQuickActionsView.getIdVaga();
+
+        processoSeletivoView.carregarCandidatosNaoDescartados(idEtapa, idVaga);
+
+        super.onResume();
+    }
 }

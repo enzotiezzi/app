@@ -127,7 +127,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         viewDadosEssenciais = thisView.findViewById(R.id.dadosEssenciais);
         viewDescricaoAtividades = thisView.findViewById(R.id.descicaoAtividades);
         viewSalarioBeneficios = thisView.findViewById(R.id.salarioBeneficios);
-        viewCanalDivulgacao = thisView.findViewById(R.id.canalDivulgacao);
+        //viewCanalDivulgacao = thisView.findViewById(R.id.canalDivulgacao);
         viewResumoVaga = thisView.findViewById(R.id.resumo);
 
         textViewDescricaoAtividades = (TextView) thisView.findViewById(R.id.textViewDescricaoAtividades);
@@ -145,7 +145,7 @@ public class CriarVagaActivityFragment extends Fragment implements IBasic
         viewDadosEssenciais.setOnClickListener(textViewVerEssenciais_click);
         viewDescricaoAtividades.setOnClickListener(textViewDescricaoAtividades_click);
         viewSalarioBeneficios.setOnClickListener(textViewSalarioBeneficios_click);
-        viewCanalDivulgacao.setOnClickListener(viewCanalDivulgacao_click);
+        //viewCanalDivulgacao.setOnClickListener(viewCanalDivulgacao_click);
         viewResumoVaga.setOnClickListener(textViewResumoVaga_click);
 
 
