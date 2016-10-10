@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -56,6 +57,8 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
     private CandidatoVagaAdapter candidatoVagaAdapter;
     private CandidatoVagaAdapter candidatoVagaAdapterNaoDescartados;
 
+    private boolean flag_loading = false;
+
 
     public GestaoVagaActivityFragment()
     {
@@ -92,7 +95,7 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
         gestaoVagaOpcaoListaView.setOnListToggleListener(onListToggleListener);
         gestaoVagaQuickActionsView.setOnReproveListener(reproveListener);
 
-
+        listViewCandidatos.setOnScrollListener(listViewListaVagas_Scroll);
     }
 
     private void carregarVaga()
@@ -230,6 +233,29 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
         }
     };
 
+    AbsListView.OnScrollListener listViewListaVagas_Scroll = new AbsListView.OnScrollListener()
+    {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState)
+        {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+        {
+            if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0)
+            {
+                if(flag_loading == false)
+                {
+                    flag_loading = true;
+                    carregarCandidatosNaoDescartados(gestaoVagaQuickActionsView.getIdEtapa(), gestaoVagaQuickActionsView.getIdVaga());
+                }
+            }
+        }
+    };
+
+
     @Override
     public void onResume()
     {
@@ -239,5 +265,29 @@ public class GestaoVagaActivityFragment extends Fragment implements IBasic
         processoSeletivoView.carregarCandidatosNaoDescartados(idEtapa, idVaga);
 
         super.onResume();
+    }
+
+    public void carregarCandidatosNaoDescartados(final String idEtapa, final String idVaga)
+    {
+        String queryString = "?idEtapa=" + idEtapa + "&idVaga=" + idVaga + "&pagina=" + naoDescartados.size();
+        String url = Utils.buildURL(getContext(), "Mobile/ListarCandidatosEtapa" + queryString);
+
+        HttpClientHelper.sendRequest(getContext(), "get", url, new ICallback()
+        {
+            @Override
+            public void onRequestEnd(int statusCode, Throwable t, String response)
+            {
+                if(statusCode == 200 && t == null)
+                {
+                    CandidatoEmpresa[] candidatos = new Gson().fromJson(response, CandidatoEmpresa[].class);
+
+                    if(candidatos != null)
+                    {
+                        flag_loading = false;
+                        candidatoVagaAdapterNaoDescartados.addCandidatos(candidatos);
+                    }
+                }
+            }
+        }, null);
     }
 }

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
@@ -26,7 +28,7 @@ public class CandidatoVagaAdapter extends BaseAdapter
 {
     private Context context;
 
-    private CandidatoEmpresa[] candidatos;
+    private List<CandidatoEmpresa> candidatos;
 
     private OnItemCheckedListener onItemCheckedListener;
 
@@ -35,20 +37,22 @@ public class CandidatoVagaAdapter extends BaseAdapter
 
     public CandidatoVagaAdapter(Context context, CandidatoEmpresa[] candidatos)
     {
+        this.candidatos = new ArrayList<>();
         this.context = context;
-        this.candidatos = candidatos;
+
+        this.candidatos.addAll(Arrays.asList(candidatos));
     }
 
     @Override
     public int getCount()
     {
-        return candidatos.length;
+        return candidatos.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return candidatos[position];
+        return candidatos.get(position);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class CandidatoVagaAdapter extends BaseAdapter
             candidatoVagaEtapaHelper = (CandidatoVagaEtapaHelper) convertView.getTag();
         }
 
-        CandidatoEmpresa c = candidatos[position];
+        CandidatoEmpresa c = candidatos.get(position);
 
         String idadeSexoCivilFilhoEnsino = ObjectUtilities.getValue(c.getGenero()) + ", "
                 + ObjectUtilities.getValue(c.getEstadoCivil()) + ", "
@@ -150,6 +154,11 @@ public class CandidatoVagaAdapter extends BaseAdapter
         }
     };
 
+    public void addCandidatos(CandidatoEmpresa[] candididatos)
+    {
+        this.candidatos.addAll(Arrays.asList(candididatos));
+        notifyDataSetChanged();
+    }
 
     class CandidatoVagaEtapaHelper
     {

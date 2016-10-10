@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -30,10 +31,12 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
     private View v;
 
     private ListView listViewListaVagas;
+    private ItemVagaAdapter itemVagaAdapter;
 
     // paginação
 
     private int skip = 0;
+    private boolean flag_loading = false;
 
     public ListaVagasActivityFragment()
     {
@@ -57,6 +60,7 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
         listViewListaVagas = (ListView) v.findViewById(R.id.listViewListaVagas);
 
         listViewListaVagas.setOnItemClickListener(listViewListaVagas_itemClick);
+        listViewListaVagas.setOnScrollListener(listViewListaVagas_Scroll);
     }
 
     private void carregarVagas()
@@ -79,8 +83,39 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
 
                     if(vagas != null && vagas.length > 0)
                     {
-                        listViewListaVagas.setAdapter(new ItemVagaAdapter(getContext(), vagas));
+                        itemVagaAdapter = new ItemVagaAdapter(getContext(), vagas);
+                        listViewListaVagas.setAdapter(itemVagaAdapter);
                         skip += 50;
+                    }
+                }
+            }
+        }, vagaRequest);
+    }
+
+    private void carregarMaisVagas()
+    {
+        String url = Utils.buildURL(getContext(), "Mobile/ListarVagas");
+        String idUsuario = new SessionManager(getContext()).getPreferences("idUsuario");
+
+        VagaRequest vagaRequest = new VagaRequest();
+        vagaRequest.idUsuairo = idUsuario;
+        vagaRequest.skip = skip;
+
+        HttpClientHelper.sendRequest(getContext(), "post", url, new ICallback()
+        {
+            @Override
+            public void onRequestEnd(int statusCode, Throwable t, String response)
+            {
+                if(statusCode == 200 && t == null)
+                {
+                    Vaga[] vagas = new Gson().fromJson(response, Vaga[].class);
+
+                    if(vagas != null && vagas.length > 0)
+                    {
+                        itemVagaAdapter.addVagas(vagas);
+                        skip += vagas.length;
+
+                        flag_loading = false;
                     }
                 }
             }
@@ -104,6 +139,28 @@ public class ListaVagasActivityFragment extends Fragment implements IBasic
                     .beginTransaction()
                     .replace(R.id.container, gestaoVagaActivityFragment)
                     .commit();
+        }
+    };
+
+    AbsListView.OnScrollListener listViewListaVagas_Scroll = new AbsListView.OnScrollListener()
+    {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState)
+        {
+
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+        {
+            if(firstVisibleItem+visibleItemCount == totalItemCount && totalItemCount!=0)
+            {
+                if(flag_loading == false)
+                {
+                    flag_loading = true;
+                    carregarMaisVagas();
+                }
+            }
         }
     };
 

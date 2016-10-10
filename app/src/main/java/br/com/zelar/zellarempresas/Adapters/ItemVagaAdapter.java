@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import br.com.zelar.zellarempresas.Empresas.Vaga;
 import br.com.zelar.zellarempresas.R;
 import br.com.zelar.zellarempresas.Utilities.ObjectUtilities;
@@ -18,24 +22,26 @@ import br.com.zelar.zellarempresas.Utilities.ObjectUtilities;
 public class ItemVagaAdapter extends BaseAdapter
 {
     private Context mContext;
-    private Vaga[] mVagas;
+    private List<Vaga> mVagas;
 
     public ItemVagaAdapter(Context context, Vaga[] vagas)
     {
-        mVagas = vagas;
+        mVagas = new ArrayList<>();
         mContext = context;
+
+        mVagas.addAll(Arrays.asList(vagas));
     }
 
     @Override
     public int getCount()
     {
-        return mVagas.length;
+        return mVagas.size();
     }
 
     @Override
     public Object getItem(int position)
     {
-        return mVagas[position];
+        return mVagas.get(position);
     }
 
     @Override
@@ -65,7 +71,7 @@ public class ItemVagaAdapter extends BaseAdapter
             itemVagaHelper = (ItemVagaHelper) convertView.getTag();
         }
 
-        Vaga vaga = mVagas[position];
+        Vaga vaga = mVagas.get(position);
 
         String tituloVaga = ObjectUtilities.getValue(vaga.getTitulo()) + ", " + ObjectUtilities.getValue(vaga.getCodigo());
         String horarioEntrada = ObjectUtilities.getValue(vaga.getHorarioEntradaHoras()) + ":" + ObjectUtilities.getValue(vaga.getHorarioEntradaMinutos());
@@ -81,6 +87,13 @@ public class ItemVagaAdapter extends BaseAdapter
 
 
         return convertView;
+    }
+
+    public void addVagas(Vaga[] vagas)
+    {
+        mVagas.addAll(Arrays.asList(vagas));
+
+        notifyDataSetChanged();
     }
 
     class ItemVagaHelper
