@@ -35,6 +35,10 @@ public class CandidatoVagaAdapter extends BaseAdapter
     private String idVaga;
     private String idEtapa;
 
+    private View statusReprovado;
+    private View statusAprovado;
+    private View statusFavorito;
+
     public CandidatoVagaAdapter(Context context, CandidatoEmpresa[] candidatos)
     {
         this.candidatos = new ArrayList<>();
@@ -78,6 +82,10 @@ public class CandidatoVagaAdapter extends BaseAdapter
             candidatoVagaEtapaHelper.textViewOrigem = (TextView) convertView.findViewById(R.id.textViewOrigem);
             candidatoVagaEtapaHelper.candidatoDetalhe = convertView.findViewById(R.id.candidatoDetalhe);
 
+            statusReprovado = convertView.findViewById(R.id.statusReprovado);
+            statusAprovado = convertView.findViewById(R.id.statusAprovado);
+            statusFavorito = convertView.findViewById(R.id.statusFavorito);
+
             convertView.setTag(candidatoVagaEtapaHelper);
         }
         else
@@ -101,6 +109,8 @@ public class CandidatoVagaAdapter extends BaseAdapter
 
         candidatoVagaEtapaHelper.checkBoxChecar.setOnCheckedChangeListener(onCheckedChangeListener);
         candidatoVagaEtapaHelper.candidatoDetalhe.setOnClickListener(candidatoDetalhe_click);
+
+        convertView.setTag(0, c);
 
         return convertView;
     }
@@ -141,15 +151,15 @@ public class CandidatoVagaAdapter extends BaseAdapter
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
         {
-            String id = (String) buttonView.getTag();
+            View view = (View) buttonView.getTag();
 
             if (isChecked)
             {
-                onItemCheckedListener.onItemCheck(id);
+                onItemCheckedListener.onItemCheck(view);
             }
             else
             {
-                onItemCheckedListener.onItemDischeck(id);
+                onItemCheckedListener.onItemDischeck(view);
             }
         }
     };

@@ -62,6 +62,7 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/thumbs_up_status"
                             android:layout_marginLeft="2dp"
+                            android:id="@+id/statusAprovado"
                             android:visibility="gone"/>
 
                         <ImageView
@@ -69,6 +70,7 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/favorite_status"
                             android:layout_marginLeft="2dp"
+                            android:id="@+id/statusFavorito"
                             android:visibility="gone"/>
 
                     </LinearLayout>

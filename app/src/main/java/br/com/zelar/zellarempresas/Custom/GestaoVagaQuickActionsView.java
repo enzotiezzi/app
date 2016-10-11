@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.zelar.zellarempresas.Empresas.AvaliacaoCandidato;
+import br.com.zelar.zellarempresas.Empresas.CandidatoEmpresa;
 import br.com.zelar.zellarempresas.Http.HttpClientHelper;
 import br.com.zelar.zellarempresas.Http.ICallback;
 import br.com.zelar.zellarempresas.Infrastructure.IBasic;
@@ -32,6 +33,7 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
     private ImageView imageViewFavoritar;
 
     private List<String> candidatos;
+    private List<View> viewCandidatos;
 
     private String idVaga;
     private String idEtapa;
@@ -64,6 +66,7 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
     public void initialize()
     {
         candidatos = new ArrayList<String>();
+        viewCandidatos = new ArrayList<>();
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -103,14 +106,32 @@ public class GestaoVagaQuickActionsView extends LinearLayout implements IBasic
         return idVaga;
     }
 
-    public void adicionarCandidato(String guid)
+    public void adicionarCandidato(View v)
     {
-        candidatos.add(guid);
+        CandidatoEmpresa candidatoEmpresa = (CandidatoEmpresa) v.getTag(0);
+        candidatos.add(candidatoEmpresa.getUniqueId());
+        viewCandidatos.add(v);
     }
 
-    public void removerCandidato(String guid)
+    public void removerCandidato(View v)
     {
-        candidatos.remove(guid);
+        CandidatoEmpresa candidatoEmpresa = (CandidatoEmpresa) v.getTag(0);
+        candidatos.remove(candidatoEmpresa.getUniqueId());
+        int posicao = removerCandidatoPosicao(candidatoEmpresa.getUniqueId());
+        viewCandidatos.remove(posicao);
+    }
+
+    private int removerCandidatoPosicao(String id)
+    {
+        for(int i = 0; i < viewCandidatos.size(); i++)
+        {
+            CandidatoEmpresa c = (CandidatoEmpresa) viewCandidatos.get(i).getTag(0);
+
+            if (id.equals(c.getUniqueId()))
+                return i;
+        }
+
+        return -1;
     }
 
     public void limparLista()
